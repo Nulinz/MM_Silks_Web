@@ -1,0 +1,227 @@
+@media screen and (min-width: 1098px) {
+    
+    /* About Banner */
+    .aboutbanner {
+        width: 100%;
+        height: 85vh;
+        position: relative;
+    }
+
+    .aboutbanner img {
+        height: 100%;
+        width: 100%;
+        filter: brightness(80%);
+    }
+
+    .aboutbanner .aboutbannercntnt {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .aboutbannercntnt h3 {
+        color: var(--secondary);
+        font-weight: var(--fw-xxl);
+        font-size: 45px;
+        margin-bottom: 10px;
+    }
+
+    .aboutbannercntnt h6 {
+        width: 70%;
+        margin: auto;
+        color: var(--secondary);
+        font-weight: var(--fw-sm);
+        font-size: 18px;
+        line-height: 28px;
+        margin-bottom: 10px;
+    }
+
+    /* About Us Content */
+    .aboutuscontent {
+        width: 100%;
+        background: var(--secondary);
+        margin-top: 50px;
+    }
+
+    .aboutuscontentdiv {
+        width: 90%;
+        margin: auto;
+    }
+
+    .aboutuscntnt h4 {
+        color: var(--text-primary);
+        font-weight: var(--fw-xl);
+        font-size: 25px;
+        margin-bottom: 10px;
+        text-transform: capitalize;
+    }
+
+    .aboutuscntnt h6,
+    .aboutuscntnt li {
+        color: var(--text-primary);
+        font-weight: var(--fw-md);
+        font-size: 15px;
+        margin-bottom: 0px;
+        line-height: 25px;
+    }
+
+    .aboutuscntnt li {
+        list-style-type: disc;
+    }
+
+}
+
+@media screen and (min-width: 767px) and (max-width: 1098px) {
+    
+    /* About Banner */
+    .aboutbanner {
+        width: 100%;
+        height: 70vh;
+        position: relative;
+    }
+
+    .aboutbanner img {
+        height: 100%;
+        width: 100%;
+        filter: brightness(80%);
+    }
+
+    .aboutbanner .aboutbannercntnt {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .aboutbannercntnt h3 {
+        color: var(--secondary);
+        font-weight: var(--fw-xxl);
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    .aboutbannercntnt h6 {
+        width: 75%;
+        margin: auto;
+        color: var(--secondary);
+        font-weight: var(--fw-sm);
+        font-size: 15px;
+        line-height: 25px;
+        margin-bottom: 10px;
+    }
+    
+    /* About Us Content */
+    .aboutuscontent {
+        width: 100%;
+        background: var(--secondary);
+        margin-top: 30px;
+    }
+
+    .aboutuscontentdiv {
+        width: 95%;
+        margin: auto;
+    }
+
+    .aboutuscntnt h4 {
+        color: var(--text-primary);
+        font-weight: var(--fw-xl);
+        font-size: 20px;
+        margin-bottom: 10px;
+        text-transform: capitalize;
+    }
+
+    .aboutuscntnt h6,
+    .aboutuscntnt li {
+        color: var(--text-primary);
+        font-weight: var(--fw-md);
+        font-size: 12px;
+        margin-bottom: 0px;
+        line-height: 23px;
+    }
+
+    .aboutuscntnt li {
+        list-style-type: disc;
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+    
+    /* About Banner */
+    .aboutbanner {
+        width: 100%;
+        height: 90vh;
+        position: relative;
+    }
+
+    .aboutbanner img {
+        height: 100%;
+        width: 100%;
+        filter: brightness(80%);
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .aboutbanner .aboutbannercntnt {
+        width: 90%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .aboutbannercntnt h3 {
+        color: var(--secondary);
+        font-weight: var(--fw-xxl);
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    .aboutbannercntnt h6 {
+        width: 90%;
+        margin: auto;
+        color: var(--secondary);
+        font-weight: var(--fw-sm);
+        font-size: 15px;
+        line-height: 25px;
+        margin-bottom: 10px;
+    }
+
+    /* About Us Content */
+    .aboutuscontent {
+        width: 100%;
+        background: var(--secondary);
+        margin-top: 30px;
+    }
+
+    .aboutuscontentdiv {
+        width: 95%;
+        margin: auto;
+    }
+
+    .aboutuscntnt h4 {
+        color: var(--text-primary);
+        font-weight: var(--fw-xl);
+        font-size: 20px;
+        margin-bottom: 10px;
+        text-transform: capitalize;
+    }
+
+    .aboutuscntnt h6,
+    .aboutuscntnt li {
+        color: var(--text-primary);
+        font-weight: var(--fw-md);
+        font-size: 12px;
+        margin-bottom: 0px;
+        line-height: 23px;
+    }
+
+    .aboutuscntnt li {
+        list-style-type: disc;
+    }
+
+}

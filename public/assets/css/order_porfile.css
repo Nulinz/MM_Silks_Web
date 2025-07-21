@@ -1,0 +1,539 @@
+@media screen and (min-width: 1024px) {
+
+    /* Order Main */
+    .ordermain {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Order Head */
+    .orderhead {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .orderhead .orderdate h6 {
+        color: var(--primary);
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .orderdate h6 span {
+        color: var(--label);
+        font-weight: 450;
+    }
+
+    .estdate h6 {
+        color: var(--primary);
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .estdate h6 span {
+        color: var(--main);
+        font-weight: 500;
+    }
+
+    /* Order Timeline */
+    .ordertimeline {
+        margin-top: 30px;
+    }
+
+    /* Order Products */
+    .orderproducts {
+        margin-top: 20px;
+    }
+
+    .orderproducts .cards {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .orderproducts .cardleft {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .orderproducts .cardleft .productimg {
+        width: 75px;
+        height: 75px;
+        border-radius: 8px;
+        border: 1px solid var(--input-border);
+        box-shadow: var(--box-shadow);
+    }
+
+    .orderproducts .cardleft .productimg img {
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .orderproducts .productct h5 {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--primary);
+    }
+
+    .orderproducts .productct h6 {
+        font-size: 13px;
+        font-weight: 450;
+        color: var(--label);
+    }
+
+    .orderproducts .productct h6 .amtdash {
+        text-decoration: 2px line-through #888;
+    }
+
+    .orderproducts .cardright h5 {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .orderproducts .cardright h6 {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--label);
+    }
+
+    /* Order Payment */
+    .orderpayment {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .orderpayment .payment h5 {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    .orderpayment .payment .visa {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .orderpayment .payment .visa h6 {
+        color: var(--label);
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .orderpayment .delivery .address h6 {
+        color: var(--label);
+        font-weight: 600;
+        font-size: 12px;
+        text-align: right;
+    }
+
+    .orderpayment .delivery h5 {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--primary);
+        text-align: right;
+    }
+
+    /* Order Summary */
+    .ordersummary {
+        margin-top: 20px;
+    }
+
+    .summarytable .summaryhead {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .ordersummary .summaryhead h5 {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    .ordersummary .summaryhead h6 {
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .ordersummary .table td {
+        font-size: 13px;
+        font-weight: 450;
+        color: var(--label);
+    }
+
+    .ordersummary .table th {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .ordersummary .summarytable .table>:not(caption)>*>* {
+        padding: .1rem .5rem;
+    }
+}
+
+@media screen and (min-width: 767px) and (max-width: 1024px) {
+
+    /* Order Main */
+    .ordermain {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Order Head */
+    .orderhead {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .orderhead .orderdate h6 {
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .orderdate h6 span {
+        color: var(--label);
+        font-weight: 450;
+    }
+
+    .estdate h6 {
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .estdate h6 span {
+        color: var(--main);
+        font-weight: 500;
+    }
+
+    /* Order Timeline */
+    .ordertimeline {
+        margin-top: 30px;
+    }
+
+    /* Order Products */
+    .orderproducts {
+        margin-top: 20px;
+    }
+
+    .orderproducts .cards {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .orderproducts .cardleft {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .orderproducts .cardleft .productimg {
+        width: 60px;
+        height: 60px;
+        border-radius: 8px;
+        border: 1px solid var(--input-border);
+        box-shadow: var(--box-shadow);
+    }
+
+    .orderproducts .cardleft .productimg img {
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .orderproducts .productct h5 {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--primary);
+    }
+
+    .orderproducts .productct h6 {
+        font-size: 10px;
+        font-weight: 450;
+        color: var(--label);
+    }
+
+    .orderproducts .productct h6 .amtdash {
+        text-decoration: 2px line-through #888;
+    }
+
+    .orderproducts .cardright h5 {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .orderproducts .cardright h6 {
+        font-size: 10px;
+        font-weight: 500;
+        color: var(--label);
+    }
+
+    /* Order Payment */
+    .orderpayment {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .orderpayment .payment h5 {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    .orderpayment .payment .visa {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+    }
+
+    .orderpayment .payment .visa h6 {
+        color: var(--label);
+        font-weight: 600;
+        font-size: 10px;
+    }
+
+    .orderpayment .delivery .address h6 {
+        color: var(--label);
+        font-weight: 600;
+        font-size: 10px;
+        text-align: right;
+    }
+
+    .orderpayment .delivery h5 {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--primary);
+        text-align: right;
+    }
+
+    /* Order Summary */
+    .ordersummary {
+        margin-top: 20px;
+    }
+
+    .summarytable .summaryhead {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .ordersummary .summaryhead h5 {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    .ordersummary .summaryhead h6 {
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .ordersummary .table td {
+        font-size: 12px;
+        font-weight: 450;
+        color: var(--label);
+    }
+
+    .ordersummary .table th {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .ordersummary .summarytable .table>:not(caption)>*>* {
+        padding: .1rem .5rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    /* Order Main */
+    .ordermain {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Order Head */
+    .orderhead {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .orderhead .orderdate h6 {
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .orderdate h6 span {
+        color: var(--label);
+        font-weight: 450;
+    }
+
+    .estdate h6 {
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .estdate h6 span {
+        color: var(--main);
+        font-weight: 500;
+    }
+
+    /* Order Timeline */
+    .ordertimeline {
+        margin-top: 30px;
+    }
+
+    /* Order Products */
+    .orderproducts {
+        margin-top: 20px;
+    }
+
+    .orderproducts .cards {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .orderproducts .cardleft {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .orderproducts .cardleft .productimg {
+        width: 60px;
+        height: 60px;
+        border-radius: 8px;
+        border: 1px solid var(--input-border);
+        box-shadow: var(--box-shadow);
+    }
+
+    .orderproducts .cardleft .productimg img {
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .orderproducts .productct h5 {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--primary);
+    }
+
+    .orderproducts .productct h6 {
+        font-size: 10px;
+        font-weight: 450;
+        color: var(--label);
+    }
+
+    .orderproducts .productct h6 .amtdash {
+        text-decoration: 2px line-through #888;
+    }
+
+    .orderproducts .cardright h5 {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .orderproducts .cardright h6 {
+        font-size: 10px;
+        font-weight: 500;
+        color: var(--label);
+    }
+
+    /* Order Payment */
+    .orderpayment {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    .orderpayment .payment h5 {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    .orderpayment .payment .visa {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+    }
+
+    .orderpayment .payment .visa h6 {
+        color: var(--label);
+        font-weight: 600;
+        font-size: 10px;
+    }
+
+    .orderpayment .delivery .address h6 {
+        color: var(--label);
+        font-weight: 600;
+        font-size: 10px;
+        text-align: right;
+    }
+
+    .orderpayment .delivery h5 {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--primary);
+        text-align: right;
+    }
+
+    /* Order Summary */
+    .ordersummary {
+        margin-top: 20px;
+    }
+
+    .summarytable .summaryhead {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .ordersummary .summaryhead h5 {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    .ordersummary .summaryhead h6 {
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .ordersummary .table td {
+        font-size: 12px;
+        font-weight: 450;
+        color: var(--label);
+    }
+
+    .ordersummary .table th {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .ordersummary .summarytable .table>:not(caption)>*>* {
+        padding: .1rem .5rem;
+    }
+}

@@ -1,0 +1,197 @@
+#brands li a {
+    background-color: var(--secondary);
+    color: var(--text-primary);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 3px 3px 3px #d0d0d0;
+    transition: 0.5s all;
+}
+
+#brands #facebook:hover {
+    background-color: #3A5696;
+    color: var(--secondary);
+}
+
+#brands #instagram:hover {
+    background: rgb(131, 58, 180);
+    background: linear-gradient(90deg, rgba(131, 58, 180, 1) 9%, rgba(253, 29, 29, 1) 70%, rgba(252, 176, 69, 1) 100%);
+    color: var(--secondary);
+}
+
+#brands #linkedin:hover {
+    background-color: #2864AA;
+    color: var(--secondary);
+}
+
+#brands #twitter:hover {
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+#brands #whatsapp:hover {
+    background-color: var(--main);
+    color: var(--secondary);
+}
+
+/* Footer */
+.footer {
+    color: var(--text-primary);
+    padding: 10px 5px;
+    z-index: 999;
+}
+
+.footer .container-fluid {
+    width: 100%;
+}
+
+.footer .footerdiv #cmpnyinfo h5 {
+    color: var(--text-secondary);
+    font-weight: var(--fw-sm);
+}
+
+.footer .footerdiv .footer-headings h5 {
+    color: var(--text-primary);
+    font-weight: var(--fw-md);
+}
+
+.footer .nav-item a,
+.footer form p {
+    color: var(--text-secondary);
+    font-weight: var(--fw-sm);
+}
+
+.footer .nav-item a:hover,
+.footer .nav-item a.active {
+    color: var(--main);
+}
+
+@media screen and (min-width: 1098px) {
+    
+    #brands li a {
+        height: 30px;
+        width: 30px;
+        font-size: 15px;
+    }
+
+    .footer .footerdiv {
+        display: grid;
+        grid-template-columns: 29% 23% 23% 23%;
+        align-items: start;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    /* Company Info */
+    .footer .footerdiv #cmpnyinfo h5 {
+        font-size: 15px;
+        margin-top: 10px;
+    }
+
+    .footer .footerdiv .footer-headings h5 {
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    .footer .footerdiv #cmpnyinfo h5 i {
+        font-size: 20px;
+        color: var(--main);
+    }
+
+    .footer .nav-item a,
+    .footer form p {
+        font-size: 14px;
+    }
+
+}
+
+@media screen and (min-width: 767px) and (max-width: 1098px) {
+
+    .footer .footerlogo img {
+        height: 40px !important;
+    }
+
+    #brands li a {
+        height: 25px;
+        width: 25px;
+        font-size: 12px;
+    }
+
+    .footer .footerdiv {
+        display: grid;
+        grid-template-columns: 31% 23% 23% 23%;
+        align-items: start;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    /* Company Info */
+    .footer .footerdiv #cmpnyinfo h5 {
+        font-size: 12px;
+        margin-top: 10px;
+    }
+
+    .footer .footerdiv .footer-headings h5 {
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    .footer .footerdiv #cmpnyinfo h5 i {
+        color: var(--main);
+        font-size: 18px;
+    }
+
+    .footer .nav-item a,
+    .footer form p {
+        font-size: 12px;
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+
+    #brands li a {
+        height: 30px;
+        width: 30px;
+        font-size: 15px;
+    }
+
+    .footer .footerdiv {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        column-gap: 45px;
+        margin-top: 10px;
+    }
+
+    /* Company Info */
+    .footer .footerdiv .footer-headings {
+        margin-top: 30px;
+    }
+
+    .footer .footerdiv .footer-headings ul {
+        margin-top: -20px !important;
+    }
+
+    .footer .footerdiv #cmpnyinfo h5 {
+        font-size: 15px;
+        margin-top: 10px;
+    }
+
+    .footer .footerdiv .footer-headings h5 {
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    .footer .footerdiv #cmpnyinfo h5 i {
+        font-size: 16px;
+        color: var(--main);
+    }
+
+    .footer .nav-item a,
+    .footer form p {
+        font-size: 14px;
+    }
+
+}

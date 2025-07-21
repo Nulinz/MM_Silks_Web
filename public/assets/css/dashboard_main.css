@@ -1,0 +1,670 @@
+.apexcharts-toolbar {
+    display: none !important;
+}
+
+.apexcharts-legend .apexcharts-legend-text {
+    color: var(--label) !important;
+}
+
+.apexcharts-text {
+    fill: var(--label) !important;
+}
+
+.dashboard-main {
+    font-family: "Jost", sans-serif;
+}
+
+/* Progress Bar */
+.progress-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.linear-progress {
+    position: relative;
+    width: 100%;
+    height: 5px;
+    background-color: #ededed;
+    border-radius: 10px;
+}
+
+.progress-bar {
+    position: absolute;
+    height: 100%;
+    background-color: #5577FF;
+    border-radius: 5px;
+}
+
+.progress-value {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--tdata);
+    text-align: center;
+}
+
+
+@media screen and (min-width: 1140px) {
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .header select {
+        border: 1px solid var(--input-border);
+        background-color: var(--secondary);
+        color: var(--primary);
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .sidebodydiv .container .row .col-xl-2 {
+        width: 20% !important;
+    }
+
+    .sidebodydiv .container .row .col-xl-2 .cardsdiv {
+        padding: 15px;
+        background-color: var(--secondary);
+        box-shadow: var(--box-shadow);
+        border: 1px solid var(--input-border);
+        border-radius: 5px;
+        height: 90px;
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+
+    .sidebodydiv .container .row .col-xl-6 .cardsdiv {
+        padding: 15px;
+        background-color: var(--secondary);
+        box-shadow: var(--box-shadow);
+        border: 1px solid var(--input-border);
+        border-radius: 5px;
+        height: 375px;
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+
+    .sidebodydiv .container .row .col-xl-7 .cardsdiv,
+    .sidebodydiv .container .row .col-xl-5 .cardsdiv {
+        padding: 15px;
+        background-color: var(--secondary);
+        box-shadow: var(--box-shadow);
+        border: 1px solid var(--input-border);
+        border-radius: 5px;
+        height: 375px;
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+
+    .sidebodydiv .container .row .col-xl-5 .col-xl-12 .cardsdiv {
+        padding: 15px 15px 0px 15px;
+        background-color: var(--secondary);
+        box-shadow: var(--box-shadow);
+        border: 1px solid var(--input-border);
+        border-radius: 5px;
+        height: 120px;
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+
+    .sidebodydiv .container .row .cards .cardsdiv::-webkit-scrollbar,
+    .sidebodydiv .container .row .col-xl-5 .col-xl-12 .cardsdiv::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Card CSS */
+    .cardshead {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+
+    .cardshead_1 {
+        display: grid;
+        grid-template-columns: 80% 20%;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+
+    .cardscntnt {
+        display: grid;
+        grid-template-columns: 60% 40%;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .cardct {
+        display: grid;
+        grid-template-columns: 80% 20%;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .cardscntnt_1 .carddivide {
+        display: grid;
+        grid-template-columns: 28% 5% 28% 5% 28%;
+    }
+
+    .cardscntnt_1 .carddivide_1 {
+        display: grid;
+        grid-template-columns: 40% 5% 40%;
+    }
+
+    .cardscntnt_1 .brdr {
+        width: 1px;
+        background-color: var(--aside-li);
+    }
+
+    .card1h6 {
+        font-size: 13px;
+        font-weight: 500;
+        text-transform: capitalize;
+        letter-spacing: 0.5px;
+        color: var(--primary);
+    }
+
+    .card1h5 {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    .card2h6 {
+        font-size: 10px;
+        font-weight: 450;
+        color: var(--thead);
+    }
+
+    .cardshead .card-input input {
+        background-color: var(--secondary);
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: 500;
+        width: 100%;
+        padding: 4px 5px;
+    }
+
+    .cardshead select {
+        background-color: var(--secondary);
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: 500;
+        width: 60%;
+        padding: 4px 5px;
+    }
+
+    .card2h6 span {
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--primary);
+    }
+
+    .card2card {
+        display: grid;
+        grid-template-columns: 15% 80%;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .card2card .card2cardimg {
+        width: 75px;
+        height: 75px;
+        border-radius: 8px;
+        border: 1px solid var(--input-border);
+        box-shadow: var(--box-shadow);
+    }
+
+    .card2card .card2cardimg img {
+        object-fit: cover;
+        object-position: center;
+    }
+
+    /* Dashboard Card Table */
+    .cardtable .table {
+        --bs-table-bg: var(--secondary) !important;
+    }
+
+    .cardtable .table thead th {
+        background-color: #E7EFFD !important;
+    }
+
+    .cardtable .table th {
+        color: var(--primary);
+        font-weight: 500;
+        font-size: 10px;
+        text-transform: uppercase;
+    }
+
+    .cardtable .table td {
+        color: var(--primary);
+        font-weight: 500;
+        font-size: 12px;
+    }
+
+}
+
+@media screen and (min-width: 767px) and (max-width: 1140px) {
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .header select {
+        border: 1px solid var(--input-border);
+        background-color: var(--secondary);
+        color: var(--primary);
+        font-size: 14px;
+        font-weight: 500;
+        height: 35px;
+    }
+
+    .sidebodydiv .container .row .col-xl-2 {
+        width: 20% !important;
+    }
+
+    .sidebodydiv .container .row .col-xl-2 .cardsdiv {
+        padding: 10px;
+        background-color: var(--secondary);
+        box-shadow: var(--box-shadow);
+        border: 1px solid var(--input-border);
+        z-index: 0;
+        border-radius: 5px;
+        height: 90px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .sidebodydiv .container .row .col-xl-7 .cardsdiv,
+    .sidebodydiv .container .row .col-xl-6 .cardsdiv,
+    .sidebodydiv .container .row .col-xl-5 .cardsdiv {
+        padding: 10px;
+        background-color: var(--secondary);
+        box-shadow: var(--box-shadow);
+        border: 1px solid var(--input-border);
+        border-radius: 5px;
+        height: 350px;
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+
+    .sidebodydiv .container .row .col-xl-5 .col-xl-12 .cardsdiv {
+        padding: 10px 10px 0px 10px;
+        background-color: var(--secondary);
+        box-shadow: var(--box-shadow);
+        border: 1px solid var(--input-border);
+        border-radius: 5px;
+        height: 110px;
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+
+    .sidebodydiv .container .row .cards .cardsdiv::-webkit-scrollbar,
+    .sidebodydiv .container .row .col-xl-5 .col-xl-12 .cardsdiv::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Card CSS */
+    .cardshead {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+
+    .cardshead_1 {
+        display: grid;
+        grid-template-columns: 80% 20%;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+
+    .cardscntnt {
+        display: grid;
+        grid-template-columns: 60% 40%;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .cardct {
+        display: grid;
+        grid-template-columns: 80% 20%;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .cardscntnt_1 .carddivide {
+        display: grid;
+        grid-template-columns: 30% 5% 30% 5% 30%;
+    }
+
+    .cardscntnt_1 .carddivide_1 {
+        display: grid;
+        grid-template-columns: 40% 5% 40%;
+    }
+
+    .cardscntnt_1 .brdr {
+        width: 1px;
+        background-color: var(--aside-li);
+    }
+
+    .card1h6 {
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: capitalize;
+        letter-spacing: 0.5px;
+        color: var(--primary);
+    }
+
+    .card1h5 {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    .card2h6 {
+        font-size: 8px;
+        font-weight: 500;
+        color: var(--thead);
+    }
+
+    .cardshead .card-input input {
+        background-color: var(--secondary);
+        color: var(--primary);
+        font-size: 10px;
+        font-weight: 500;
+        width: 100%;
+        padding: 2px 5px;
+    }
+
+    .cardshead select {
+        background-color: var(--secondary);
+        color: var(--primary);
+        font-size: 10px;
+        font-weight: 500;
+        width: 100%;
+        padding: 2px 5px;
+    }
+
+    .card2h6 span {
+        font-weight: 700;
+        font-size: 10px;
+        color: var(--primary);
+    }
+
+    .card2card {
+        display: grid;
+        grid-template-columns: 10% 70%;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .card2card .card2cardimg {
+        width: 75px;
+        height: 75px;
+        border-radius: 8px;
+        border: 1px solid var(--input-border);
+        box-shadow: var(--box-shadow);
+    }
+
+    .card2card .card2cardimg img {
+        object-fit: cover;
+        object-position: center;
+    }
+
+    /* Dashboard Card Table */
+    .cardtable .table {
+        --bs-table-bg: var(--secondary) !important;
+    }
+
+    .cardtable .table td h5 i {
+        font-size: 8px !important;
+    }
+
+    .cardtable .table th {
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+
+    .cardtable .table td {
+        color: var(--primary);
+        font-weight: 500;
+        font-size: 10px;
+    }
+
+    /* .cardtable .col-sm-12 {
+        border: 1px solid var(--input-border);
+        border-radius: 5px;
+        padding: 5px;
+    } */
+
+    .apexcharts-legend {
+        top: 88% !important;
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+
+    .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .header select {
+        border: 1px solid var(--input-border);
+        background-color: var(--secondary);
+        color: var(--primary);
+        font-size: 14px;
+        font-weight: 500;
+        height: 38px;
+    }
+
+    .sidebodydiv .container .row .col-xl-2,
+    .sidebodydiv .container .row .col-xl-5,
+    .sidebodydiv .container .row .col-xl-6,
+    .sidebodydiv .container .row .col-xl-7 {
+        padding-right: 12px !important;
+    }
+
+    .sidebodydiv .container .row .col-xl-2 .cardsdiv {
+        padding: 15px;
+        background-color: var(--secondary);
+        box-shadow: var(--box-shadow);
+        border: 1px solid var(--input-border);
+        border-radius: 5px;
+        height: 100px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .sidebodydiv .container .row .col-xl-7 .cardsdiv,
+    .sidebodydiv .container .row .col-xl-6 .cardsdiv,
+    .sidebodydiv .container .row .col-xl-5 .cardsdiv {
+        padding: 10px;
+        background-color: var(--secondary);
+        box-shadow: var(--box-shadow);
+        border: 1px solid var(--input-border);
+        border-radius: 5px;
+        height: 375px;
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+
+    .sidebodydiv .container .row .col-xl-5 .col-xl-12 .cardsdiv {
+        padding: 10px 10px 0px 10px;
+        background-color: var(--secondary);
+        box-shadow: var(--box-shadow);
+        border: 1px solid var(--input-border);
+        border-radius: 5px;
+        height: 125px;
+        overflow-x: auto;
+        overflow-y: auto;
+        margin-bottom: 10px;
+    }
+
+    .sidebodydiv .container .row .cards .cardsdiv::-webkit-scrollbar,
+    .sidebodydiv .container .row .col-xl-5 .col-xl-12 .cardsdiv::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Card CSS */
+    .cardshead {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+
+    .cardshead_1 {
+        display: grid;
+        grid-template-columns: 80% 20%;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+
+    .cardscntnt {
+        display: grid;
+        grid-template-columns: 60% 40%;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .cardct {
+        display: grid;
+        grid-template-columns: 80% 20%;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .cardscntnt_1 .carddivide {
+        display: grid;
+        grid-template-columns: 30% 5% 30% 5% 30%;
+    }
+
+    .cardscntnt_1 .carddivide_1 {
+        display: grid;
+        grid-template-columns: 40% 5% 40%;
+    }
+
+    .cardscntnt_1 .brdr {
+        width: 1px;
+        background-color: var(--aside-li);
+    }
+
+    .card1h6 {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: capitalize;
+        letter-spacing: 0.5px;
+        color: var(--primary);
+    }
+
+    .card1h5 {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    .card2h6 {
+        font-size: 10px;
+        font-weight: 500;
+        color: var(--thead);
+    }
+
+    .cardshead .card-input input {
+        background-color: var(--secondary);
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: 500;
+        width: 100%;
+        padding: 2px 5px;
+    }
+
+    .cardshead select {
+        background-color: var(--secondary);
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: 500;
+        width: 100%;
+        padding: 4px 5px;
+    }
+
+    .card2h6 span {
+        font-weight: 700;
+        font-size: 13px;
+        color: var(--primary);
+    }
+
+    .card2card {
+        display: grid;
+        grid-template-columns: 10% 70%;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .card2card .card2cardimg {
+        width: 75px;
+        height: 75px;
+        border-radius: 8px;
+        border: 1px solid var(--input-border);
+        box-shadow: var(--box-shadow);
+    }
+
+    .card2card .card2cardimg img {
+        object-fit: cover;
+        object-position: center;
+    }
+
+    /* Dashboard Card Table */
+    .cardtable .table {
+        --bs-table-bg: var(--secondary) !important;
+    }
+
+    .cardtable .table td h5 i {
+        font-size: 8px !important;
+    }
+
+    .cardtable .table th {
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+
+    .cardtable .table td {
+        color: var(--primary);
+        font-weight: 500;
+        font-size: 10px;
+    }
+
+    .apexcharts-legend {
+        top: 88% !important;
+    }
+
+}
+
+@media screen and (min-width: 1140px) and (max-width: 1400px) {
+
+    .cardtable img {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+    }
+
+}

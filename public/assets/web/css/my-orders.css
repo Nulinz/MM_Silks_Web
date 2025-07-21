@@ -1,0 +1,733 @@
+.accordion-body .cards .carddiv_1::-webkit-scrollbar,
+.accordion-body .cards .carddiv_2::-webkit-scrollbar {
+    display: none;
+}
+
+@media screen and (min-width: 1350px) {
+
+    .accordion-button::after {
+        display: none;
+    }
+
+    /* Order Accordion */
+    .ordersaccordion {
+        width: 100%;
+        background-color: var(--secondary);
+        margin-top: 50px;
+    }
+
+    .ordersaccorddiv {
+        width: 90%;
+        margin: auto;
+    }
+
+    .orderaccordmain {
+        margin-top: 25px;
+    }
+
+    .orderaccordmain .accordion-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px;
+    }
+
+    .orderaccordmain .accordion-header {
+        border-bottom: 1px solid var(--light-dark) !important;
+    }
+
+    .orderaccordmain .accordleft .orderid {
+        color: var(--text-primary);
+        font-size: 18px;
+        font-weight: var(--fw-lg);
+        margin-bottom: 8px !important;
+    }
+
+    .orderaccordmain .accordleft .orderdate {
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: var(--fw-sm);
+    }
+
+    .orderaccordmain .accordleft .orderdate span {
+        color: var(--text-secondary);
+    }
+
+    .orderaccordmain .accordleft .estdate {
+        color: var(--main);
+        font-size: 12px;
+        font-weight: var(--fw-md);
+    }
+
+    /* Order Accordion Body */
+    .accordion-body {
+        display: grid;
+        grid-template-columns: 23% 45% 30%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 0px;
+    }
+
+    .accordion-body .cards {
+        height: 500px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    .accordion-body .cards .carddiv_1 {
+        height: 100%;
+        border: 1px solid var(--border);
+        box-shadow: var(--box-shadow);
+        border-radius: 5px;
+        padding: 10px 15px;
+        overflow: auto;
+    }
+
+    .accordion-body .cards .carddiv_2 {
+        height: 48%;
+        border: 1px solid var(--border);
+        box-shadow: var(--box-shadow);
+        border-radius: 5px;
+        padding: 10px 15px;
+        overflow: auto;
+    }
+
+    /* Left Card */
+    /* Oder Timelince.css */
+
+    /* Middle Card */
+    .body-middle {
+        height: 100%;
+    }
+
+    .middlecard {
+        display: grid;
+        grid-template-columns: 25% 70%;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--light-dark);
+        padding: 15px 0px;
+    }
+
+    .middlecard .middleleft {
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        height: 100%;
+    }
+
+    .middlecard .middleright {
+        display: block;
+        margin-bottom: auto;
+        padding: 10px 0px;
+    }
+
+    .middleright h4 {
+        color: var(--text-primary);
+        font-size: 18px;
+        font-weight: var(--fw-lg);
+        margin-bottom: 5px;
+    }
+
+    .middleright h5 {
+        color: var(--primary);
+        font-size: 14px;
+        font-weight: var(--fw-sm);
+    }
+
+    .middleright h6 {
+        margin-top: 30px;
+    }
+
+    .middleright h6 .originalamt {
+        color: var(--text-primary);
+        font-size: 18px;
+        font-weight: var(--fw-lg);
+    }
+
+    .middleright h6 .discountamt {
+        color: var(--text-secondary);
+        font-size: 12px;
+        font-weight: var(--fw-sm);
+        text-decoration: line-through;
+    }
+
+    /* Right Card */
+    .body-right {
+        height: 100%;
+    }
+
+    .body-right .carddivhead h4 {
+        color: var(--text-primary);
+        font-weight: var(--fw-lg);
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .body-right .table>:not(caption)>*>* {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .body-right .table td {
+        color: var(--text-secondary);
+        font-size: 12px;
+        font-weight: var(--fw-sm);
+    }
+
+    .body-right .table th {
+        color: var(--text-primary);
+        font-size: 15px;
+        font-weight: var(--fw-md);
+    }
+
+
+}
+
+@media screen and (min-width: 1098px) and (max-width: 1350px) {
+
+    .accordion-button::after {
+        display: none;
+    }
+
+    /* Order Accordion */
+    .ordersaccordion {
+        width: 100%;
+        background-color: var(--secondary);
+        margin-top: 30px;
+    }
+
+    .ordersaccorddiv {
+        width: 90%;
+        margin: auto;
+    }
+
+    .orderaccordmain {
+        margin-top: 20px;
+    }
+
+    .orderaccordmain .accordion-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .orderaccordmain .accordion-header {
+        border-bottom: 1px solid var(--light-dark) !important;
+    }
+
+    .orderaccordmain .accordleft .orderid {
+        color: var(--text-primary);
+        font-size: 16px;
+        font-weight: var(--fw-lg);
+        margin-bottom: 5px !important;
+    }
+
+    .orderaccordmain .accordleft .orderdate {
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: var(--fw-sm);
+    }
+
+    .orderaccordmain .accordleft .orderdate span {
+        color: var(--text-secondary);
+    }
+
+    .orderaccordmain .accordleft .estdate {
+        color: var(--main);
+        font-size: 12px;
+        font-weight: var(--fw-md);
+    }
+
+    /* Order Accordion Body */
+    .accordion-body {
+        display: grid;
+        grid-template-columns: 23% 45% 30%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0px;
+    }
+
+    .accordion-body .cards {
+        height: 500px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    .accordion-body .cards .carddiv_1 {
+        height: 100%;
+        border: 1px solid var(--border);
+        box-shadow: var(--box-shadow);
+        border-radius: 5px;
+        padding: 10px 15px;
+        overflow: auto;
+    }
+
+    .accordion-body .cards .carddiv_2 {
+        height: 48%;
+        border: 1px solid var(--border);
+        box-shadow: var(--box-shadow);
+        border-radius: 5px;
+        padding: 10px 15px;
+        overflow: auto;
+    }
+
+    /* Left Card */
+    /* Oder Timelince.css */
+
+    /* Middle Card */
+    .body-middle {
+        height: 100%;
+    }
+
+    .middlecard {
+        display: grid;
+        grid-template-columns: 25% 70%;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--light-dark);
+        padding: 15px 0px;
+    }
+
+    .middlecard .middleleft {
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        height: 100%;
+    }
+
+    .middlecard .middleright {
+        display: block;
+        margin-bottom: auto;
+        padding: 10px 0px;
+    }
+
+    .middleright h4 {
+        color: var(--text-primary);
+        font-size: 15px;
+        font-weight: var(--fw-lg);
+        margin-bottom: 5px;
+    }
+
+    .middleright h5 {
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: var(--fw-sm);
+    }
+
+    .middleright h6 {
+        margin-top: 20px;
+    }
+
+    .middleright h6 .originalamt {
+        color: var(--text-primary);
+        font-size: 15px;
+        font-weight: var(--fw-lg);
+    }
+
+    .middleright h6 .discountamt {
+        color: var(--text-secondary);
+        font-size: 12px;
+        font-weight: var(--fw-sm);
+        text-decoration: line-through;
+    }
+
+    /* Right Card */
+    .body-right {
+        height: 100%;
+    }
+
+    .body-right .carddivhead h4 {
+        color: var(--text-primary);
+        font-weight: var(--fw-lg);
+        font-size: 15px;
+        margin-bottom: 5px;
+    }
+
+    .body-right .table>:not(caption)>*>* {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .body-right .table td {
+        color: var(--text-secondary);
+        font-size: 12px;
+        font-weight: var(--fw-sm);
+    }
+
+    .body-right .table th {
+        color: var(--text-primary);
+        font-size: 12px;
+        font-weight: var(--fw-md);
+    }
+
+
+}
+
+@media screen and (min-width: 767px) and (max-width: 1098px) {
+
+    .accordion-button::after {
+        display: none;
+    }
+
+    /* Order Accordion */
+    .ordersaccordion {
+        width: 100%;
+        background-color: var(--secondary);
+        margin-top: 25px;
+    }
+
+    .ordersaccorddiv {
+        width: 95%;
+        margin: auto;
+    }
+
+    .orderaccordmain {
+        margin-top: 15px;
+    }
+
+    .orderaccordmain .accordion-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px;
+    }
+
+    .orderaccordmain .accordion-header {
+        border-bottom: 1px solid var(--light-dark) !important;
+    }
+
+    .orderaccordmain .accordleft .orderid {
+        color: var(--text-primary);
+        font-size: 16px;
+        font-weight: var(--fw-lg);
+        margin-bottom: 5px !important;
+    }
+
+    .orderaccordmain .accordleft .orderdate {
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: var(--fw-sm);
+    }
+
+    .orderaccordmain .accordleft .orderdate span {
+        color: var(--text-secondary);
+    }
+
+    .orderaccordmain .accordleft .estdate {
+        color: var(--main);
+        font-size: 12px;
+        font-weight: var(--fw-md);
+    }
+
+    /* Order Accordion Body */
+    .accordion-body {
+        display: grid;
+        grid-template-columns: 23% 45% 30%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0px;
+    }
+
+    .accordion-body .cards {
+        height: 400px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    .accordion-body .cards .carddiv_1 {
+        height: 100%;
+        border: 1px solid var(--border);
+        box-shadow: var(--box-shadow);
+        border-radius: 5px;
+        padding: 5px 10px;
+        overflow: auto;
+    }
+
+    .accordion-body .cards .carddiv_2 {
+        height: 48%;
+        border: 1px solid var(--border);
+        box-shadow: var(--box-shadow);
+        border-radius: 5px;
+        padding: 5px 10px;
+        overflow: auto;
+    }
+
+    /* Left Card */
+    /* Oder Timelince.css */
+
+    /* Middle Card */
+    .body-middle {
+        height: 100%;
+    }
+
+    .middlecard {
+        display: grid;
+        grid-template-columns: 25% 70%;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--light-dark);
+        padding: 10px 0px;
+    }
+
+    .middlecard .middleleft {
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        height: 100%;
+    }
+
+    .middlecard .middleright {
+        display: block;
+        margin-bottom: auto;
+        padding: 8px 0px;
+    }
+
+    .middleright h4 {
+        color: var(--text-primary);
+        font-size: 12px;
+        font-weight: var(--fw-lg);
+        margin-bottom: 5px;
+    }
+
+    .middleright h5 {
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: var(--fw-sm);
+    }
+
+    .middleright h6 {
+        margin-top: 10px;
+    }
+
+    .middleright h6 .originalamt {
+        color: var(--text-primary);
+        font-size: 14px;
+        font-weight: var(--fw-lg);
+    }
+
+    .middleright h6 .discountamt {
+        color: var(--text-secondary);
+        font-size: 11px;
+        font-weight: var(--fw-sm);
+        text-decoration: line-through;
+    }
+
+    /* Right Card */
+    .body-right {
+        height: 100%;
+    }
+
+    .body-right .carddivhead h4 {
+        color: var(--text-primary);
+        font-weight: var(--fw-lg);
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+
+    .body-right .table>:not(caption)>*>* {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .body-right .table td {
+        color: var(--text-secondary);
+        font-size: 11px;
+        font-weight: var(--fw-sm);
+    }
+
+    .body-right .table th {
+        color: var(--text-primary);
+        font-size: 12px;
+        font-weight: var(--fw-md);
+    }
+
+
+}
+
+@media screen and (max-width: 767px) {
+
+    .accordion-button::after {
+        display: none;
+    }
+
+    /* Order Accordion */
+    .ordersaccordion {
+        width: 100%;
+        background-color: var(--secondary);
+        margin-top: 30px;
+    }
+
+    .ordersaccorddiv {
+        width: 95%;
+        margin: auto;
+    }
+
+    .orderaccordmain {
+        margin-top: 20px;
+    }
+
+    .orderaccordmain .accordion-button {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        flex-direction: column;
+        padding: 8px;
+    }
+
+    .orderaccordmain .accordion-header {
+        border-bottom: 1px solid var(--light-dark) !important;
+    }
+
+    .orderaccordmain .accordleft {
+        margin-bottom: 15px;
+    }
+
+    .orderaccordmain .accordleft div {
+        gap: 5px !important;
+    }
+
+    .orderaccordmain .accordleft .orderid {
+        color: var(--text-primary);
+        font-size: 15px;
+        font-weight: var(--fw-lg);
+        margin-bottom: 5px !important;
+    }
+
+    .orderaccordmain .accordleft .orderdate {
+        color: var(--primary);
+        font-size: 9px;
+        font-weight: var(--fw-sm);
+    }
+
+    .orderaccordmain .accordleft .orderdate span {
+        color: var(--text-secondary);
+    }
+
+    .orderaccordmain .accordleft .estdate {
+        color: var(--main);
+        font-size: 9px;
+        font-weight: var(--fw-md);
+    }
+
+    /* Order Accordion Body */
+    .accordion-body {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px 0px;
+    }
+
+    .accordion-body .cards {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    .accordion-body .cards .carddiv_1 {
+        height: 100%;
+        border: 1px solid var(--border);
+        box-shadow: var(--box-shadow);
+        border-radius: 5px;
+        padding: 10px;
+        overflow: auto;
+    }
+
+    .accordion-body .cards .carddiv_2 {
+        height: 100%;
+        border: 1px solid var(--border);
+        box-shadow: var(--box-shadow);
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 15px;
+        overflow: auto;
+    }
+
+    /* Left Card */
+    /* Oder Timelince.css */
+
+    /* Middle Card */
+    .body-middle {
+        height: 100%;
+    }
+
+    .middlecard {
+        display: grid;
+        grid-template-columns: 25% 70%;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--light-dark);
+        padding: 10px 0px;
+    }
+
+    .middlecard .middleleft {
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        height: 100%;
+    }
+
+    .middlecard .middleright {
+        display: block;
+        margin-bottom: auto;
+        padding: 8px 0px;
+    }
+
+    .middleright h4 {
+        color: var(--text-primary);
+        font-size: 12px;
+        font-weight: var(--fw-lg);
+        margin-bottom: 5px;
+    }
+
+    .middleright h5 {
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: var(--fw-sm);
+    }
+
+    .middleright h6 {
+        margin-top: 10px;
+    }
+
+    .middleright h6 .originalamt {
+        color: var(--text-primary);
+        font-size: 14px;
+        font-weight: var(--fw-lg);
+    }
+
+    .middleright h6 .discountamt {
+        color: var(--text-secondary);
+        font-size: 11px;
+        font-weight: var(--fw-sm);
+        text-decoration: line-through;
+    }
+
+    /* Right Card */
+    .body-right {
+        height: 100%;
+    }
+
+    .body-right .carddivhead h4 {
+        color: var(--text-primary);
+        font-weight: var(--fw-lg);
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+
+    .body-right .table>:not(caption)>*>* {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .body-right .table td {
+        color: var(--text-secondary);
+        font-size: 11px;
+        font-weight: var(--fw-sm);
+    }
+
+    .body-right .table th {
+        color: var(--text-primary);
+        font-size: 12px;
+        font-weight: var(--fw-md);
+    }
+
+
+}

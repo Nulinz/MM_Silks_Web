@@ -1,0 +1,437 @@
+/* Button */
+.btn0 {
+    background-color: var(--secondary);
+    color: var(--label);
+    height: 35px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.formbtn,
+.listbtn,
+.listtdbtn,
+.addbtn,
+.deletebtn,
+.modalbtn,
+a .formbtn,
+a .listbtn,
+a .headbtn,
+a .listtdbtn,
+a .profilelistbtn {
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+}
+
+.modalbtn {
+    background-color: var(--main);
+    color: var(--secondary);
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid var(--main);
+    height: 35px;
+    border-radius: 5px;
+    width: 150px;
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
+}
+
+/* Button Hover */
+.btn0:hover,
+.btn0.active {
+    background-color: var(--main);
+    color: var(--secondary) !important;
+}
+
+.formbtn:hover,
+a .formbtn:hover {
+    background-color: var(--secondary);
+    color: var(--main);
+}
+
+.listbtn:hover,
+a .listbtn:hover {
+    background-color: var(--secondary);
+    color: var(--main);
+}
+
+.listtdbtn:hover,
+a .listtdbtn:hover {
+    background-color: var(--secondary);
+    color: var(--main);
+}
+
+.addbtn:hover {
+    background-color: var(--secondary);
+    color: var(--main);
+}
+
+.deletebtn:hover {
+    background-color: var(--secondary);
+    color: var(--main);
+}
+
+.modalbtn:hover {
+    background-color: var(--secondary);
+    color: var(--main);
+}
+
+.profiletabs.active,
+.profiletabs:hover {
+    border-bottom: 2px solid var(--main);
+    color: var(--main) !important;
+}
+
+.dashtabs:hover,
+.dashtabs.active {
+    background-color: var(--main);
+    color: var(--secondary);
+}
+
+@media screen and (min-width: 1140px) {
+
+    /* Form Button */
+    .formbtn,
+    a .formbtn {
+        background-color: var(--main);
+        color: var(--secondary);
+        border: 1px solid var(--main);
+        font-size: 14px;
+        font-weight: 600;
+        height: 35px;
+        border-radius: 5px;
+        width: 150px;
+    }
+
+    /* List Button */
+    .listbtn,
+    a .listbtn {
+        background-color: var(--main);
+        color: var(--secondary);
+        border: 2px solid var(--main);
+        font-weight: 500;
+        padding: 4px 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        width: 100%;
+    }
+
+    /* List TD Button */
+    .listtdbtn,
+    a .listtdbtn {
+        background-color: var(--main);
+        color: var(--secondary);
+        border: 2px solid var(--main);
+        padding: 0px 10px;
+        font-weight: 400;
+        border-radius: 20px;
+        font-size: 11px;
+    }
+
+    /* Add Button */
+    .addbtn {
+        background-color: var(--green);
+        color: var(--secondary);
+        border: 2px solid var(--green);
+        font-weight: 600;
+        padding: 3px 15px;
+        border-radius: 3px;
+        font-size: 15px;
+    }
+
+    /* Delete Button */
+    .deletebtn {
+        background-color: var(--red);
+        color: var(--secondary);
+        border: 2px solid var(--red);
+        font-weight: 600;
+        padding: 3px 15px;
+        border-radius: 3px;
+        font-size: 15px;
+    }
+
+    /* Accordion Button */
+    .accordion-button {
+        background-color: var(--secondary);
+        color: var(--primary);
+        border-bottom: 1px solid var(--input-border);
+        /* box-shadow: var(--box-shadow); */
+        font-weight: 600;
+        font-size: 15px;
+        --bs-accordion-btn-padding-x: 0.75rem;
+        --bs-accordion-btn-padding-y: 0.5rem;
+        border-radius: 0px !important;
+    }
+
+    /* Profile Tabs */
+    .profiletabs {
+        background-color: transparent;
+        color: var(--thead) !important;
+        border: none;
+        border-bottom: 2px solid var(--secondary);
+        border-radius: 0px;
+        padding: 5px 15px;
+        font-weight: 500;
+        font-size: 13px;
+        transition: var(--transition);
+    }
+
+    /* Dashboard Button */
+    .dashtabs {
+        background-color: var(--secondary);
+        color: var(--main);
+        border: 1px solid var(--main);
+        font-size: 14px;
+        font-weight: 600;
+        height: 35px;
+        border-radius: 5px;
+        width: 150px;
+        transition: var(--transition);
+    }
+
+}
+
+@media screen and (min-width: 767px) and (max-width: 1140px) {
+
+    /* Form Button */
+    .formbtn,
+    a .formbtn {
+        background-color: var(--main);
+        color: var(--secondary);
+        border: 1px solid var(--main);
+        font-size: 12px;
+        font-weight: 600;
+        height: 33px;
+        border-radius: 5px;
+        width: 150px;
+    }
+
+    /* List Button */
+    .listbtn,
+    a .listbtn {
+        background-color: var(--main);
+        color: var(--secondary);
+        border: 2px solid var(--main);
+        font-weight: 500;
+        padding: 4px 15px;
+        border-radius: 5px;
+        font-size: 13px;
+        width: 100%;
+    }
+
+    /* List TD Button */
+    .listtdbtn,
+    a .listtdbtn {
+        background-color: var(--main);
+        color: var(--secondary);
+        border: 2px solid var(--main);
+        padding: 0px 8px;
+        font-weight: 400;
+        border-radius: 20px;
+        font-size: 10px;
+    }
+
+    /* Add Button */
+    .addbtn {
+        background-color: var(--green);
+        color: var(--secondary);
+        border: 2px solid var(--green);
+        font-weight: 600;
+        padding: 3px 15px;
+        border-radius: 3px;
+        font-size: 14px;
+    }
+
+    /* Delete Button */
+    .deletebtn {
+        background-color: var(--red);
+        color: var(--secondary);
+        border: 2px solid var(--red);
+        font-weight: 600;
+        padding: 3px 15px;
+        border-radius: 3px;
+        font-size: 14px;
+    }
+
+    /* Accordion Button */
+    .accordion-button {
+        background-color: var(--secondary);
+        color: var(--primary);
+        border-bottom: 1px solid var(--input-border);
+        /* box-shadow: var(--box-shadow); */
+        font-weight: 600;
+        font-size: 15px;
+        --bs-accordion-btn-padding-x: 0.75rem;
+        --bs-accordion-btn-padding-y: 0.5rem;
+        border-radius: 0px !important;
+    }
+
+    /* Profile Tabs */
+    .profiletabs {
+        background-color: transparent;
+        color: var(--thead) !important;
+        border: none;
+        border-bottom: 2px solid var(--secondary);
+        border-radius: 0px;
+        padding: 3px 10px;
+        font-weight: 500;
+        font-size: 11px;
+        transition: var(--transition);
+    }
+
+    /* Dashboard Button */
+    .dashtabs {
+        background-color: var(--secondary);
+        color: var(--main);
+        border: 1px solid var(--main);
+        font-size: 13px;
+        font-weight: 600;
+        height: 33px;
+        border-radius: 5px;
+        width: 150px;
+        transition: var(--transition);
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+
+    /* Form Button */
+    .formbtn,
+    a .formbtn {
+        background-color: var(--main);
+        color: var(--secondary);
+        border: 1px solid var(--main);
+        font-size: 12px;
+        font-weight: 600;
+        height: 30px;
+        border-radius: 5px;
+        width: 200px;
+    }
+
+    /* List Button */
+    .listbtn,
+    a .listbtn {
+        background-color: var(--main);
+        color: var(--secondary);
+        border: 2px solid var(--main);
+        font-weight: 500;
+        padding: 4px 15px;
+        border-radius: 5px;
+        font-size: 13px;
+        width: 100%;
+    }
+
+    /* List TD Button */
+    .listtdbtn,
+    a .listtdbtn {
+        background-color: var(--main);
+        color: var(--secondary);
+        border: 2px solid var(--main);
+        padding: 0px 10px;
+        font-weight: 400;
+        border-radius: 20px;
+        font-size: 9px;
+    }
+
+    /* Add Button */
+    .addbtn {
+        background-color: var(--green);
+        color: var(--secondary);
+        border: 2px solid var(--green);
+        font-weight: 600;
+        padding: 3px 15px;
+        border-radius: 3px;
+        font-size: 15px;
+        transition: var(--transition);
+    }
+
+    /* Delete Button */
+    .deletebtn {
+        background-color: var(--red);
+        color: var(--secondary);
+        border: 2px solid var(--red);
+        font-weight: 600;
+        padding: 3px 15px;
+        border-radius: 3px;
+        font-size: 15px;
+    }
+
+    /* Accordion Button */
+    .accordion-button {
+        background-color: var(--secondary);
+        color: var(--primary);
+        border-bottom: 1px solid var(--input-border);
+        /* box-shadow: var(--box-shadow); */
+        font-weight: 600;
+        font-size: 15px;
+        --bs-accordion-btn-padding-x: 0.75rem;
+        --bs-accordion-btn-padding-y: 0.5rem;
+        border-radius: 0px !important;
+    }
+
+    /* Profile Tabs */
+    .profiletabs {
+        background-color: transparent;
+        color: var(--thead) !important;
+        border-bottom: 2px solid var(--secondary);
+        border: none;
+        border-radius: 0px;
+        padding: 3px 25px;
+        font-weight: 500;
+        font-size: 11px;
+        transition: var(--transition);
+        margin: 0px auto 8px auto;
+    }
+
+    /* Dashboard Button */
+    .dashtabs {
+        background-color: var(--secondary);
+        color: var(--main);
+        border: 1px solid var(--main);
+        font-size: 13px;
+        font-weight: 600;
+        height: 30px;
+        border-radius: 5px;
+        width: 125px;
+        transition: var(--transition);
+    }
+
+}
+
+/* HeadBtns */
+@media screen and (min-width: 1400px) {
+    .tabbtns {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: 10px;
+    }
+}
+
+@media screen and (min-width: 767px) and (max-width: 1140px) {
+    .tabbtns {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: 5px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .tabbtns {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .tabbtns div {
+        margin: 10px auto !important;
+    }
+}

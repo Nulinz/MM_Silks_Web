@@ -1,0 +1,130 @@
+:root {
+    /* Colors */
+    --bg: #fff;
+    --main: #34A853;
+    --main-light: #D6EEDD;
+    --primary: #000;
+    --secondary: #fff;
+    --light: #F3F3F3;
+    --light-dark: #AdAdAd;
+    --text-primary: #2C3E50;
+    --text-secondary: #676767;
+    --border: #0000001a;
+    --green: #009400;
+    --red: #DC2626;
+    --box-shadow: 0 0 0.875rem 0 rgba(33, 37, 41, 0.05);
+    --transition-1: 0.25s ease-in-out;
+    --transition-2: 0.5s;
+
+    /* Fonts */
+    --main-font: "Jost", sans-serif;
+    --fw-sm: 400;
+    --fw-md: 500;
+    --fw-lg: 600;
+    --fw-xl: 700;
+    --fw-xxl: 800;
+    --fw-xxxl: 900;
+}
+
+/* Headings */
+@media screen and (min-width: 1350px) {
+
+    .brandshead,
+    .productshead,
+    .carthead,
+    .ordershead,
+    .producthead {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .brandshead h3,
+    .productshead h3,
+    .carthead h3,
+    .ordershead h3,
+    .producthead h3 {
+        color: var(--text-primary);
+        font-size: 30px;
+        font-weight: var(--fw-lg);
+        margin-bottom: 0px !important;
+    }
+
+}
+
+@media screen and (min-width: 1098px) and (max-width: 1350px) {
+
+    .brandshead,
+    .productshead,
+    .carthead,
+    .ordershead,
+    .producthead {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .brandshead h3,
+    .productshead h3,
+    .carthead h3,
+    .ordershead h3,
+    .producthead h3 {
+        color: var(--text-primary);
+        font-size: 25px;
+        font-weight: var(--fw-lg);
+        margin-bottom: 0px !important;
+    }
+
+}
+
+@media screen and (min-width: 767px) and (max-width: 1098px) {
+
+    .brandshead,
+    .productshead,
+    .carthead,
+    .ordershead,
+    .producthead {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .brandshead h3,
+    .productshead h3,
+    .carthead h3,
+    .ordershead h3,
+    .producthead h3 {
+        color: var(--text-primary);
+        font-size: 22px;
+        font-weight: var(--fw-lg);
+        margin-bottom: 0px !important;
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+
+    /* Heading Common */
+    .brandshead,
+    .productshead,
+    .carthead,
+    .ordershead,
+    .producthead {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .brandshead h3,
+    .productshead h3,
+    .carthead h3,
+    .ordershead h3,
+    .producthead h3 {
+        color: var(--text-primary);
+        font-size: 22px;
+        font-weight: var(--fw-lg);
+        margin-bottom: 10px !important;
+    }
+
+}

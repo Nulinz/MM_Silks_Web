@@ -1,0 +1,364 @@
+.homebannerbtn:hover,
+.trackbtn:hover,
+.filterbtn:hover,
+.modalbtn:hover {
+    background-color: var(--secondary);
+    color: var(--main);
+}
+
+.addressheadbtn:hover,
+.modalbtn_1:hover {
+    background-color: var(--main);
+    color: var(--secondary);
+}
+
+.contactusbtn:hover {
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
+/* Buttons */
+/* Home Banner Button */
+.homebannerbtn {
+    background-color: var(--main);
+    color: var(--secondary);
+    font-weight: var(--fw-md);
+    border: 1px solid var(--main);
+    border-radius: 2px;
+    transition: var(--transition-1);
+}
+
+/* Add to Cart Button */
+.cartbtn {
+    width: 100%;
+    border-radius: 2px;
+    border: none;
+    background-color: var(--main);
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition-duration: var(--transition-2);
+    overflow: hidden;
+    position: relative;
+}
+
+.cartbtn .text {
+    height: 100%;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    transition-duration: var(--transition-2);
+    font-weight: var(--fw-sm);
+}
+
+.iconcontainer {
+    position: absolute;
+    left: -50px;
+    background-color: transparent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 2;
+    transition-duration: var(--transition-2);
+}
+
+.iconcontainer svg {
+    fill: var(--secondary);
+}
+
+.icon {
+    border-radius: 1px;
+}
+
+.cartbtn:hover .iconcontainer {
+    transform: translateX(58px);
+    border-radius: 40px;
+    transition-duration: var(--transition-2);
+}
+
+.cartbtn:hover .text {
+    transform: translate(10px, 0px);
+    transition-duration: var(--transition-2);
+}
+
+.cartbtn:active {
+    transform: scale(0.95);
+    transition-duration: var(--transition-2);
+}
+
+/* Product Button */
+.productcartbtn {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    cursor: pointer;
+    border: 1px solid var(--main);
+    background-color: var(--secondary);
+    border-radius: 8px;
+}
+
+.default-btn,
+.hover-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    border-radius: 0px;
+    font-size: 15px;
+    font-weight: var(--fw-md);
+    color: var(--main);
+    transition: var(--transition-1);
+}
+
+.hover-btn {
+    position: absolute;
+    inset: 0;
+    font-size: 15px;
+    padding: 5px 10px;
+    text-align: center;
+    background: var(--main);
+    text-align: center;
+    transform: translate(0%, 100%);
+}
+
+.default-btn span {
+    color: var(--primary);
+    text-align: center;
+}
+
+.hover-btn span {
+    color: var(--secondary);
+    text-align: center;
+}
+
+.productcartbtn:hover .default-btn {
+    transform: translate(0%, -100%);
+    color: var(--secondary);
+}
+
+.productcartbtn:hover .hover-btn {
+    transform: translate(0%, 0%);
+    color: var(--secondary);
+}
+
+/* Filter Button */
+.filterbtn {
+    background-color: var(--main);
+    color: var(--secondary);
+    font-weight: var(--fw-sm);
+    border: 1px solid var(--main);
+    border-radius: 5px;
+    transition: var(--transition-1);
+}
+
+/* Track Now Button */
+.trackbtn {
+    background-color: var(--main);
+    color: var(--secondary);
+    font-weight: var(--fw-sm);
+    border: 1px solid var(--main);
+    border-radius: 5px;
+    transition: var(--transition-1);
+}
+
+/* Role Head Button */
+.addressheadbtn {
+    background-color: transparent;
+    color: var(--main);
+    font-weight: var(--fw-md);
+    border: 1px solid var(--main);
+    border-radius: 5px;
+}
+
+/* Modal Button */
+.modalbtn {
+    background-color: var(--main);
+    color: var(--secondary);
+    font-weight: var(--fw-md);
+    border: 1px solid var(--main);
+    border-radius: 5px;
+    transition: var(--transition-1);
+    box-shadow: var(--box-shadow);
+}
+
+.modalbtn_1 {
+    background-color: var(--secondary);
+    color: var(--main);
+    font-weight: var(--fw-md);
+    border: 1px solid var(--main);
+    height: 35px;
+    border-radius: 5px;
+    width: 150px;
+    transition: var(--transition-1);
+    box-shadow: var(--box-shadow);
+}
+
+/* Contact Button */
+.contactusbtn {
+    background-color: var(--main);
+    color: var(--primary);
+    font-weight: var(--fw-md);
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    transition: var(--transition-2);
+}
+
+@media screen and (min-width: 1098px) {
+
+    /* Home Banner Btn */
+    .homebannerbtn {
+        font-size: 15px;
+        padding: 8px 25px;
+    }
+
+    /* Add to Cart Button */
+    .iconcontainer {
+        width: 30px;
+        height: 30px;
+    }
+
+    .cartbtn .text {
+        font-size: 15px;
+    }
+
+    /* Filter Button */
+    .filterbtn {
+        font-size: 15px;
+        padding: 4px 15px;
+    }
+
+    /* Track Now Button */
+    .trackbtn {
+        font-size: 15px;
+        padding: 4px 15px;
+    }
+
+    /* Role Head Button */
+    .addressheadbtn {
+        font-size: 12px;
+        padding: 3px 10px;
+    }
+
+    /* Modal Button */
+    .modalbtn,
+    .modalbtn_1 {
+        font-size: 14px;
+        padding: 5px 15px;
+    }
+
+    /* Contact Us Button */
+    .contactusbtn {
+        font-size: 15px;
+        padding: 6px 10px;
+    }
+
+}
+
+@media screen and (min-width: 767px) and (max-width: 1098px) {
+
+    /* Home Banner Btn */
+    .homebannerbtn {
+        font-size: 12px;
+        padding: 5px 20px;
+    }
+
+    /* Add to Cart Button */
+    .iconcontainer {
+        width: 20px;
+        height: 20px;
+    }
+
+    .cartbtn .text {
+        font-size: 12px;
+    }
+
+    /* Filter Button */
+    .filterbtn {
+        font-size: 12px;
+        padding: 3px 10px;
+    }
+
+    /* Track Now Button */
+    .trackbtn {
+        font-size: 12px;
+        padding: 3px 10px;
+    }
+
+    /* Role Head Button */
+    .addressheadbtn {
+        font-size: 12px;
+        padding: 3px 8px;
+    }
+
+    /* Modal Button */
+    .modalbtn,
+    .modalbtn_1 {
+        font-size: 14px;
+        padding: 5px 15px;
+    }
+
+    /* Contact Us Button */
+    .contactusbtn {
+        font-size: 15px;
+        padding: 5px 10px;
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+
+    /* Home Banner Btn */
+    .homebannerbtn {
+        font-size: 12px;
+        padding: 5px 20px;
+    }
+
+    /* Add to Cart Button */
+    .iconcontainer {
+        width: 20px;
+        height: 20px;
+    }
+
+    .cartbtn .text {
+        font-size: 12px;
+    }
+
+    /* Filter Button */
+    .filterbtn {
+        font-size: 15px;
+        padding: 4px 15px;
+    }
+
+    /* Track Now Button */
+    .trackbtn {
+        font-size: 12px;
+        padding: 3px 10px;
+    }
+
+    /* Address Head Button */
+    .addressheadbtn {
+        font-size: 12px;
+        padding: 3px 8px;
+    }
+
+    /* Modal Button */
+    .modalbtn,
+    .modalbtn_1 {
+        font-size: 14px;
+        padding: 5px 15px;
+    }
+
+    /* Contact Us Button */
+    .contactusbtn {
+        font-size: 15px;
+        padding: 6px 10px;
+    }
+
+}

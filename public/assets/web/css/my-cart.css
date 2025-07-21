@@ -1,0 +1,921 @@
+.accordion-body .cards .carddiv::-webkit-scrollbar {
+    display: none;
+}
+
+@media screen and (min-width: 1350px) {
+
+    .accordion-button::after {
+        display: none;
+    }
+
+    /* Order Accordion */
+    .cartaccordion {
+        width: 100%;
+        background-color: var(--secondary);
+        margin-top: 50px;
+    }
+
+    .cartaccorddiv {
+        width: 90%;
+        margin: auto;
+    }
+
+    .cartaccordmain {
+        margin-top: 25px;
+    }
+
+    .cartaccordmain .accordion-button {
+        display: grid;
+        grid-template-columns: 70% 30%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px;
+    }
+
+    .cartaccordmain .accordion-header {
+        border-bottom: 1px solid var(--light-dark) !important;
+    }
+
+    .cartaccordmain .accordleft {
+        display: grid;
+        grid-template-columns: 7% 92%;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .cartaccordmain .accordright {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+    }
+
+    .cartaccordmain .accordleft .orderid {
+        color: var(--text-primary);
+        font-size: 18px;
+        font-weight: var(--fw-lg);
+        margin-bottom: 8px !important;
+    }
+
+    .cartaccordmain .accordleft .orderdate {
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: var(--fw-sm);
+    }
+
+    /* Order Accordion Body */
+    .accordion-body {
+        display: grid;
+        grid-template-columns: 65% 34%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 0px;
+    }
+
+    .accordion-body .cards {
+        height: 400px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    .accordion-body .cards .carddiv {
+        height: 100%;
+        border: 1px solid var(--border);
+        box-shadow: var(--box-shadow);
+        border-radius: 5px;
+        padding: 10px 15px;
+        overflow: auto;
+    }
+
+    /* Left Card */
+    /* Oder Timelince.css */
+
+    /* Middle Card */
+    .body-left {
+        height: 100%;
+    }
+
+    .leftcard {
+        display: grid;
+        grid-template-columns: 15% 80%;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--light-dark);
+        padding: 15px 0px;
+    }
+
+    .leftcard .leftleft {
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        height: 100%;
+    }
+
+    .leftcard .leftleft img {
+        object-fit: contain;
+        object-position: center;
+    }
+
+    .leftcard .leftright {
+        padding: 10px 0px;
+    }
+
+    .leftcard .nameclose,
+    .leftcard .priceqty {
+        display: flex;
+        /* align-items: center; */
+        justify-content: space-between;
+    }
+
+    .leftright h4 {
+        color: var(--text-primary);
+        font-size: 18px;
+        font-weight: var(--fw-lg);
+        margin-bottom: 8px;
+    }
+
+    .leftright h5 {
+        color: var(--primary);
+        font-size: 14px;
+        font-weight: var(--fw-sm);
+        margin-bottom: 10px;
+    }
+
+    .leftright h6 .originalamt {
+        color: var(--text-primary);
+        font-size: 18px;
+        font-weight: var(--fw-lg);
+    }
+
+    .leftright h6 .discountamt {
+        color: var(--text-secondary);
+        font-size: 12px;
+        font-weight: var(--fw-sm);
+        text-decoration: line-through;
+    }
+
+    /* Right Card */
+    .body-right {
+        height: 100%;
+    }
+
+    .body-right .carddivhead {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .body-right .carddivhead h4 {
+        color: var(--text-primary);
+        font-weight: var(--fw-lg);
+        font-size: 18px;
+    }
+
+    .body-right h5 {
+        color: var(--text-secondary);
+        font-weight: var(--fw-md);
+        font-size: 15px;
+    }
+
+    .body-right h5 span {
+        color: var(--main);
+    }
+
+    .body-right .table>:not(caption)>*>* {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .body-right .table td {
+        color: var(--text-secondary);
+        font-size: 12px;
+        font-weight: var(--fw-sm);
+    }
+
+    .body-right .table th {
+        color: var(--text-primary);
+        font-size: 15px;
+        font-weight: var(--fw-md);
+    }
+
+    /* Quantity Inc/Dec */
+    .qtyincdec {
+        display: grid;
+        grid-template-columns: 12% 25% 12%;
+        justify-content: end;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .qtyincdec button {
+        background-color: var(--secondary);
+        color: var(--main);
+        box-shadow: var(--box-shadow);
+        font-size: 10px;
+        border: 1px solid var(--main);
+        border-radius: 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .qtyincdec input {
+        background-color: var(--main);
+        color: var(--secondary);
+        font-size: 10px;
+        border-radius: 2px;
+        border: none;
+        text-align: center;
+        height: 100%;
+    }
+
+
+}
+
+@media screen and (min-width: 1098px) and (max-width: 1350px) {
+
+    .accordion-button::after {
+        display: none;
+    }
+
+    /* Order Accordion */
+    .cartaccordion {
+        width: 100%;
+        background-color: var(--secondary);
+        margin-top: 30px;
+    }
+
+    .cartaccorddiv {
+        width: 90%;
+        margin: auto;
+    }
+
+    .cartaccordmain {
+        margin-top: 20px;
+    }
+
+    .cartaccordmain .accordion-button {
+        display: grid;
+        grid-template-columns: 70% 30%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px;
+    }
+
+    .cartaccordmain .accordion-header {
+        border-bottom: 1px solid var(--light-dark) !important;
+    }
+
+    .cartaccordmain .accordleft {
+        display: grid;
+        grid-template-columns: 10% 89%;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .cartaccordmain .accordright {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+    }
+
+    .cartaccordmain .accordleft .orderid {
+        color: var(--text-primary);
+        font-size: 16px;
+        font-weight: var(--fw-lg);
+        margin-bottom: 5px !important;
+    }
+
+    .cartaccordmain .accordleft .orderdate {
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: var(--fw-sm);
+    }
+
+    /* Order Accordion Body */
+    .accordion-body {
+        display: grid;
+        grid-template-columns: 65% 34%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0px;
+    }
+
+    .accordion-body .cards {
+        height: 400px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    .accordion-body .cards .carddiv {
+        height: 100%;
+        border: 1px solid var(--border);
+        box-shadow: var(--box-shadow);
+        border-radius: 5px;
+        padding: 10px 15px;
+        overflow: auto;
+    }
+
+    /* Left Card */
+    /* Oder Timelince.css */
+
+    /* Middle Card */
+    .body-left {
+        height: 100%;
+    }
+
+    .leftcard {
+        display: grid;
+        grid-template-columns: 15% 80%;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--light-dark);
+        padding: 15px 0px;
+    }
+
+    .leftcard .leftleft {
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        height: 100%;
+    }
+
+    .leftcard .leftleft img {
+        object-fit: contain;
+        object-position: center;
+    }
+
+    .leftcard .leftright {
+        padding: 10px 0px;
+    }
+
+    .leftcard .nameclose,
+    .leftcard .priceqty {
+        display: flex;
+        /* align-items: center; */
+        justify-content: space-between;
+    }
+
+    .leftright h4 {
+        color: var(--text-primary);
+        font-size: 15px;
+        font-weight: var(--fw-lg);
+        margin-bottom: 5px;
+    }
+
+    .leftright h5 {
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: var(--fw-sm);
+        margin-bottom: 10px;
+    }
+
+    .leftright h6 .originalamt {
+        color: var(--text-primary);
+        font-size: 15px;
+        font-weight: var(--fw-lg);
+    }
+
+    .leftright h6 .discountamt {
+        color: var(--text-secondary);
+        font-size: 12px;
+        font-weight: var(--fw-sm);
+        text-decoration: line-through;
+    }
+
+    /* Right Card */
+    .body-right {
+        height: 100%;
+    }
+
+    .body-right .carddivhead {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .body-right .carddivhead h4 {
+        color: var(--text-primary);
+        font-weight: var(--fw-lg);
+        font-size: 16px;
+    }
+
+    .body-right h5 {
+        color: var(--text-secondary);
+        font-weight: var(--fw-md);
+        font-size: 14px;
+    }
+
+    .body-right h5 span {
+        color: var(--main);
+    }
+
+    .body-right .table>:not(caption)>*>* {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .body-right .table td {
+        color: var(--text-secondary);
+        font-size: 12px;
+        font-weight: var(--fw-sm);
+    }
+
+    .body-right .table th {
+        color: var(--text-primary);
+        font-size: 12px;
+        font-weight: var(--fw-md);
+    }
+
+    /* Quantity Inc/Dec */
+    .qtyincdec {
+        display: grid;
+        grid-template-columns: 12% 25% 12%;
+        justify-content: end;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .qtyincdec button {
+        background-color: var(--secondary);
+        color: var(--main);
+        box-shadow: var(--box-shadow);
+        font-size: 10px;
+        border: 1px solid var(--main);
+        border-radius: 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .qtyincdec input {
+        background-color: var(--main);
+        color: var(--secondary);
+        border-radius: 2px;
+        border: none;
+        font-size: 12px;
+        text-align: center;
+        height: 100%;
+    }
+
+
+}
+
+@media screen and (min-width: 767px) and (max-width: 1098px) {
+
+    .accordion-button::after {
+        display: none;
+    }
+
+    /* Order Accordion */
+    .cartaccordion {
+        width: 100%;
+        background-color: var(--secondary);
+        margin-top: 25px;
+    }
+
+    .cartaccorddiv {
+        width: 95%;
+        margin: auto;
+    }
+
+    .cartaccordmain {
+        margin-top: 15px;
+    }
+
+    .cartaccordmain .accordion-button {
+        display: grid;
+        grid-template-columns: 70% 30%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px;
+    }
+
+    .cartaccordmain .accordion-header {
+        border-bottom: 1px solid var(--light-dark) !important;
+    }
+
+    .cartaccordmain .accordleft {
+        display: grid;
+        grid-template-columns: 12% 85%;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .cartaccordmain .accordright {
+        display: flex;
+        align-items: center;
+        justify-content: end;
+    }
+
+    .cartaccordmain .accordleft .orderid {
+        color: var(--text-primary);
+        font-size: 16px;
+        font-weight: var(--fw-lg);
+        margin-bottom: 5px !important;
+    }
+
+    .cartaccordmain .accordleft .orderdate {
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: var(--fw-sm);
+    }
+
+    /* Order Accordion Body */
+    .accordion-body {
+        display: grid;
+        grid-template-columns: 65% 33%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0px;
+    }
+
+    .accordion-body .cards {
+        height: 400px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    .accordion-body .cards .carddiv {
+        height: 100%;
+        border: 1px solid var(--border);
+        box-shadow: var(--box-shadow);
+        border-radius: 5px;
+        padding: 5px 10px;
+        overflow: auto;
+    }
+
+    /* Left Card */
+    /* Oder Timelince.css */
+
+    /* Middle Card */
+    .body-left {
+        height: 100%;
+    }
+
+    .leftcard {
+        display: grid;
+        grid-template-columns: 25% 70%;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--light-dark);
+        padding: 10px 0px;
+    }
+
+    .leftcard .leftleft {
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        height: 100%;
+    }
+
+    .leftcard .leftleft img {
+        object-fit: contain;
+        object-position: center;
+    }
+
+    .leftcard .leftright {
+        padding: 8px 0px;
+    }
+
+    .leftcard .nameclose,
+    .leftcard .priceqty {
+        display: flex;
+        /* align-items: center; */
+        justify-content: space-between;
+    }
+
+    .leftright h4 {
+        color: var(--text-primary);
+        font-size: 12px;
+        font-weight: var(--fw-lg);
+        margin-bottom: 5px;
+    }
+
+    .leftright h5 {
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: var(--fw-sm);
+        margin-bottom: 8px;
+    }
+
+    .leftright h6 .originalamt {
+        color: var(--text-primary);
+        font-size: 14px;
+        font-weight: var(--fw-lg);
+    }
+
+    .leftright h6 .discountamt {
+        color: var(--text-secondary);
+        font-size: 11px;
+        font-weight: var(--fw-sm);
+        text-decoration: line-through;
+    }
+
+    /* Right Card */
+    .body-right {
+        height: 100%;
+    }
+
+    .body-right .carddivhead {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .body-right .carddivhead h4 {
+        color: var(--text-primary);
+        font-weight: var(--fw-lg);
+        font-size: 15px;
+    }
+
+    .body-right .table>:not(caption)>*>* {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .body-right h5 {
+        color: var(--text-secondary);
+        font-weight: var(--fw-md);
+        font-size: 12px;
+    }
+
+    .body-right h5 span {
+        color: var(--main);
+    }
+
+    .body-right .table td {
+        color: var(--text-secondary);
+        font-size: 11px;
+        font-weight: var(--fw-sm);
+    }
+
+    .body-right .table th {
+        color: var(--text-primary);
+        font-size: 12px;
+        font-weight: var(--fw-md);
+    }
+
+    /* Quantity Inc/Dec */
+    .qtyincdec {
+        display: grid;
+        grid-template-columns: 12% 25% 12%;
+        justify-content: end;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .qtyincdec button {
+        background-color: var(--secondary);
+        color: var(--main);
+        box-shadow: var(--box-shadow);
+        font-size: 8px;
+        border: 1px solid var(--main);
+        border-radius: 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .qtyincdec input {
+        background-color: var(--main);
+        color: var(--secondary);
+        border-radius: 2px;
+        border: none;
+        font-size: 10px;
+        text-align: center;
+        height: 100%;
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+
+    .accordion-button::after {
+        display: none;
+    }
+
+    /* Order Accordion */
+    .cartaccordion {
+        width: 100%;
+        background-color: var(--secondary);
+        margin-top: 30px;
+    }
+
+    .cartaccorddiv {
+        width: 95%;
+        margin: auto;
+    }
+
+    .cartaccordmain {
+        margin-top: 20px;
+    }
+
+    .cartaccordmain .accordion-button {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        flex-direction: column;
+        padding: 8px;
+    }
+
+    .cartaccordmain .accordion-header {
+        border-bottom: 1px solid var(--light-dark) !important;
+    }
+
+    .cartaccordmain .accordleft {
+        display: grid;
+        grid-template-columns: 12% 85%;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .cartaccordmain .accordleft {
+        margin-bottom: 15px;
+    }
+
+    .cartaccordmain .accordleft .orderid {
+        color: var(--text-primary);
+        font-size: 15px;
+        font-weight: var(--fw-lg);
+        margin-bottom: 5px !important;
+    }
+
+    .cartaccordmain .accordleft .orderdate {
+        color: var(--primary);
+        font-size: 10px;
+        font-weight: var(--fw-sm);
+    }
+
+    /* Order Accordion Body */
+    .accordion-body {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px 0px;
+    }
+
+    .accordion-body .cards {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    .accordion-body .cards .carddiv {
+        height: 100%;
+        border: 1px solid var(--border);
+        box-shadow: var(--box-shadow);
+        border-radius: 5px;
+        padding: 10px;
+        overflow: auto;
+    }
+
+    /* Left Card */
+    /* Oder Timelince.css */
+
+    /* Middle Card */
+    .body-left {
+        height: 100%;
+    }
+
+    .leftcard {
+        display: grid;
+        grid-template-columns: 20% 78%;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--light-dark);
+        padding: 10px 0px;
+    }
+
+    .leftcard .leftleft {
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        height: 100%;
+    }
+
+    .leftcard .leftleft img {
+        object-fit: contain;
+        object-position: center;
+    }
+
+    .leftcard .leftright {
+        padding: 8px 0px;
+    }
+
+    .leftcard .nameclose,
+    .leftcard .priceqty {
+        display: flex;
+        /* align-items: center; */
+        justify-content: space-between;
+    }
+
+    .leftright h4 {
+        color: var(--text-primary);
+        font-size: 12px;
+        font-weight: var(--fw-lg);
+        margin-bottom: 5px;
+    }
+
+    .leftright h5 {
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: var(--fw-sm);
+        margin-bottom: 10px;
+    }
+
+    .leftright h6 .originalamt {
+        color: var(--text-primary);
+        font-size: 10px;
+        font-weight: var(--fw-md);
+    }
+
+    .leftright h6 .discountamt {
+        color: var(--text-secondary);
+        font-size: 8px;
+        font-weight: var(--fw-sm);
+        text-decoration: line-through;
+        padding: 0px !important;
+    }
+
+    /* Right Card */
+    .body-right {
+        height: 100%;
+    }
+
+    .body-right .carddivhead {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .body-right .carddivhead h4 {
+        color: var(--text-primary);
+        font-weight: var(--fw-lg);
+        font-size: 12px;
+    }
+
+    .body-right .table>:not(caption)>*>* {
+        padding: 5px 0px 0px 0px;
+    }
+
+    .body-right h5 {
+        color: var(--text-secondary);
+        font-weight: var(--fw-md);
+        font-size: 11px;
+    }
+
+    .body-right h5 span {
+        color: var(--main);
+    }
+
+    .body-right .table td {
+        color: var(--text-secondary);
+        font-size: 11px;
+        font-weight: var(--fw-sm);
+    }
+
+    .body-right .table th {
+        color: var(--text-primary);
+        font-size: 12px;
+        font-weight: var(--fw-md);
+    }
+
+    /* Quantity Inc/Dec */
+    .qtyincdec {
+        display: grid;
+        grid-template-columns: 12% 20% 12%;
+        justify-content: end;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .qtyincdec button {
+        background-color: var(--secondary);
+        color: var(--main);
+        box-shadow: var(--box-shadow);
+        font-size: 10px;
+        border: 1px solid var(--main);
+        border-radius: 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .qtyincdec input {
+        background-color: var(--main);
+        color: var(--secondary);
+        border-radius: 2px;
+        border: none;
+        font-size: 12px;
+        height: 100%;
+        text-align: center;
+        height: 100%;
+    }
+
+}

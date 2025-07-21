@@ -1,0 +1,297 @@
+@media screen and (min-width: 1098px) {
+
+    /* Contact Banner */
+    .contactbanner {
+        width: 100%;
+        height: 85vh;
+        position: relative;
+    }
+
+    .contactbanner img {
+        height: 100%;
+        width: 100%;
+        filter: brightness(80%);
+    }
+
+    .contactbanner .contactbannercntnt {
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .contactbannercntnt h3 {
+        color: var(--secondary);
+        font-weight: var(--fw-xxl);
+        font-size: 45px;
+        margin-bottom: 10px;
+    }
+
+    .contactbannercntnt h6 {
+        color: var(--secondary);
+        font-weight: var(--fw-sm);
+        font-size: 18px;
+        line-height: 28px;
+        margin-bottom: 10px;
+    }
+
+    /* Contact Us Content */
+    .contactuscontent {
+        width: 100%;
+        background: var(--secondary);
+        margin-top: 50px;
+    }
+
+    .contactuscontentdiv {
+        width: 90%;
+        margin: auto;
+    }
+
+    .contactuscntnt h4 {
+        color: var(--text-primary);
+        font-weight: var(--fw-xl);
+        font-size: 25px;
+        margin-bottom: 10px;
+        text-transform: capitalize;
+    }
+
+    .contactuscntnt h6 {
+        color: var(--text-primary);
+        font-weight: var(--fw-md);
+        font-size: 15px;
+        margin-bottom: 0px;
+        line-height: 25px;
+    }
+
+    /* Contact Us Form */
+    .contactusform {
+        background: url('../images/Contact-Form-Banner.png') var(--primary) top center no-repeat;
+        background-size: contain;
+        padding: 50px 0px;
+        margin-top: 30px;
+    }
+
+    .contactusformdiv {
+        width: 90%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 48% 50%;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .contactusformleft h2 {
+        color: var(--secondary);
+        font-size: 40px;
+        font-weight: var(--fw-xxl);
+        margin-bottom: 0px;
+        line-height: 60px;
+    }
+
+    .contactusformright form .row .col-sm-12 {
+        margin-bottom: 50px;
+    }
+
+}
+
+@media screen and (min-width: 767px) and (max-width: 1098px) {
+
+    /* Contact Banner */
+    .contactbanner {
+        width: 100%;
+        height: 70vh;
+        position: relative;
+    }
+
+    .contactbanner img {
+        height: 100%;
+        width: 100%;
+        filter: brightness(80%);
+    }
+
+    .contactbanner .contactbannercntnt {
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .contactbannercntnt h3 {
+        color: var(--secondary);
+        font-weight: var(--fw-xxl);
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    .contactbannercntnt h6 {
+        color: var(--secondary);
+        font-weight: var(--fw-sm);
+        font-size: 15px;
+        line-height: 25px;
+        margin-bottom: 10px;
+    }
+
+    /* Contact Us Content */
+    .contactuscontent {
+        width: 100%;
+        background: var(--secondary);
+        margin-top: 30px;
+    }
+
+    .contactuscontentdiv {
+        width: 95%;
+        margin: auto;
+    }
+
+    .contactuscntnt h4 {
+        color: var(--text-primary);
+        font-weight: var(--fw-xl);
+        font-size: 20px;
+        margin-bottom: 10px;
+        text-transform: capitalize;
+    }
+
+    .contactuscntnt h6 {
+        color: var(--text-primary);
+        font-weight: var(--fw-md);
+        font-size: 12px;
+        margin-bottom: 0px;
+        line-height: 23px;
+    }
+    
+    /* Contact Us Form */
+    .contactusform {
+        background: url('../images/Contact-Form-Banner.png') var(--primary) top center no-repeat;
+        background-size: contain;
+        padding: 30px 0px;
+        margin-top: 30px;
+    }
+
+    .contactusformdiv {
+        width: 95%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 48% 50%;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .contactusformleft h2 {
+        color: var(--secondary);
+        font-size: 30px;
+        font-weight: var(--fw-xxl);
+        margin-bottom: 0px;
+        line-height: 50px;
+    }
+
+    .contactusformright form .row .col-sm-12 {
+        margin-bottom: 40px;
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+
+    /* Contact Banner */
+    .contactbanner {
+        width: 100%;
+        height: 90vh;
+        position: relative;
+    }
+
+    .contactbanner img {
+        height: 100%;
+        width: 100%;
+        filter: brightness(80%);
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .contactbanner .contactbannercntnt {
+        width: 90%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .contactbannercntnt h3 {
+        color: var(--secondary);
+        font-weight: var(--fw-xxl);
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    .contactbannercntnt h6 {
+        color: var(--secondary);
+        font-weight: var(--fw-sm);
+        font-size: 15px;
+        line-height: 25px;
+        margin-bottom: 10px;
+    }
+
+    /* Contact Us Content */
+    .contactuscontent {
+        width: 100%;
+        background: var(--secondary);
+        margin-top: 30px;
+    }
+
+    .contactuscontentdiv {
+        width: 95%;
+        margin: auto;
+    }
+
+    .contactuscntnt h4 {
+        color: var(--text-primary);
+        font-weight: var(--fw-xl);
+        font-size: 20px;
+        margin-bottom: 10px;
+        text-transform: capitalize;
+    }
+
+    .contactuscntnt h6 {
+        color: var(--text-primary);
+        font-weight: var(--fw-md);
+        font-size: 12px;
+        margin-bottom: 0px;
+        line-height: 23px;
+    }
+    
+    /* Contact Us Form */
+    .contactusform {
+        background: url('../images/Contact-Form-Banner.png') var(--primary) top center no-repeat;
+        background-size: contain;
+        padding: 30px 0px;
+        margin-top: 30px;
+    }
+
+    .contactusformdiv {
+        width: 95%;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .contactusformleft h2 {
+        color: var(--secondary);
+        font-size: 25px;
+        font-weight: var(--fw-xxl);
+        margin-bottom: 0px;
+        line-height: 40px;
+        text-align: center;
+    }
+
+    .contactusformright form .row .col-sm-12 {
+        margin-bottom: 30px;
+    }
+
+}
