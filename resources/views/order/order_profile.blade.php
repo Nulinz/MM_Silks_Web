@@ -10,7 +10,7 @@
         </div>
         <div class="brdr">|</div>
         <div class="estdate">
-            <h6 class="mb-0"><span><i class="fa-solid fa-indian-rupee-sign"></i> Total :{{$odr_cdetails->amount}}</span></h6>
+            <h6 class="mb-0"><span><i class="fa-solid fa-indian-rupee-sign"></i> Total :{{round($odr_cdetails->amount)}}</span></h6>
         </div>
     </div>
 
@@ -79,7 +79,7 @@
                            <td> {{$loop->iteration}} </td>
                            <td>{{ $item->subcategory_name }}</td>
                            <td>{{ $item->qty }}</td>
-                           <td>{{ $item->amount }}</td>  
+                           <td>{{ round($item->amount) }}</td>  
                            @php
                                 $sum_qty += $item->qty;
                                 $total_amount += $item->amount;

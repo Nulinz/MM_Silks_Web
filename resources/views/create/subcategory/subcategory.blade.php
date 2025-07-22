@@ -109,7 +109,7 @@
                      @csrf
                         <div class="col-sm-12 col-md-12 mb-1">
                             <label for="category" class="col-form-label">Product</label>
-                                <select class="form-control" name="p_id" id="p_id">
+                                <select class="form-control edit_drop" name="p_id" id="p_id">
                                 <option value="" selected disabled>Select Product</option>
                                     @foreach($product_list as $product)
                                     <option value="{{ $product->id }}">{{ $product->p_name }}</option>
@@ -439,6 +439,42 @@
         });
     });
 </script>
+
+
+<script>
+$(document).ready(function () {
+    $(document).on("click", ".edit_drop", function () {
+        let productId = $(this).data("id");
+        alert(productId);
+        
+        $.ajax({
+            url: "{{ route('getCategories') }}",
+            type: "POST",
+            data: {
+                product_id: productId,
+                _token: "{{ csrf_token() }}"
+            },
+            success: function (response) {
+                // response should be an array of categories
+                const catSelect = $('#cat_drop');
+                catSelect.empty(); // clear current options
+                catSelect.append('<option selected disabled>Select Category</option>');
+
+                $.each(response, function (index, category) {
+                    catSelect.append(
+                        `<option value="${category.id}">${category.c_name}</option>`
+                    );
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error("AJAX Error:", xhr.responseText);
+            }
+        });
+    });
+});
+</script>
+
+
 
 
 @endsection

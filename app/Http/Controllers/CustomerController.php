@@ -30,13 +30,13 @@ class CustomerController extends Controller
         // ? Carbon::now()->setTimezone('Asia/Kolkata')->addYears(5)->toDateTimeString()
         // : $req->c_permission_time;
 
-        //dd($permission_time);
+         //dd($req->c_permission_time);
 
-        $permission_time = $req->c_permission_type === 'fullallow'
+        $permission_time = $req->c_permission_type === 'fullaccess'
         ? Carbon::now()->setTimezone('Asia/Kolkata')->addYears(5)->toDateString()
         : $req->c_permission_time;
 
-
+         //dd($permission_time);
         
 
         $p_insert =  DB::table('customers')->insert([
@@ -49,6 +49,7 @@ class CustomerController extends Controller
             'joindate'=>$req->c_join_date,
             'cby'=>$req->created_by,
             'status'=>'Active', 
+            'device_token' => "",
             'created_at'=>now(),
             'updated_at'=>now()
         ]);

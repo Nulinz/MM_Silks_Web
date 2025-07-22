@@ -60,7 +60,7 @@
                          </div>
                          </td>
                       
-                        <td><span class="text-danger">{{ $category->status }}</span></td>
+                        <td>{{ $category->status }}</td>
                         <td> 
                           <div class="d-flex align-items-center gap-2">
                                                  

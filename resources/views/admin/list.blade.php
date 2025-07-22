@@ -108,7 +108,7 @@
                         </div>
                         <div class="col-sm-12 col-md-12 mb-1">
                             <label for="category" class="col-form-label">Mobile No</label>
-                            <input type="text" class="form-control" name="contact" id="contact">
+                            <input type="text" class="form-control" name="contact" id="contact"  maxlength="10">
                         </div>
                         <div class="col-sm-12 col-md-12 mb-1">
                             <label for="subcategory" class="col-form-label">Passwrod</label>

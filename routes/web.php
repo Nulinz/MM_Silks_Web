@@ -46,6 +46,11 @@ Route::get('/', function () {
     Route::get('customer-create-basic', [CustomerController::class,'customer_create_basic'])->name('customer.create-basic');
     Route::get('admin-list', [AdminController::class,'admin_list'])->name('admin.admin-list');
 
+    //category related produt fetch
+
+    Route::post('get-categories-by-product', [CreateController::class, 'getCategories'])->name('getCategories');
+
+
     //customer
     Route::post('product-store', [CreateController::class,'product_store'])->name('product_store');
     Route::post('category-store', [CreateController::class,'category_store'])->name('category_store');

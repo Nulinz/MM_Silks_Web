@@ -323,6 +323,7 @@
 
             $('#item_code').val('');
            $('#ex_logo').attr('src', '');
+           $('#subcat_drop').val('');
 
             $.ajax({
                 url: "{{ route('edit.items-profile') }}",

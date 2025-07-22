@@ -69,8 +69,8 @@
                                 <div class="d-flex align-items-center gap-2">
                                     <a href="{{ route('order.order-profile',['id'=>$cus_value->id]) }}" data-bs-toggle="tooltip"
                                         data-bs-title="Profile"><i class="fas fa-arrow-up-right-from-square"></i></a>
-                                    <a data-bs-toggle="modal" data-bs-target="#updateorder"><i
-                                            class="fas fa-pen-to-square"></i></a>
+                                    <!-- <a data-bs-toggle="modal" data-bs-target="#updateorder"><i
+                                            class="fas fa-pen-to-square"></i></a> -->
                                 </div>
                             </td>
                         </tr>

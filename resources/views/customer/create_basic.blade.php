@@ -31,8 +31,8 @@
                     </div>
                     <div class="col-sm-12 col-md-3 col-xl-3 mb-3 inputs">
                         <label for="contact">Contact Number</label>
-                        <input type="number" class="form-control" name="c_contact" id="c_contact" oninput="validate(this)"
-                             minlength="10" maxlength="10">
+                        <input type="number" class="form-control" name="c_contact" id="c_contact"
+                             maxlength="10">
                     </div>
                             <!--    
                             <i class="fas fa-eye-slash" id="passHide"

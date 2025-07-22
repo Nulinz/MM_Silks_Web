@@ -44,7 +44,7 @@
                             <th>Location</th>
                             <th>C Category Type</th>
                             <th>Permission Type</th>
-                            <th>Permission Time</th>
+                            <th>Permission Date</th>
                             <th>By</th>
                             <th>status</th>
                             <th>Action</th>

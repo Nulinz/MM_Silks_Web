@@ -34,8 +34,11 @@ class CreateController extends Controller
 
         $subcategory_list = Subcategory::with(['product', 'category'])->get();
 
-        $product_list = Product::all();
-        $category_list = Category::all();
+        $product_list = Product::where('status', 'Active')->get();
+        $category_list = Category::where('status', 'Active')->get();
+
+       // $product_list = Product::all();
+       // $category_list = Category::all();
 
         return view('create.subcategory.subcategory', compact('product_list', 'category_list', 'subcategory_list'));
 }
@@ -50,12 +53,14 @@ class CreateController extends Controller
         // ->get();
         //dd($i_list);
         //dd($i_list);
+        $product_list = Product::where('status', 'Active')->get();
+
         $item_list = Item::with(['subcategory'])->get();
        // dd( $item_list);
         //dd($item_list->pluck('sc_id', 'id'));
        // dd($item_list->pluck('subcategory.sc_name'));
 
-        $subcategory_list = Subcategory::all();
+        $subcategory_list = Subcategory::where('status', 'Active')->get();
         return view('create.items.items',compact('subcategory_list','item_list'));
     }
 
@@ -357,6 +362,18 @@ class CreateController extends Controller
 
      $sub_status_update = DB::table('items')->where('id', $req->id)->update($updateData);
   }
+
+
+  public function getCategories($product_id)
+{
+    // Assuming each category belongs to a product
+    $categories = DB::table('categories')
+        ->where('p_id', $product_id)
+        ->get(['id', 'c_name']);
+
+    return response()->json($categories);
+}
+
    
 
 
