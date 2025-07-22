@@ -163,7 +163,7 @@ class ApiCustomerController extends Controller
            
 
             // Optionally hide price categories
-                unset($sub->cat_a, $sub->cat_b, $sub->cat_c);
+                unset($sub->cat_a, $sub->cat_b, $sub->cat_c, $sub->cat_d, $sub->cat_e);
                 return $sub;
             });
 
@@ -214,7 +214,7 @@ class ApiCustomerController extends Controller
     // Get subcategories under the category (excluding logo)
     $subcategory_list = Subcategory::where('status', 'Active')
         ->where('id', $request->subcategory_id)
-        ->select('id', 'sc_name', 'cat_a', 'cat_b', 'cat_c') // removed sc_logo
+        ->select('id', 'sc_name', 'cat_a', 'cat_b', 'cat_c','cat_d','cat_e') // removed sc_logo
         ->get();
 
     $subcategory_list->map(function ($sub) use ($customer) {
@@ -261,7 +261,7 @@ class ApiCustomerController extends Controller
         $sub->items = $items_list;
 
         // Clean up
-        unset($sub->cat_a, $sub->cat_b, $sub->cat_c);
+        unset($sub->cat_a, $sub->cat_b, $sub->cat_c,$sub->cat_d,$sub->cat_e);
         return $sub;
     });
 
