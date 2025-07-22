@@ -295,51 +295,7 @@
             });
         });
     </script>
-    <script>
-        $(document).ready(function() {
-            $(document).on("click", ".edit_button", function() {
-        let id = $(this).data("id");
-
-        //alert(id);
-
-        $.ajax({
-            url: "",
-            type: "POST",
-            data: {
-                id: id,
-                _token: "{{ csrf_token() }}"
-            },
-            success: function(response) {
-                console.log(response);
-
-                  $('#subcategory_name').val(response.sc_name);
-                  $('#subcategory_descp').val(response.sc_desc);
-                  $('#subcat_logo').attr('src', '{{ asset("storage/subcatimage") }}/' + response.sc_logo);
-                  $('#subcategory_id').val(response. subcategory_id);
-               
-               
-                const select = $('#category_drop');
-
-               const text = response.category_name;
-               const value = response.category_id;
-               //console.log(text,value);
-
-               
-               select.prepend(`<option value="${value}" selected>${text}</option>`);
-
-              
-            //select.append(<option value="${value}">"${text}</option>);
-            
-             
-            },
-            error: function(xhr) {
-                console.error("Error Response:", xhr.responseText); // see HTML or JSON
-            }
-        });
-    });
-});
-    </script>
-
+    
 <script>
    $(document).ready(function () {
        $(".status_button").on("click", function () {
@@ -382,7 +338,8 @@
     });
 </script>
 
-
+ 
+<!--overall fetch subcategory list details-->
 <script>
     $(document).ready(function () {
         $(document).on("click", ".edit_button", function () {
@@ -440,15 +397,16 @@
     });
 </script>
 
-
+<!--insert dropdown--product based category list-->
 <script>
 $(document).ready(function () {
-    $(document).on("click", ".edit_drop", function () {
-        let productId = $(this).data("id");
-        alert(productId);
+    $('#p_id').on('change', function () {
+        let productId = $(this).val();
+        //alert(productId);
         
         $.ajax({
-            url: "{{ route('getCategories') }}",
+            url: "{{ route('create.getCategories') }}",
+
             type: "POST",
             data: {
                 product_id: productId,
@@ -456,7 +414,7 @@ $(document).ready(function () {
             },
             success: function (response) {
                 // response should be an array of categories
-                const catSelect = $('#cat_drop');
+                const catSelect = $('#c_id');
                 catSelect.empty(); // clear current options
                 catSelect.append('<option selected disabled>Select Category</option>');
 
@@ -473,6 +431,45 @@ $(document).ready(function () {
     });
 });
 </script>
+
+
+<!--edit dropdown--product based dropdown list-->
+
+<script>
+$(document).ready(function () {
+    $('#product_drop').on('change', function () {
+        let productId = $(this).val();
+        //alert(productId);
+        
+        $.ajax({
+            url: "{{ route('create.getCategories') }}",
+
+            type: "POST",
+            data: {
+                product_id: productId,
+                _token: "{{ csrf_token() }}"
+            },
+            success: function (response) {
+                // response should be an array of categories
+                const categorySelect = $('#cat_drop');
+                categorySelect.empty(); // clear current options
+                categorySelect.append('<option selected disabled>Select Category</option>');
+
+                $.each(response, function (index, category) {
+                    categorySelect.append(
+                        `<option value="${category.id}">${category.c_name}</option>`
+                    );
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error("AJAX Error:", xhr.responseText);
+            }
+        });
+    });
+});
+</script>
+
+
 
 
 

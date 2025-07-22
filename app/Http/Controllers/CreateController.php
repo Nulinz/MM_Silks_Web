@@ -8,6 +8,8 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Item;
+use Illuminate\Support\Facades\Log;
+
 
 class CreateController extends Controller
 {
@@ -364,11 +366,13 @@ class CreateController extends Controller
   }
 
 
-  public function getCategories($product_id)
+  public function getCategories(Request $req)
 {
+    //Log::info('AJAX request received', $req->all());
+
     // Assuming each category belongs to a product
-    $categories = DB::table('categories')
-        ->where('p_id', $product_id)
+    $categories = DB::table('category')
+        ->where('p_id','=', $req->product_id)
         ->get(['id', 'c_name']);
 
     return response()->json($categories);

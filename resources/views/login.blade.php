@@ -29,7 +29,7 @@
     <div class="form-structor">
         <div class="signup">
             <div class="logo d-flex justify-content-center align-items-center" id="signup">
-                <img src="{{ asset('assets/images/mlogo.png') }}" height="80px" width="40%" alt="">
+                <img src="{{ asset('image/logo/mmtexlogo.png') }}" height="100px" width="120%" alt="">
             </div>
             <!-- <h2 class="form-title" id="signup"><span>or</span>Sign up</h2> -->
         </div>

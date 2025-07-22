@@ -35,6 +35,9 @@ Route::get('/', function () {
 
     Route::view('/admin', 'login')->name('login');
     Route::post('user/login', [AdminController::class,'login'])->name('user.login');//login check
+
+    Route::middleware('auth')->group(function () {
+
     Route::post('user/logout', [AdminController::class,'logout'])->name('user.logout');//login check
  
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
@@ -48,7 +51,7 @@ Route::get('/', function () {
 
     //category related produt fetch
 
-    Route::post('get-categories-by-product', [CreateController::class, 'getCategories'])->name('getCategories');
+    Route::post('get-categories-by-product', [CreateController::class, 'getCategories'])->name('create.getCategories');
 
 
     //customer
@@ -81,7 +84,7 @@ Route::get('/', function () {
 
 
 
-
+    });
 
 
 
