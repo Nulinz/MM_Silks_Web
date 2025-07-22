@@ -16,7 +16,7 @@
 
         <div class="navbar-collapse d-lg-flex justify-content-between align-items-center collapse" id="navbarcontent">
             <div class="navbar-brand col-lg-2 me-0">
-                <a href="{{ route('pages.index') }}"><img src="{{ asset('assets/images/logo.png') }}" height="50px"
+                <a href="{{ route('pages.index') }}"><img src="{{ asset('image/logo/mmtexlogo.png') }}" height="50px"
                         title="" alt=""></a>
             </div>
             <div class="col-lg-4">
