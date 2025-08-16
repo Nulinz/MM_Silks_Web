@@ -42,7 +42,7 @@
                             <th>#</th>
                             <th>Subcategory</th>
                             <th>Code</th>
-                            <th>logo</th>
+                            <th>Image</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -116,7 +116,16 @@
                                  @foreach($subcategory_list as $subcategory)
                                   <option value="{{ $subcategory->id }}">{{ $subcategory->sc_name }}</option>
                                  @endforeach
-                                </select>
+                                <!--<option value="lehengas">Banaras Cotton</option>-->
+                            </select>
+                        </div>
+                        <div class="col-sm-12 col-md-12 mb-1">
+                            <label for="category" class="col-form-label">Colors</label>
+                            <select class="form-control" name="color" id="color">
+                                 <option value="">-- Choose a Colors --</option>
+                                 @foreach($color_list as $color)
+                                  <option value="{{ $color->id }}">{{ $color->co_name }}</option>
+                                 @endforeach
                                 <!--<option value="lehengas">Banaras Cotton</option>-->
                             </select>
                         </div>
@@ -125,7 +134,16 @@
                             <input type="text" class="form-control" name="i_code" id="i_code"></textarea>
                         </div>
                         <div class="col-sm-12 col-md-12 mb-1">
-                            <label for="categorytitle" class="col-form-label">Items Logo</label>
+                             <!-- <label for="empname" class="col-form-label">Types</label><br> -->
+                           
+                            <input type="radio" id="vehicle1" name="types" value="finished">
+                            <label for="contact">Finished</label>
+                            <input type="radio" id="vehicle1" name="types" value="not_finished">
+                            <label for="altcontact">Not Finished</label>
+                        </div>
+                  
+                        <div class="col-sm-12 col-md-12 mb-1">
+                            <label for="categorytitle" class="col-form-label">Items Image</label>
                             <input type="file" name="i_logo" class="form-control">
                         </div>
                         <div class="d-flex justify-content-center align-items-center mx-auto mt-3">
@@ -148,7 +166,7 @@
                     <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h4 class="modal-title mb-2" id="editcategoryLabel">Edit Category</h4>
+                    <h4 class="modal-title mb-2" id="editcategoryLabel">Edit Items</h4>
                     <form action="{{ route('items_store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <!--
@@ -168,12 +186,30 @@
                             </select>
                         </div>
                         <div class="col-sm-12 col-md-12 mb-1">
+                            <label for="category" class="col-form-label">Colors</label>
+                            <select class="form-control" name="item_color" id="item_color">
+                                 <option value="">-- Choose a Colors --</option>
+                                 @foreach($color_list as $color)
+                                  <option value="{{ $color->id }}">{{ $color->co_name }}</option>
+                                 @endforeach
+                                <!--<option value="lehengas">Banaras Cotton</option>-->
+                            </select>
+                        </div>
+                        <div class="col-sm-12 col-md-12 mb-1">
                             <label for="categorydescp" class="col-form-label">Code</label>
                             <input type="text" class="form-control" name="item_code" id="item_code">
                             <input type="hidden" class="form-control" name="item_id" id="item_id">
                         </div>
                         <div class="col-sm-12 col-md-12 mb-1">
-                            <label for="categorylogo" class="col-form-label">Category Logo</label>
+                             <!-- <label for="empname" class="col-form-label">Types</label><br> -->
+                           
+                            <input type="radio" id="finished" name="item_types" value="finished">
+                            <label for="contact">Finished</label>
+                            <input type="radio" id="not_finished" name="item_types" value="not_finished">
+                            <label for="altcontact">Not Finished</label>
+                        </div>
+                        <div class="col-sm-12 col-md-12 mb-1">
+                            <label for="categorylogo" class="col-form-label">Item Image</label>
                             <input type="file" class="form-control" name="item_logo" id="item_logo">
                             <img class="d-block mx-auto mt-2" src="" height="50px" alt="" id="ex_logo">
                         </div>
@@ -337,6 +373,8 @@
 
                     $('#item_code').val(response.code);
                     $('#item_id').val(response.item_id);
+
+                    $('#item_types').val(response.types);
                     
                   
                 
@@ -349,6 +387,21 @@
 
                     // Add the new option at the beginning
                     select.prepend(`<option value="${value}" selected>${text}</option>`);
+
+                    //color
+                    const colorselect = $('#item_color');
+                    const colortext = response.color_name;   // e.g., "Red"
+                    const colorvalue = response.color_id;    // e.g., 5
+
+                    // Remove existing option if it exists
+                    colorselect.find(`option[value="${colorvalue}"]`).remove();
+
+                    // Add the new option at the top and select it
+                    colorselect.prepend(`<option value="${colorvalue}" selected>${colortext}</option>`);
+
+                    $('input[name="item_types"][value="' + response.types + '"]').prop('checked', true);
+
+
 
                     $('#ex_logo').attr('src', '{{ asset("image/itemimage") }}/' + response.i_logo);
 

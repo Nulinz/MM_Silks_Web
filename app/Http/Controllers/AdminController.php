@@ -52,6 +52,26 @@ class AdminController extends Controller
     {
         //dd($req->all());
 
+
+        if($req->ad_id){
+
+            $updateData = [
+                'name' => $req->ad_name,
+                'contact' => $req->ad_contact,
+                'password' => $req->ad_password,
+                'role' => $req->admin_drop,
+                
+            ];
+            $admin_update = DB::table('admin')->where('id', $req->ad_id)->update($updateData);
+                if($admin_update){
+                    return back()->with('message','admin update sucessfully');
+                }
+                else {
+                    return back()->with('info', 'No changes made to the item');
+                }
+
+       }
+       else{
         $p_insert =  DB::table('admin')->insert([
             'name'=>$req->name,
             'contact'=>$req->contact,
@@ -65,6 +85,7 @@ class AdminController extends Controller
         if($p_insert){
             return back();
         }
+     } 
     }
 
     //admin status update
@@ -94,5 +115,13 @@ class AdminController extends Controller
         $request->session()->regenerateToken();
     
         return redirect()->route('login');
+    }
+
+    public function edit_admin(Request $req)
+    
+    {
+        //dd($req->id);
+         $admin_details =  DB::table('admin')->where('id',$req->id)->first(); 
+         return response()->json($admin_details,200);
     }
 }

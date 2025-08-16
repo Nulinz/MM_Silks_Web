@@ -48,7 +48,7 @@
                             <th>Price C</th>
                             <th>Price D</th>
                             <th>Price E</th>
-                            <th>logo</th>
+                            <th>Image</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -154,8 +154,12 @@
                         </div>
 
                         <div class="col-sm-12 col-md-12 mb-1">
-                            <label for="categorytitle" class="col-form-label">subcategory Logo</label>
+                            <label for="categorytitle" class="col-form-label">subcategory Image</label>
                             <input type="file" name="sc_logo" class="form-control">
+                        </div>
+                        <div class="col-sm-12 col-md-12 mb-1">
+                            <label for="categorytitle" class="col-form-label">video</label>
+                            <input type="file" name="sc_video" class="form-control" accept="video/*">
                         </div>
                         <div class="d-flex justify-content-center align-items-center mx-auto mt-3">
                             <button type="submit" class="modalbtn">Save</button>
@@ -233,10 +237,16 @@
                         </div>
 
                         <div class="col-sm-12 col-md-12 mb-1">
-                            <label for="categorytitle" class="col-form-label">Brand Logo</label>
+                            <label for="categorytitle" class="col-form-label">subcategory Image</label>
                             <input type="file" class="form-control" name="subcategory_logo" id="subcategory_logo">
                             <img class="d-block mx-auto mt-2" src="" height="50px" alt="" id="subcat_logo">
                         </div>
+
+                        <div class="col-sm-12 col-md-12 mb-1">
+                            <label for="categorytitle" class="col-form-label">video</label>
+                            <input type="file" name="subcategory_video" class="form-control" accept="video/*">
+                        </div>
+                        
                         <div class="d-flex justify-content-center align-items-center mx-auto mt-3">
                             <button type="submit" class="modalbtn">Update</button>
                         </div>

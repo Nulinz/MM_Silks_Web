@@ -65,13 +65,23 @@ class EditController extends Controller
         // ->first();
 
         $subcategory_details = DB::table('items as i')
-        ->leftJoin('subcategory as s', 's.id', '=', 'i.sc_id') 
+        ->leftJoin('subcategory as s', 's.id', '=', 'i.sc_id')
+        ->leftJoin('color as c', 'c.id', '=', 'i.i_color')  
          ->where('i.id', $req->id)
-         ->select('i.*', 'i.id as item_id', 's.sc_name as subcategory_name','s.id as subcategory_id','i.i_logo','i.code')
+         ->select('i.*', 'i.id as item_id', 's.sc_name as subcategory_name','s.id as subcategory_id','i.i_logo','i.code','c.id as color_id','c.co_name as color_name')
         ->first();
 
         // $category_details =  DB::table('category as c')->where('c.id',$req->id)->first(); 
         return response()->json($subcategory_details,200);
     }
+
+    public function edit_color(Request $req)
+    
+    {
+        //dd($req->id);
+         $color_details =  DB::table('color')->where('id',$req->id)->first(); 
+         return response()->json($color_details,200);
+    }
+
 
 }

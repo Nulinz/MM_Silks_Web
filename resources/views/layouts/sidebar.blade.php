@@ -3,7 +3,7 @@
     <div class="flex-shrink-0 sidebar">
         <div class="nav col-md-11">
             <a href="{{ route('login') }}" class="w-100">
-                <img src="{{ asset('image/logo/mmtexlogo.png') }}" alt="" height="80px" width="75%" class="mx-auto lightLogo">
+                <img src="{{ asset('image/logo/mmtexlogo.png') }}" alt="" height="50px" class="mx-auto lightLogo">
             </a>
         </div>
         <ul class="list-unstyled mt-5 ps-0">
@@ -15,7 +15,7 @@
 <!-- Responsive Sidebar -->
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header mb-3">
-        <img src="{{ asset('assets/images/logo.png') }}" height="40px" alt="">
+        <img src="{{ asset('image/logo/mmtexlogo.png') }}" height="40px" alt="">
         <button type="button" class="btn-close bg-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body p-0">

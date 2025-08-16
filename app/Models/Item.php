@@ -11,7 +11,7 @@ class Item extends Model
     protected $table = 'items';
 
     protected $fillable = [
-        'sc_id','','sc_name','code','i_logo', 'status'
+        'sc_id','','sc_name','code','i_color','i_types','i_logo', 'status'
     ];
   
     public function subcategory()

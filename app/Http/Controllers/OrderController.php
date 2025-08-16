@@ -87,6 +87,156 @@ class OrderController extends Controller
             ]);
         }
     }
+   
+    //order return list
+    public function return_list()
+    {
+
+
+        $code_drop = DB::table('items')->select('code','id')->get();
+          // Returns Collection of objects
+          //dd($code_drop);
+
+        
+
+
+        // Fetch order returns
+        $odr_relist = DB::table('order_return')
+            ->leftJoin('customers', 'order_return.customer_id', '=', 'customers.id')
+            ->select('order_return.*', 'customers.c_name as customer_name')
+            ->get();
+    
+        // Fetch all items ONCE and key by 'code'
+        $items = DB::table('items')
+            ->select('code', 'i_logo')
+            ->get()
+            ->keyBy('code');
+    
+        // Map through order returns and match codes with items
+        $data = $odr_relist->map(function ($return) use ($items) {
+            $returnCodes = json_decode($return->return_code, true); // Decode first
+        
+            $matchedItems = [];
+        
+            if (is_array($returnCodes)) {
+                // Since your JSON is like ["202,203,301"], get the first element and explode it
+                $codesArray = explode(',', $returnCodes[0]);
+        
+                foreach ($codesArray as $code) {
+                    $code = trim($code); // Ensure no spaces
+                    if (isset($items[$code])) {
+                        $matchedItems[] = [
+                            'final_code' => $code,
+                            'final_image' => $items[$code]->i_logo,
+                        ];
+                    }
+                }
+            }
+        
+            $return->matched_items = $matchedItems;
+        
+            return $return;
+        });
+        
+        //dd($data);
+        // Pass the processed data to view
+        return view('return.list', ['odr_relist' => $data,'code_drop'=>$code_drop]);
+    }
+
+    public function return_status_update(Request $request)
+    {
+        //dd($request->all());
+       $updateData = [
+        'status' => $request->status];
+
+      $order_status_update = DB::table('order_return')->where('id', $request->return_id)->update($updateData);
+
+    }
+
+    public function return_code_update(Request $request)
+{
+    // Validate if item_code is present
+    //dd($request->all());
+    if (!isset($request->item_code) || !is_array($request->item_code)) {
+        return response()->json(['error' => 'No item codes provided'], 400);
+    }
+    
+    
+    $updatestatus = [
+        'status' => $request->status];
+
+      $order_status_update = DB::table('order_return')->where('order_id', $request->order_id)->update($updatestatus);
+
+    
+
+
+    //item table update
+    $updateData = [
+        'status' => 'Active'
+    ];
+
+    foreach ($request->item_code as $code) {
+        $code = trim($code);
+
+        DB::table('items')
+            ->where('code', $code)
+            ->update($updateData);
+    }
+    return back();
+
+    // return response()->json(['success' => 'Status updated successfully']);
+}
+
+
+    /*
+    public function item_return(Request $request)
+    {
+        $returnId = $request->return_id;
+    
+        // Fetch the order_return record
+        $orderReturn = DB::table('order_return')->where('id', $returnId)->first();
+    
+        if (!$orderReturn) {
+            return response()->json(['status' => 'error', 'message' => 'Order Return not found.']);
+        }
+    
+        // Decode return_code (could be JSON array or comma-separated string)
+        $itemcode = [];
+    
+        $itemcode = json_decode($orderReturn->return_code, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            // If not JSON, fallback to comma-separated string
+            $itemcode = explode(',', $orderReturn->return_code);
+        } elseif (is_array($itemcode) && count($itemcode) === 1 && str_contains($itemcode[0], ',')) {
+            // Special Case: It's ["11,12,13"] -> explode the inner string
+            $itemcode = explode(',', $itemcode[0]);
+        }
+
+    
+        $itemcode = array_map('trim', $itemcode);  // Clean spaces
+
+        //dd($itemIds);
+    
+        if (empty($itemcode)) {
+            return response()->json(['status' => 'error', 'message' => 'No item codes found.']);
+        }
+    
+        // Loop through item_ids to toggle status in items table
+        foreach ($itemcode as $itemCode) {
+            $item = DB::table('items')->where('code', $itemCode)->first();
+        
+            if ($item) {
+                $newStatus = ($item->status === 'Active') ? 'Inactive' : 'Active';
+                DB::table('items')->where('code', $itemCode)->update(['status' => $newStatus]);
+            }
+        }
+    
+        return response()->json(['status' => 'success', 'message' => 'Items status updated successfully.']);
+    }
+    
+*/
+
 
 
 }

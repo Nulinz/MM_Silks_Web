@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Item;
+use App\Models\Color;
 use Illuminate\Support\Facades\Log;
 
 
@@ -24,7 +25,7 @@ class CreateController extends Controller
         $category_list = Category::with('product')->get();  
        // dd($category_list->pluck('c_name'));
          
-       // $product_list = Product::all();
+        //$product_list = Product::all();
         $product_list = Product::where('status', 'Active')->get();
 
 
@@ -39,8 +40,8 @@ class CreateController extends Controller
         $product_list = Product::where('status', 'Active')->get();
         $category_list = Category::where('status', 'Active')->get();
 
-       // $product_list = Product::all();
-       // $category_list = Category::all();
+        //$product_list = Product::all();
+        //$category_list = Category::all();
 
         return view('create.subcategory.subcategory', compact('product_list', 'category_list', 'subcategory_list'));
 }
@@ -61,9 +62,10 @@ class CreateController extends Controller
        // dd( $item_list);
         //dd($item_list->pluck('sc_id', 'id'));
        // dd($item_list->pluck('subcategory.sc_name'));
+         $color_list = Color::where('status', 'Active')->get();
 
         $subcategory_list = Subcategory::where('status', 'Active')->get();
-        return view('create.items.items',compact('subcategory_list','item_list'));
+        return view('create.items.items',compact('subcategory_list','item_list','color_list'));
     }
 
     //product store
@@ -162,15 +164,30 @@ class CreateController extends Controller
     public function subcategory_store(Request $req)
     {
         $filename = null;
+        $videoname = null;
     
         // Update
         if ($req->subcategory_id) {
+
+            $existing = DB::table('subcategory')->where('id', $req->subcategory_id)->first();
     
             // Handle logo if uploaded
             if ($req->hasFile('subcategory_logo')) {
                 $image = $req->file('subcategory_logo');
                 $filename = time() . '_' . $image->getClientOriginalName();
                 $image->move(public_path('image/subcatimage'), $filename);
+            }
+
+            
+            if ($req->hasFile('subcategory_video')) {
+                // Delete old video file if exists
+                if ($existing->sc_video && file_exists(public_path('image/subcatvideos/' . $existing->sc_video))) {
+                    unlink(public_path('image/subcatvideos/' . $existing->sc_video));
+                }
+    
+                $video = $req->file('subcategory_video');
+                $videoname = time() . '_' . $video->getClientOriginalName();
+                $video->move(public_path('image/subcatvideos'), $videoname);
             }
     
             $updateData = [
@@ -187,6 +204,10 @@ class CreateController extends Controller
             if ($filename) {
                 $updateData['sc_logo'] = $filename;
             }
+
+            if ($videoname) {
+                $updateData['sc_video'] = $videoname;
+            }
     
             $subcat_update = DB::table('subcategory')->where('id', $req->subcategory_id)->update($updateData);
     
@@ -201,6 +222,17 @@ class CreateController extends Controller
         // Create
         else {
     
+
+           
+            $req->validate([
+                'sc_video' => 'nullable|mimes:mp4,mov,avi,wmv|max:51200', // Max 50MB
+            ]);
+
+            if ($req->hasFile('sc_video')) {
+                $video = $req->file('sc_video');
+                $videoname = time() . '_' . $video->getClientOriginalName();
+                $video->move(public_path('image/subcatvideos'), $videoname);
+            }
             if ($req->hasFile('sc_logo')) {
                 $image = $req->file('sc_logo');
                 $filename = time() . '_' . $image->getClientOriginalName();
@@ -220,6 +252,11 @@ class CreateController extends Controller
                 'created_at' => now(),
                 'updated_at' => now()
             ];
+
+            if ($videoname) {
+                $insertData['sc_video'] = $videoname ?? '';
+            }
+            
     
             if ($filename) {
                 $insertData['sc_logo'] = $filename;
@@ -240,7 +277,7 @@ class CreateController extends Controller
     //category store
     public function items_store(Request $req)
     {
-
+         //dd($req->all());
         if ($req->item_id) {
             $filename = null;
     
@@ -254,6 +291,8 @@ class CreateController extends Controller
             $updateData = [
                 'sc_id'    => $req->subcat_drop,
                 'code'    => $req->item_code,
+                'i_color'=>$req->item_color,
+                'types'=>$req->item_types,
                 
             ];
     
@@ -274,19 +313,57 @@ class CreateController extends Controller
 
       else{
 
+          $barcode = $req->i_code;
+
+             // Check if barcode already exists
+          $exists = DB::table('items')->where('code', $barcode)->exists();
+
+          if ($exists) {
+               return redirect()->back()->with('message', 'Barcode already exists!');
+           }
+
         $filename = null;
     
         if ($req->hasFile('i_logo')) {
             $image = $req->file('i_logo');
             $filename = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('image/itemimage'), $filename);
-        } else {
+        } 
+
+        else if ($req->i_logo && strpos($req->i_logo, 'data:image') === 0) {
+            $imageData = $req->i_logo;
+    
+            $image_parts = explode(";base64,", $imageData);
+            if (count($image_parts) == 2) {
+                $mime_type = $image_parts[0];
+                $image_base64 = base64_decode($image_parts[1]);
+    
+                // Detect file extension
+                if (strpos($mime_type, 'jpeg') !== false) {
+                    $extension = 'jpg';
+                } else if (strpos($mime_type, 'png') !== false) {
+                    $extension = 'png';
+                } else {
+                    return back()->with('error', 'Unsupported image format');
+                }
+    
+                $filename = time() . '.' . $extension;
+                file_put_contents(public_path('image/itemimage/') . $filename, $image_base64);
+            } else {
+                return back()->with('error', 'Invalid base64 image data');
+            }
+        } 
+    
+        
+        else {
             return back()->with('error', 'Please upload an item image');
         }
 
         $c_insert =  DB::table('items')->insert([
             'sc_id'=>$req->sub_id,
-            'code'=>$req->i_code,
+            'code'=>$barcode,
+            'i_color'=>$req->color,
+            'types'=>$req->types,
             'i_logo'=>$filename,
             'status'=>'Active', 
             'created_at'=>now(),
@@ -367,21 +444,111 @@ class CreateController extends Controller
 
 
   public function getCategories(Request $req)
-{
+ {
     //Log::info('AJAX request received', $req->all());
 
     // Assuming each category belongs to a product
     $categories = DB::table('category')
         ->where('p_id','=', $req->product_id)
+        ->where('category.status', '=', 'Active')
         ->get(['id', 'c_name']);
 
     return response()->json($categories);
-}
+ }
 
    
+//color list
+
+public function color_list(){
+    $color_list = Color::all();
+
+    return view('create.color.color',compact('color_list'));
+}
 
 
+//colore store
+
+ //product store
+ public function colors_store(Request $req)
+ {
+     //update data
+    if($req->color_id){
+
+         $updateData = [
+             'co_name' => $req->color_name,
+             
+         ];
+         $color_update = DB::table('color')->where('id', $req->color_id)->update($updateData);
+             if($color_update){
+                 return back()->with('message','product update sucessfully');
+             }
+             else {
+                 return back()->with('info', 'No changes made to the item');
+             }
+
+    }
+
+    //insert data
+    else{
+         $co_insert =  DB::table('color')->insert([
+             'co_name'=>$req->co_name,
+             'status'=>'Active', 
+             'created_at'=>now(),
+             'updated_at'=>now()
+         ]);
+
+         if($co_insert){
+             return back();
+         }
+         
+    }
+     
+ }
+
+ public function subcategory_wise_list(){
+    //$subcategory_droplist = Subcategory::all();
+    $subcategory_droplist = Subcategory::where('status', 'Active')->get();
+
+    return view('subcategory_wise.subcategory_wise',compact('subcategory_droplist'));
+}
+
+
+public function item_details_list(Request $req){
+    // $color_list = Color::all();
     
+
+    //dd($req->all());
+
+    $id = $req->query('id');  
+
+    $subcategory = DB::table('subcategory')
+    ->where('id','=', $req->id)
+    ->select('id', 'sc_name')
+    ->first();
+    //$color_list = Color::all();
+    $color_list = Color::where('status', 'Active')->get();
+
+
+    return view('subcategory_wise.item_details',compact('color_list','subcategory','id'));
+}
+
+
+//color status update
+public function color_status_update(Request $req)
+{
+  //dd($req->all());
+    $req->validate([
+        'id' => 'required|integer|exists:color,id',
+        'status' => 'required|string',
+        //'odr_id' => 'required|string',
+       
+    ]);
+    
+    $updateData = [
+        'status' => $req->status];
+
+    $sub_status_update = DB::table('color')->where('id', $req->id)->update($updateData);
+}
 
 
 }

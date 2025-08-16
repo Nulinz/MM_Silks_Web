@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Magarandham Mart</title>
+    <title>M.M Textiles</title>
 
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('assets/images/favicon_3.png') }}" sizes="32*32" type="image/png">

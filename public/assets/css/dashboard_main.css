@@ -65,7 +65,8 @@
         width: 20% !important;
     }
 
-    .sidebodydiv .container .row .col-xl-2 .cardsdiv {
+    .sidebodydiv .container .row .col-xl-2 .cardsdiv,
+    .sidebodydiv .container .row .col-xl-3 .cardsdiv {
         padding: 15px;
         background-color: var(--secondary);
         box-shadow: var(--box-shadow);
@@ -270,7 +271,8 @@
         width: 20% !important;
     }
 
-    .sidebodydiv .container .row .col-xl-2 .cardsdiv {
+    .sidebodydiv .container .row .col-xl-2 .cardsdiv,
+    .sidebodydiv .container .row .col-xl-3 .cardsdiv {
         padding: 10px;
         background-color: var(--secondary);
         box-shadow: var(--box-shadow);
@@ -473,14 +475,8 @@
         height: 38px;
     }
 
-    .sidebodydiv .container .row .col-xl-2,
-    .sidebodydiv .container .row .col-xl-5,
-    .sidebodydiv .container .row .col-xl-6,
-    .sidebodydiv .container .row .col-xl-7 {
-        padding-right: 12px !important;
-    }
-
-    .sidebodydiv .container .row .col-xl-2 .cardsdiv {
+    .sidebodydiv .container .row .col-xl-2 .cardsdiv,
+    .sidebodydiv .container .row .col-xl-3 .cardsdiv {
         padding: 15px;
         background-color: var(--secondary);
         box-shadow: var(--box-shadow);

@@ -37,7 +37,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
 <!-- Script -->
-<script src="{{ asset('assets/js/script.js') }}"></script>
+<!-- <script src="{{ asset('assets/js/script.js') }}"></script> -->
 
 <!-- Tooltip -->
 <script>
@@ -60,36 +60,6 @@
         const fileInput = document.getElementById(inputId);
         const fileText = document.getElementById(textId);
         fileText.textContent = fileInput.files.length > 0 ? fileInput.files[0].name : "Click to upload image";
-    }
-</script>
-
-<!-- Dark Theme Logo and Theme Switching -->
-<script>
-    const themeSwitch = document.querySelector('#themeSwitcher');
-    const lightLogo = document.querySelector('.lightLogo');
-    const darkLogo = document.querySelector('.darkLogo');
-    const defaultTheme = localStorage.getItem('theme') || 'theme-light';
-    setTheme(defaultTheme);
-    // themeSwitch.checked = defaultTheme === 'theme-dark';
-    // themeSwitch.addEventListener('change', () => {
-    //     const selectedTheme = themeSwitch.checked ? 'theme-dark' : 'theme-light';
-    //     setTheme(selectedTheme);
-    // });
-    // function setTheme(theme) {
-    //     document.documentElement.className = theme;
-    //     localStorage.setItem('theme', theme);
-    // }
-    function setTheme(theme) {
-        document.documentElement.className = theme;
-        localStorage.setItem('theme', theme);
-
-        if (theme === 'theme-dark') {
-            lightLogo.style.display = 'none';
-            darkLogo.style.display = 'block';
-        } else {
-            lightLogo.style.display = 'block';
-            darkLogo.style.display = 'none';
-        }
     }
 </script>
 

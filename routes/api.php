@@ -33,6 +33,8 @@ Route::post('order_summary', [ApiCustomerController::class, 'order_summary']);
 Route::post('update_popup', [ApiCustomerController::class, 'popup']);
 Route::post('update_token', [ApiCustomerController::class, 'update_token']);
 Route::post('logout', [ApiCustomerController::class, 'logout']);
+Route::post('order_return', [ApiCustomerController::class, 'order_return']);
+
 
 
 

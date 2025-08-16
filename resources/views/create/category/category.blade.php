@@ -42,7 +42,7 @@
                             <th>#</th>
                             <th>Product Name</th>
                             <th style="width: 450px">Category Title</th>
-                            <th>logo</th>
+                            <th>Image</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -115,7 +115,7 @@
                             <input type="text" class="form-control" name="c_name" id="c_name"></textarea>
                         </div>
                         <div class="col-sm-12 col-md-12 mb-1">
-                            <label for="categorytitle" class="col-form-label">Category Logo</label>
+                            <label for="categorytitle" class="col-form-label">Category Image</label>
                             <input type="file" name="c_logo" class="form-control">
                         </div>
                         <div class="d-flex justify-content-center align-items-center mx-auto mt-3">
@@ -162,7 +162,7 @@
                            
                         </div>
                         <div class="col-sm-12 col-md-12 mb-1">
-                            <label for="categorylogo" class="col-form-label">Category Logo</label>
+                            <label for="categorylogo" class="col-form-label">Category Image</label>
                             <input type="file" class="form-control" name="category_logo" id="category_logo">
                             <img class="d-block mx-auto mt-2" src="" height="50px" alt="" id="cat_logo">
                         </div>

@@ -6,7 +6,7 @@
         </button>
         <div class="navlogo">
             <a href="./index.php" class="mx-auto">
-                <img src="{{ asset('assets/images/logo.png') }}" alt="" height="40px" class="mx-auto lightLogo">
+                <img src="{{ asset('image/logo/mmtexlogo.png') }}" alt="" height="40px" class="mx-auto lightLogo">
             </a>
         </div>
         <div class="user" id="user">

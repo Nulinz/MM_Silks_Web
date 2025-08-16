@@ -64,7 +64,7 @@
                                     <button class="btn btn-sm btn-success status_button" data-status_button="{{ $admin->status }}">Active</button>
                             @endif
                              
-                            <a data-bs-toggle="modal" data-bs-target="#editsubscript"><i
+                            <a data-bs-toggle="modal" data-bs-target="#edituser"><i
                                         class="fas fa-pen-to-square edit_button" data-id="{{ $admin->id }}"></i></a>
                                         </div>
                            
@@ -112,7 +112,7 @@
                         </div>
                         <div class="col-sm-12 col-md-12 mb-1">
                             <label for="subcategory" class="col-form-label">Passwrod</label>
-                            <input type="text" class="form-control" name="password" id="password">
+                            <input type="text" class="form-control" name="password" id="password"  maxlength="6">
                         </div>
                         <div class="col-sm-12 col-md-12 mb-1">
                             <label for="category" class="col-form-label">role</label>
@@ -132,7 +132,7 @@
     </div>
 
     <!-- Edit Category Modal -->
-    <div class="modal fade" id="editsubcategory" tabindex="-1" aria-labelledby="editsubcategoryLabel" aria-hidden="true">
+    <div class="modal fade" id="edituser" tabindex="-1" aria-labelledby="editsubcategoryLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header border-0">
@@ -143,36 +143,40 @@
                 </div>
                 <div class="modal-body">
                     <h4 class="modal-title mb-2" id="editsubcategoryLabel">Edit Sub Category</h4>
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin_store') }}" method="POST">
                         @csrf
+
                         <div class="col-sm-12 col-md-12 mb-1">
-                            <label for="category" class="col-form-label">Category</label>
-                            <select class="form-select" name="category_drop" id="category_drop">
-                                                                         
-                                <option value=""></option>           
-                               
+                            <label for="subcategorytitle" class="col-form-label">Name</label>
+                            <input type="text" class="form-control" name="ad_name" id="ad_name">
+                            <input type="hidden" name="ad_id" id="ad_id">
+                        </div>
+                        <div class="col-sm-12 col-md-12 mb-1">
+                            <label for="category" class="col-form-label">Mobile No</label>
+                            <input type="text" class="form-control" name="ad_contact" id="ad_contact"  maxlength="10">
+                        </div>
+                        <div class="col-sm-12 col-md-12 mb-1">
+                            <label for="subcategory" class="col-form-label">Passwrod</label>
+                            <input type="text" class="form-control" name="ad_password" id="ad_password">
+                        </div>
+
+                        <div class="col-sm-12 col-md-12 mb-1">
+                            <label for="category" class="col-form-label">role</label>
+                            <select class="form-select" name="admin_drop" id="admin_drop">
+                                <option value="" selected disabled>Select Role</option>
+                                <option value="admin">Admin</option>
+                                <option value="user">User</option>    
                             </select>
                         </div>
+                       
                         <!--
                         <div class="col-sm-12 col-md-12 mb-1">
                             <label for="subcategory" class="col-form-label">Sub Category</label>
                             <input type="text" class="form-control" name="subcategory" id="subcategory">
                         </div>-->
-                        <div class="col-sm-12 col-md-12 mb-1">
-                            <label for="subcategorytitle" class="col-form-label">Sub Category Title</label>
-                            <input type="text" class="form-control" name="subcategory_name" id="subcategory_name">
-                            <input type="hidden" name="subcategory_id" id="subcategory_id">
-                        </div>
-                        <div class="col-sm-12 col-md-12 mb-1">
-                            <label for="subcategorydescp" class="col-form-label">Sub Category Description</label>
-                            <textarea rows="2" class="form-control" name="subcategory_descp"
-                                id="subcategory_descp"></textarea>
-                        </div>
-                        <div class="col-sm-12 col-md-12 mb-1">
-                            <label for="categorytitle" class="col-form-label">Brand Logo</label>
-                            <input type="file" class="form-control" name="subcategory_logo" id="subcategory_logo">
-                            <img class="d-block mx-auto mt-2" src="" height="50px" alt="" id="subcat_logo">
-                        </div>
+                        
+                       
+                       
                         <div class="d-flex justify-content-center align-items-center mx-auto mt-3">
                             <button type="submit" class="modalbtn">Update</button>
                         </div>
@@ -231,51 +235,7 @@
             });
         });
     </script>
-    <script>
-        $(document).ready(function() {
-            $(document).on("click", ".edit_button", function() {
-        let id = $(this).data("id");
-
-        //alert(id);
-
-        $.ajax({
-            url: "",
-            type: "POST",
-            data: {
-                id: id,
-                _token: "{{ csrf_token() }}"
-            },
-            success: function(response) {
-                console.log(response);
-
-                  $('#subcategory_name').val(response.sc_name);
-                  $('#subcategory_descp').val(response.sc_desc);
-                  $('#subcat_logo').attr('src', '{{ asset("storage/subcatimage") }}/' + response.sc_logo);
-                  $('#subcategory_id').val(response. subcategory_id);
-               
-               
-                const select = $('#category_drop');
-
-               const text = response.category_name;
-               const value = response.category_id;
-               //console.log(text,value);
-
-               
-               select.prepend(`<option value="${value}" selected>${text}</option>`);
-
-              
-            //select.append(<option value="${value}">"${text}</option>);
-            
-             
-            },
-            error: function(xhr) {
-                console.error("Error Response:", xhr.responseText); // see HTML or JSON
-            }
-        });
-    });
-});
-    </script>
-
+    
 <script>
    $(document).ready(function () {
        $(".status_button").on("click", function () {
@@ -317,6 +277,45 @@
        });
     });
 </script>
+
+<script>
+        $(document).ready(function() {
+          $(document).on("click", ".edit_button", function() {
+
+                let id = $(this).data("id");           
+                   //alert(id);
+
+                $.ajax({
+                    url: "{{ route('admin_edit') }}",
+                    type: "POST",
+                    data: {
+                        id: id,
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        console.log(response.id);
+
+                        $('#ad_id').val(response.id);
+                        $('#ad_name').val(response.name);
+                        $('#ad_contact').val(response.contact);
+                        $('#ad_password').val(response.password);
+                       
+                        const roleValue = response.role;  // e.g., 'admin' or 'user'
+
+                      // Set the dropdown's selected value
+                        $('#admin_drop').val(roleValue);
+                    // alert(response.message);
+                    // location.reload();
+                   },
+                    error: function(xhr, status, error) {
+                        // Optional: log for debugging
+                        console.error("AJAX Error:", xhr.responseText);
+
+                    }
+               });
+           });
+        });
+    </script>
 
 
 @endsection

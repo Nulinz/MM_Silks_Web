@@ -139,7 +139,7 @@ class ApiCustomerController extends Controller
         {
             $subcategories = Subcategory::where('status', 'Active')
                 ->where('c_id', $category->id)
-                ->select('id', 'sc_name', 'sc_logo', 'cat_a', 'cat_b', 'cat_c')
+                ->select('id', 'sc_name', 'sc_logo', 'cat_a', 'cat_b', 'cat_c','cat_d','cat_e')
                 ->get();
 
             $subcategories->map(function ($sub) use ($customer) {
@@ -214,7 +214,7 @@ class ApiCustomerController extends Controller
     // Get subcategories under the category (excluding logo)
     $subcategory_list = Subcategory::where('status', 'Active')
         ->where('id', $request->subcategory_id)
-        ->select('id', 'sc_name', 'cat_a', 'cat_b', 'cat_c','cat_d','cat_e') // removed sc_logo
+        ->select('id', 'sc_name', 'cat_a', 'cat_b', 'cat_c','cat_d','cat_e','sc_video') // removed sc_logo
         ->get();
 
     $subcategory_list->map(function ($sub) use ($customer) {
@@ -232,6 +232,10 @@ class ApiCustomerController extends Controller
         elseif ($customer->c_type === 'E') {
             $sub->price = $sub->cat_e;
         } 
+
+        $sub->sc_video = $sub->sc_video
+        ? asset('image/subcatvideos/' . $sub->sc_video)
+        : null;
         // Fetch items under subcategory
         $items_list = Item::where('status', 'Active')
             ->where('sc_id', $sub->id)
@@ -552,6 +556,28 @@ public function placeOrder(Request $request)
                  'updated_at' => now(),
             ]);
 
+
+            //new mycart table order id fetch items table fetch to  inactive
+
+            $itemIds = DB::table('mycart')
+            ->where('order_id', $newOrderId)
+            ->pluck('item_id');  // Fetch item_ids as Collection
+
+            if ($itemIds->isEmpty()) {
+                // No items found in mycart for this order
+                return response()->json(['status' => 'error', 'message' => 'No items found for this Order.']);
+            }
+
+            // Step 2: Update status to 'Inactive' in items table for matching item_ids
+            DB::table('items')
+                ->whereIn('id', $itemIds)
+                ->update([
+                    'status' => 'Inactive',
+                    'updated_at' => now(),
+                ]);
+
+            //end new line
+
             // $orderId = DB::table('mycart')->insertGetId(['order_id']);
             // $getamount = $this->calculateCartSummary($customerId,$orderId);   //new
 
@@ -788,6 +814,71 @@ public function update_token(Request $request)
         ], 200);
     }
 
+    //return orders
+    public function order_return(Request $request)
+    {
+        //Log::info('API Order Return Request:', $request->all());
+
+        
+        $validator = Validator::make($request->all(), [
+            'customer_id' => 'required|exists:customers,id',
+            'order_id'    => 'required|exists:order,order_id',
+            'item_code'     => 'required|array|min:1',
+            'item_code.*' => 'required',
+            'return_file' => 'required|mimes:png,jpg,jpeg,gif,png,pdf,docx',
+        ],
+        [
+            'customer_id.required' => 'Customer ID is required.',
+            'customer_id.exists' => 'Customer not found.',
+            'order_id.exists' => 'order not found.',
+            'return_file' => 'Only png, jpg, jpeg, gif,png,pdf,docx are allowed.',
+
+        ]
+    );
+    
+        if ($validator->fails()) {
+            return response()->json([
+                'status'  => 'error',
+                'message' => $validator->errors()->first(),
+            ], 422);
+        }
+        // $data = [implode(',', $request->item_id)];
+
+        $customerId = $request->customer_id;
+        $orderId    = $request->order_id;
+        //$itemIds    = $request->item_id; // This is now an array [1, 2, 3]
+        $itemcode = $request->item_code; 
+
+        if ($request->is('api/*')) {
+            if ($request->hasFile('return_file')) {              
+                   
+                $image = $request->file('return_file');
+                $filename = time() . '_' . $image->getClientOriginalName();
+                $image->move(public_path('image/return_file'), $filename);            
+               
+            }
+    
+        // Store into DB (Convert Array to JSON String)
+            DB::table('order_return')->insert([
+                'customer_id' => $customerId,
+                'order_id'    => $orderId,
+                'return_code' => json_encode([implode(',', $itemcode)]),
+
+                 // Store as JSON array
+                'return_image'=>$filename,
+                'status'      => 'Active',
+                'created_at'  => now(),
+                'updated_at'  => now(),
+            ]);
+    
+            return response()->json([
+                'status'  => 'success',
+                'message' => 'Items returned successfully.',
+                
+            ]);
+        }
+    }
+    
 
 
 }

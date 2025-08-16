@@ -2,491 +2,152 @@
 
 @section('content')
 
-    <link rel="stylesheet" href="{{ asset('assets/css/dashboard_main.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/dashboard_main.css') }}">
 
-    <div class="sidebodydiv px-4 py-1">
-        <div class="sidebodyhead">
-            <h4 class="m-0 text-uppercase">Dashboard</h4>
-        </div>
+<div class="sidebodydiv px-4 py-1">
+    <div class="sidebodyhead">
+        <h4 class="m-0 text-uppercase">Dashboard</h4>
+    </div>
 
-        <div class="container px-0 mt-3 dashboard-main">
-            <div class="row">
+    <div class="container px-0 mt-3 dashboard-main">
+        <div class="row">
 
-                <!-- Head Card -->
-                <div class="col-sm-12 col-md-2 col-xl-2 pe-0 mb-3 cards">
-                    <div class="cardsdiv">
-                        <div class="cardshead_1">
-                            <h6 class="card1h6">Employee</h6>
-                        </div>
-                        <div class="cardscntnt">
-                            <h5 class="card1h5 mb-0"></h5>
-                           <!-- <h6 class="card2h6 mb-0 text-end">Last 30 days <br> 2568</h6>-->
-                        </div>
+            <!-- Head Card -->
+            <div class="col-sm-12 col-md-3 col-xl-3 pe-0 mb-3 cards">
+                <div class="cardsdiv">
+                    <div class="cardshead_1">
+                        <h6 class="card1h6">Customers</h6>
+                    </div>
+                    <div class="cardscntnt">
+                        <h5 class="card1h5 mb-0">{{$count_customers}}</h5>
+                        <!-- <h6 class="card2h6 mb-0 text-end">Last 30 days <br> 2568</h6>-->
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-2 col-xl-2 pe-0 mb-3 cards">
-                    <div class="cardsdiv">
-                        <div class="cardshead_1">
-                            <h6 class="card1h6">Customers</h6>
-                        </div>
-                        <div class="cardscntnt">
-                            <h5 class="card1h5 mb-0"></h5>
-                            <!--<h6 class="card2h6 mb-0 text-end">+15.03% <i class="fas fa-arrow-trend-up"></i></h6>-->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-2 col-xl-2 pe-0 mb-3 cards">
-                    <div class="cardsdiv">
-                        <div class="cardshead_1">
-                            <h6 class="card1h6">Category</h6>
-                        </div>
-                        <div class="cardscntnt">
-                            <h5 class="card1h5 mb-0"></h5>
-                            <!--<h6 class="card2h6 mb-0 text-end">Last 30 days <br> 2568</h6>-->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-2 col-xl-2 pe-0 mb-3 cards">
-                    <div class="cardsdiv">
-                        <div class="cardshead_1">
-                            <h6 class="card1h6">Subcategory</h6>
-                        </div>
-                        <div class="cardscntnt">
-                            <h5 class="card1h5 mb-0"></h5>
-                            <!--<h6 class="card2h6 mb-0 text-end">-0.36% <i class="fas fa-arrow-trend-down"></i></h6>-->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-2 col-xl-2 pe-0 mb-3 cards">
-                    <div class="cardsdiv">
-                        <div class="cardshead_1">
-                            <h6 class="card1h6">Product</h6>
-                        </div>
-                        <div class="cardscntnt">
-                            <h5 class="card1h5 mb-0"></h5>
-                            <!--<h6 class="card2h6 mb-0 text-end">Last 30 days <br> 2568</h6>-->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-2 col-xl-2 pe-0 mb-3 cards">
-                    <div class="cardsdiv">
-                        <div class="cardshead_1">
-                            <h6 class="card1h6">Today</h6>
-                        </div>
-                        <div class="cardscntnt">
-                            <h5 class="card1h5 mb-0"></h5>
-                            <!--<h6 class="card2h6 mb-0 text-end">-0.36% <i class="fas fa-arrow-trend-down"></i></h6>-->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-2 col-xl-2 pe-0 mb-3 cards">
-                    <div class="cardsdiv">
-                        <div class="cardshead_1">
-                            <h6 class="card1h6">New Orders</h6>
-                        </div>
-                        <div class="cardscntnt">
-                            <h5 class="card1h5 mb-0"></h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-2 col-xl-2 pe-0 mb-3 cards">
-                    <div class="cardsdiv">
-                        <div class="cardshead_1">
-                            <h6 class="card1h6">Not Delivered</h6>
-                        </div>
-                        <div class="cardscntnt">
-                            <h5 class="card1h5 mb-0"></h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-2 col-xl-2 pe-0 mb-3 cards">
-                    <div class="cardsdiv">
-                        <div class="cardshead_1">
-                            <h6 class="card1h6">In Progress</h6>
-                        </div>
-                        <div class="cardscntnt">
-                            <h5 class="card1h5 mb-0">0(s)</h5>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-sm-12 col-md-2 col-xl-2 pe-0 mb-3 cards">
-                    <div class="cardsdiv">
-                        <div class="cardshead_1">
-                            <h6 class="card1h6">Completed</h6>
-                        </div>
-                        <div class="cardscntnt">
-                            <h5 class="card1h5 mb-0">0(s)</h5>
-                        </div>
-                    </div>
-                </div>
-                
+            </div>
+            <div class="col-sm-12 col-md-3 col-xl-3 pe-0 mb-3 cards">
+                <div class="cardsdiv">
+                    <div class="cardshead_1">
+                        <h6 class="card1h6">Product</h6>
 
-                <!-- Middle Div -->
-                <!-- <div class="col-sm-12 col-md-7 col-xl-7 pe-0 mb-3 cards">
-                    <div class="cardsdiv">
-                        <div class="cardshead">
-                            <h6 class="card1h6 mb-0">Recent Orders</h6>
-                            <div class="card-input">
-                                <input type="text" id="customSearch" class="form-control rounded-1 filterInput w-100"
-                                    placeholder=" Search">
-                            </div>
-                        </div>
-                        <div class="table-wrapper cardtable">
-                            <table class="example table">
-                                <thead>
-                                    <tr>
-                                        <th>S.No</th>
-                                        <th>Name</th>
-                                        <th>Order Id</th>
-                                        <th>Order Date</th>
-                                        <th>Quantity</th>
-                                        <th>Amount</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                 
-                                    
-                                    <tr>
-                                        <td>Hub 1</td>
-                                        <td>Surf Excel</td>
-                                        <td>15 Nov, 2024</td>
-                                        <td>15</td>
-                                        <td>₹ 15000</td>
-                                        <td><span class="text-primary">Shipped</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hub 2</td>
-                                        <td>Sakthi Masala</td>
-                                        <td>15 Nov, 2024</td>
-                                        <td>15</td>
-                                        <td>₹ 15000</td>
-                                        <td><span class="text-success">Confirmed</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hub 3</td>
-                                        <td>Park Avenue</td>
-                                        <td>15 Nov, 2024</td>
-                                        <td>15</td>
-                                        <td>₹ 15000</td>
-                                        <td><span class="text-warning">Pending</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hub 4</td>
-                                        <td>Sunsilk</td>
-                                        <td>15 Nov, 2024</td>
-                                        <td>15</td>
-                                        <td>₹ 15000</td>
-                                        <td><span class="text-primary">Shipped</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hub 5</td>
-                                        <td>Clinic Plus</td>
-                                        <td>15 Nov, 2024</td>
-                                        <td>15</td>
-                                        <td>₹ 15000</td>
-                                        <td><span class="text-success">Confirmed</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hub 6</td>
-                                        <td>Sunsilk</td>
-                                        <td>15 Nov, 2024</td>
-                                        <td>15</td>
-                                        <td>₹ 15000</td>
-                                        <td><span class="text-primary">Shipped</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hub 7</td>
-                                        <td>Surf Excel</td>
-                                        <td>15 Nov, 2024</td>
-                                        <td>15</td>
-                                        <td>₹ 15000</td>
-                                        <td><span class="text-warning">Pending</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hub 8</td>
-                                        <td>Sakthi Masala</td>
-                                        <td>15 Nov, 2024</td>
-                                        <td>15</td>
-                                        <td>₹ 15000</td>
-                                        <td><span class="text-primary">Shipped</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hub 9</td>
-                                        <td>Park Avenue</td>
-                                        <td>15 Nov, 2024</td>
-                                        <td>15</td>
-                                        <td>₹ 15000</td>
-                                        <td><span class="text-warning">Pending</span></td>
+                    </div>
+                    <div class="cardscntnt">
+                        <h5 class="card1h5 mb-0"> {{$total_product}}</h5>
+                        <!--<h6 class="card2h6 mb-0 text-end">+15.03% <i class="fas fa-arrow-trend-up"></i></h6>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-3 col-xl-3 pe-0 mb-3 cards">
+                <div class="cardsdiv">
+                    <div class="cardshead_1">
+                        <h6 class="card1h6">Items</h6>
+                    </div>
+                    <div class="cardscntnt">
+                        <h5 class="card1h5 mb-0">{{$total_items}}</h5>
+                        <!--<h6 class="card2h6 mb-0 text-end">Last 30 days <br> 2568</h6>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-3 col-xl-3 pe-0 mb-3 cards">
+                <div class="cardsdiv">
+                    <div class="cardshead_1">
+                        <h6 class="card1h6">Orders</h6>
+                    </div>
+                    <div class="cardscntnt">
+                        <h5 class="card1h5 mb-0">{{$total_orders}}</h5>
+                        <!--<h6 class="card2h6 mb-0 text-end">-0.36% <i class="fas fa-arrow-trend-down"></i></h6>-->
+                    </div>
+                </div>
+            </div>
 
-                                    </tr>
-                                 
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- <div class="col-sm-12 col-md-5 col-xl-5 pe-0 mb-3 row">
-                    <div class="col-sm-12 col-md-12 col-xl-12 pe-0">
-                        <div class="cardsdiv">
-                            <div class="cardshead">
-                                <h6 class="card1h6">Earning Stage</h6>
-                                <h6 class="card1h6 text-end">0</h6>
-                            </div>
-                            <div class="cardscntnt_1">
-                                <div class="cardct">
-                                    <div class="carddivide">
-                                        <div>
-                                            <h6 class="card1h6 mb-1">Level 1</h6>
-                                            <h5 class="card1h5 mb-0">0(s)</h5>
-                                        </div>
-                                        <div class="brdr"></div>
-                                        <div>
-                                            <h6 class="card1h6 mb-1">Level 2</h6>
-                                            <h5 class="card1h5 mb-0">0(s)</h5>
-                                        </div>
-                                        <div class="brdr"></div>
-                                        <div>
-                                            <h6 class="card1h6 mb-1">Level 3</h6>
-                                            <h5 class="card1h5 mb-0">0(s)</h5>
-                                        </div>
-                                    </div>
-                                    <div class="card_img ms-auto">
-                                        <img src="{{ asset('assets/images/icon1.png') }}" height="40px" alt="">
-                                    </div>
-                                </div>
-                                <div class="cardct mt-3">
-                                    <h6 class="card2h6 mb-0">262 Ready to Move Earning Stage</h6>
-                                    <h6 class="card2h6 text-success text-end mb-0"><i class="fas fa-arrow-trend-up">&nbsp;
-                                            0
-                                            %</i></h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-xl-12 pe-0">
-                        <div class="cardsdiv">
-                            <div class="cardshead">
-                                <h6 class="card1h6">Grow Stage</h6>
-                                <h6 class="card1h6 text-end">0</h6>
-                            </div>
-                            <div class="cardscntnt_1">
-                                <div class="cardct">
-                                    <div class="carddivide">
-                                        <div>
-                                            <h6 class="card1h6 mb-1">Level 1</h6>
-                                            <h5 class="card1h5 mb-0">0(s)</h5>
-                                        </div>
-                                        <div class="brdr"></div>
-                                        <div>
-                                            <h6 class="card1h6 mb-1">Level 2</h6>
-                                            <h5 class="card1h5 mb-0">0(s)</h5>
-                                        </div>
-                                        <div class="brdr"></div>
-                                        <div>
-                                            <h6 class="card1h6 mb-1">Level 3</h6>
-                                            <h5 class="card1h5 mb-0">0(s)</h5>
-                                        </div>
-                                    </div>
-                                    <div class="card_img ms-auto">
-                                        <img src="{{ asset('assets/images/icon2.png') }}" height="40px" alt="">
-                                    </div>
-                                </div>
-                                <div class="cardct mt-3">
-                                    <h6 class="card2h6 mb-0">262 Ready to Move Earning Stage</h6>
-                                    <h6 class="card2h6 text-success text-end mb-0"><i class="fas fa-arrow-trend-up">&nbsp;
-                                            0
-                                            %</i></h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-12 col-xl-12 pe-0">
-                        <div class="cardsdiv">
-                            <div class="cardshead">
-                                <h6 class="card1h6">Overall</h6>
-                            </div>
-                            <div class="cardscntnt_1">
-                                <div class="cardct">
-                                    <div class="carddivide_1">
-                                        <div>
-                                            <h6 class="card1h6 mb-1">Grow Stage</h6>
-                                            <h5 class="card1h5 mb-0">0(s)</h5>
-                                        </div>
-                                        <div class="brdr"></div>
-                                        <div>
-                                            <h6 class="card1h6 mb-1">Earning Stage</h6>
-                                            <h5 class="card1h5 mb-0">0(s)</h5>
-                                        </div>
-                                    </div>
-                                    <div class="card_img ms-auto">
-                                        <img src="{{ asset('assets/images/icon3.png') }}" height="40px" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-sm-12 col-md-6 col-xl-7 pe-0 mb-3 cards">
-                    <div class="cardsdiv">
-                        <div class="cardshead">
-                            <h6 class="card1h6 mb-0">Discounted Product Sales</h6>
-                            <select class="form-select ms-auto" name="month" id="month">
-                                <option value="" selected disabled>Select Month</option>
-                                <option value="January">January</option>
-                                <option value="February">February</option>
-                                <option value="March">March</option>
-                                <option value="April">April</option>
-                                <option value="May">May</option>
-                                <option value="June">June</option>
-                                <option value="July">July</option>
-                                <option value="August">August</option>
-                                <option value="September">September</option>
-                                <option value="October">October</option>
-                                <option value="November">November</option>
-                                <option value="December">December</option>
-                            </select>
-                        </div>
-                        <div id="chart1" class="mt-2"></div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-xl-5 pe-0 mb-3 cards">
-                    <div class="cardsdiv">
-                        <div class="cardshead">
-                            <h6 class="card1h6 mb-0">Category</h6>
-                            <select class="form-select ms-auto" name="month" id="month">
-                                <option value="" selected disabled>Select Month</option>
-                                <option value="January">January</option>
-                                <option value="February">February</option>
-                                <option value="March">March</option>
-                                <option value="April">April</option>
-                                <option value="May">May</option>
-                                <option value="June">June</option>
-                                <option value="July">July</option>
-                                <option value="August">August</option>
-                                <option value="September">September</option>
-                                <option value="October">October</option>
-                                <option value="November">November</option>
-                                <option value="December">December</option>
-                            </select>
-                        </div>
-                        <div id="chart2" class="mt-2"></div>
-                    </div>
-                </div>
 
-                <div class="col-sm-12 col-md-6 col-xl-6 pe-0 mb-3 cards">
-                    <div class="cardsdiv">
-                        <div class="cardshead">
-                            <h6 class="card1h6 mb-0">Profit</h6>
-                        </div>
-                        <div id="chart3"></div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-xl-6 pe-0 mb-3 cards">
-                    <div class="cardsdiv">
-                        <div class="cardshead">
-                            <h6 class="card1h6 mb-2">Fast Moving Product</h6>
-                        </div>
-                        <div class="cardcard">
-                            <div class="card2card mb-3">
-                                <div class="card2cardimg">
-                                    <img src="{{ asset('assets/images/product_img_1.png') }}" height="100%" width="100%"
-                                        alt="">
-                                </div>
-                                <div class="card2cardct">
-                                    <h5 class="card1h5">Surf Excel</h5>
-                                    <div class="progress-container">
-                                        <div class="linear-progress">
-                                            <div class="progress-bar" id="progress-bar-1"></div>
-                                        </div>
-                                        <div class="progress-value" id="progress-value-1"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card2card mb-3">
-                                <div class="card2cardimg">
-                                    <img src="{{ asset('assets/images/product_img.png') }}" height="100%" width="100%"
-                                        alt="">
-                                </div>
-                                <div class="card2cardct">
-                                    <h5 class="card1h5">Park Avenue</h5>
-                                    <div class="progress-container">
-                                        <div class="linear-progress">
-                                            <div class="progress-bar" id="progress-bar-2"></div>
-                                        </div>
-                                        <div class="progress-value" id="progress-value-2"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card2card mb-3">
-                                <div class="card2cardimg">
-                                    <img src="{{ asset('assets/images/product_img_2.png') }}" height="100%" width="100%"
-                                        alt="">
-                                </div>
-                                <div class="card2cardct">
-                                    <h5 class="card1h5">Good Day</h5>
-                                    <div class="progress-container">
-                                        <div class="linear-progress">
-                                            <div class="progress-bar" id="progress-bar-3"></div>
-                                        </div>
-                                        <div class="progress-value" id="progress-value-3"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card2card mb-3">
-                                <div class="card2cardimg">
-                                    <img src="{{ asset('assets/images/product_img.png') }}" height="100%" width="100%"
-                                        alt="">
-                                </div>
-                                <div class="card2cardct">
-                                    <h5 class="card1h5">Park Avenue</h5>
-                                    <div class="progress-container">
-                                        <div class="linear-progress">
-                                            <div class="progress-bar" id="progress-bar-4"></div>
-                                        </div>
-                                        <div class="progress-value" id="progress-value-4"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card2card mb-3">
-                                <div class="card2cardimg">
-                                    <img src="{{ asset('assets/images/product_img_1.png') }}" height="100%" width="100%"
-                                        alt="">
-                                </div>
-                                <div class="card2cardct">
-                                    <h5 class="card1h5">Surf Excel</h5>
-                                    <div class="progress-container">
-                                        <div class="linear-progress">
-                                            <div class="progress-bar" id="progress-bar-5"></div>
-                                        </div>
-                                        <div class="progress-value" id="progress-value-5"></div>
-                                    </div>
-                                </div>
-                            </div>
+            <!-- Middle Div -->
+            <div class="col-sm-12 col-md-6 col-xl-6 pe-0 mb-3 cards">
+                <div class="cardsdiv">
+                    <div class="cardshead">
+                        <h6 class="card1h6 mb-0">Recent Orders</h6>
+                        <div class="card-input">
+                            <input type="text" id="customSearch" class="form-control rounded-1 filterInput w-100"
+                                placeholder=" Search">
                         </div>
                     </div>
-                </div>
+                    <div class="table-wrapper cardtable">
+                        <table class="example table">
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Name</th>
+                                    <th>Order Id</th>
+                                    <th>Order Date</th>
+                                    <th>Quantity</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($recent_order as $order)
 
-                <div class="col-sm-12 col-md-5 col-xl-5 pe-0 mb-3 cards">
-                    <div class="cardsdiv">
-                        <div class="cardshead">
-                            <h6 class="card1h6 mb-0">Hub</h6>
-                        </div>
-                        <div id="chart4"></div>
+                                <tr>
+                                    <td>{{ $loop->iteration}}</td>
+                                    <td>{{$order->customer_name}}</td>
+                                    <td>{{ $order->order_id }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d-m-Y') }}</td>
+                                    <td>{{ $order->no_of_products }}</td>
+                                    <td>{{ $order->amount }}</td>
+
+                                    <td><span class="text-primary">{{ $order->status }}</span></td>
+                                </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-7 col-xl-7 pe-0 mb-3 cards">
-                    <div class="cardsdiv">
-                        <div class="cardshead">
-                            <h6 class="card1h6 mb-0">Hub Sale Reports</h6>
-                            <h6 class="card1h6 mb-0 text-end">Last 7 Days</h6>
+            </div>
+            
+            <!--second row-->
+            <div class="col-sm-12 col-md-6 col-xl-6 pe-0 mb-3 cards">
+                <div class="cardsdiv">
+                    <div class="cardshead">
+                        <h6 class="card1h6 mb-0">Return Orders</h6>
+                        <div class="card-input">
+                            <input type="text" id="customSearch" class="form-control rounded-1 filterInput w-100"
+                                placeholder=" Search">
                         </div>
-                        <div id="chart5"></div>
                     </div>
-                </div> -->
+                    <div class="table-wrapper cardtable">
+                        <table class="example table">
+                            <thead>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Name</th>
+                                    <th>Order Id</th>
+                                    <th>Order Date</th>
+                                    <th>file</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($order_return as $return)
 
+                                <tr>
+                                    <td>{{ $loop->iteration}}</td>
+                                    <td>{{$return->customer_name}}</td>
+                                    <td>{{ $return->order_id }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($return->created_at)->format('d-m-Y') }}</td>
+                                    <td>
+                                        <a href="{{ asset('image/return_file/' . $return->return_image) }}" download>
+                                            Download
+                                        </a>
+                                    </td>
+                                    <td><span class="text-primary">{{ $return->status }}</span></td>
+                                </tr>
+                                @endforeach
+
+                            </tbody>    
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -509,8 +170,7 @@
                 height: 280,
                 type: 'bar',
                 events: {
-                    click: function (chart, w, e) {
-                    },
+                    click: function(chart, w, e) {},
                 },
             },
             colors: ['#0427B9'],
@@ -587,11 +247,16 @@
                 data.push(newVal);
             }
         }
-        generateMonthlyData(data1, { min: 10, max: 100 });
-        generateMonthlyData(data2, { min: 20, max: 100 });
+        generateMonthlyData(data1, {
+            min: 10,
+            max: 100
+        });
+        generateMonthlyData(data2, {
+            min: 20,
+            max: 100
+        });
         var options = {
-            series: [
-                {
+            series: [{
                     name: 'Last Year',
                     data: data1
                 },
@@ -697,12 +362,20 @@
                 data.push(newVal);
             }
         }
-        generateMonthlyData(data1, { min: 10, max: 100 });
-        generateMonthlyData(data2, { min: 20, max: 100 });
-        generateMonthlyData(data3, { min: 20, max: 100 });
+        generateMonthlyData(data1, {
+            min: 10,
+            max: 100
+        });
+        generateMonthlyData(data2, {
+            min: 20,
+            max: 100
+        });
+        generateMonthlyData(data3, {
+            min: 20,
+            max: 100
+        });
         var options = {
-            series: [
-                {
+            series: [{
                     name: 'Hub 1',
                     data: data1
                 },
@@ -769,7 +442,7 @@
     <!-- Datatable -->
     <script>
         // DataTables List
-        $(document).ready(function () {
+        $(document).ready(function() {
             var table = $(".example").DataTable({
                 paging: false,
                 searching: true,
@@ -781,7 +454,7 @@
                 dom: '<"top"f>rt<"bottom"lp><"clear">',
             });
 
-            $("#customSearch").on("keyup", function () {
+            $("#customSearch").on("keyup", function() {
                 table.search(this.value).draw();
             });
         });
@@ -794,6 +467,7 @@
             let progressValue = document.querySelector(`#${progressValueId}`);
             let progressStartValue = 0;
             let speed = 50;
+
             function update() {
                 progressValue.textContent = `${progressStartValue}%`;
                 progressBar.style.width = `${progressStartValue}%`;
@@ -810,4 +484,4 @@
         updateProgress("progress-bar-4", "progress-value-4", 25);
     </script>
 
-@endsection
+    @endsection
