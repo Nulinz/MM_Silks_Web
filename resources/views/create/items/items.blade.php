@@ -136,8 +136,8 @@
                         <div class="col-sm-12 col-md-12 mb-1">
                              <!-- <label for="empname" class="col-form-label">Types</label><br> -->
                            
-                            <input type="radio" id="vehicle1" name="types" value="finished">
-                            <label for="contact">Finished</label>
+                            <input type="radio" id="vehicle1" name="types" value="ready">
+                            <label for="contact">Ready</label>
                             <input type="radio" id="vehicle1" name="types" value="not_finished">
                             <label for="altcontact">Not Finished</label>
                         </div>
@@ -203,8 +203,8 @@
                         <div class="col-sm-12 col-md-12 mb-1">
                              <!-- <label for="empname" class="col-form-label">Types</label><br> -->
                            
-                            <input type="radio" id="finished" name="item_types" value="finished">
-                            <label for="contact">Finished</label>
+                            <input type="radio" id="finished" name="item_types" value="ready">
+                            <label for="contact">Ready</label>
                             <input type="radio" id="not_finished" name="item_types" value="not_finished">
                             <label for="altcontact">Not Finished</label>
                         </div>

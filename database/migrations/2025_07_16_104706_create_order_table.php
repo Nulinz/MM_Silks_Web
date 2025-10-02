@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('no_of_products')->nullable();
             $table->string('status')->nullable();
             $table->string('transport_name')->nullable();
+            $table->string('lrn_no')->nullable();
             $table->string('address_id')->nullable();
             $table->string('c_by')->nullable();
             $table->timestamps();

@@ -63,6 +63,8 @@
                             <th>#</th>
                             <!--<th>Id</th>-->
                             <th>SubCat Name</th>
+                            <th>Item</th>
+                            <th>Code</th>
                             <th>Qty</th>
                             <th>Price</th>
                         </tr>
@@ -78,6 +80,8 @@
                             
                            <td> {{$loop->iteration}} </td>
                            <td>{{ $item->subcategory_name }}</td>
+                           <td><img src="{{ asset('image/itemimage/' . $item->i_logo) }}" height="30px" alt="item Logo"></td>
+                           <td>{{ $item->code }}</td>
                            <td>{{ $item->qty }}</td>
                            <td>{{ round($item->amount) }}</td>  
                            @php
@@ -88,7 +92,7 @@
                         
                         @endforeach
                         <tr>
-                            <td colspan="2"><strong>Total</strong></td>
+                            <td colspan="4"><strong>Total</strong></td>
                             <td><strong>{{ $sum_qty }}</strong></td>
                             <td><strong>{{ $total_amount }}</strong></td>
                         </tr>

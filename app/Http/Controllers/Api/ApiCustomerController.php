@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Item;
+use App\Models\Color;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -97,91 +98,192 @@ class ApiCustomerController extends Controller
     }
 
     //category list
-    public function category_list(Request $request)
-   {
-        // Validation
+
+    public function category_list(Request $request){
+
         $validator = Validator::make($request->all(), [
-            'product_id'  => 'required|exists:product,id',
-            'customer_id' => 'required|exists:customers,id',
-        ], [
-            'product_id.required'  => 'Product id is required.',
-            'customer_id.required' => 'Customer id is required.',
+                    'product_id'  => 'required|exists:product,id',
+                    'customer_id' => 'required|exists:customers,id'],
+                    
+                    [
+                   'product_id.required'  => 'Product id is required.',
+                   'customer_id.required' => 'Customer id is required.',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json([
-                'status'  => 'error',
-                'message' => implode(', ', $validator->errors()->all()),
-            ], 422);
-        }
+                if ($validator->fails()) {
+                    return response()->json([
+                       'status'  => 'error',
+                        'message' => implode(', ', $validator->errors()->all()),
+                    ], 422);
+             }
 
-        // Fetch customer only once
-        $customer = Customer::where('status', 'Active')
-            ->where('id', $request->customer_id)
-            ->select('id', 'c_type')
-            ->first();
 
-        if (!$customer) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Customer not found or inactive.',
-            ], 404);
-        }
-
-        // Get active categories for the product
-        $category_list = Category::where('status', 'Active')
+            
+            $category_list = Category::where('status', 'Active')
             ->where('p_id', $request->product_id)
-            ->select('id', 'c_name')
-            ->get();
-
-    // Map subcategories into categories
-        $category_list->map(function ($category) use ($customer) 
-        {
-            $subcategories = Subcategory::where('status', 'Active')
-                ->where('c_id', $category->id)
-                ->select('id', 'sc_name', 'sc_logo', 'cat_a', 'cat_b', 'cat_c','cat_d','cat_e')
-                ->get();
-
-            $subcategories->map(function ($sub) use ($customer) {
-                $sub->sc_logo = asset('image/subcatimage/' . $sub->sc_logo);
-
-                // Pricing based on customer type
-                
-                if ($customer->c_type === 'A') {
-                    $sub->price = $sub->cat_a;
-                } elseif ($customer->c_type === 'B') {
-                    $sub->price = $sub->cat_b;
-                } elseif ($customer->c_type === 'C') {
-                    $sub->price = $sub->cat_c;
-                } 
-                elseif ($customer->c_type === 'D') {
-                    $sub->price = $sub->cat_d;
-                } 
-                elseif ($customer->c_type === 'E') {
-                    $sub->price = $sub->cat_e;
-                } 
-           
-
-            // Optionally hide price categories
-                unset($sub->cat_a, $sub->cat_b, $sub->cat_c, $sub->cat_d, $sub->cat_e);
-                return $sub;
-            });
-
-            $category->subcategories = $subcategories;
-            return $category;
+            ->select('id','c_name','c_logo')
+            ->get()
+            
+               ->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'c_name' => $item->c_name,
+                'c_logo' => $item->c_logo
+                    ? asset('image/catimage/' . $item->c_logo)
+                    : asset('image/catimage/default.png'),
+            ];
         });
 
         return response()->json([
-            'status'  => 'success',
+            'status' => 'success',
             'message' => 'Category List',
             'category' => $category_list,
         ], 200);
+          
+                
+
     }
+
+
+
+    //subcategory list
+
+    public function subcategory_list(Request $request){
+
+        $validator = Validator::make($request->all(), [
+                    'category_id'  => 'required|exists:category,id',
+                    'customer_id' => 'required|exists:customers,id'],
+                    
+                    [
+                   'category_id.required'  => 'category id is required.',
+                   'customer_id.required' => 'Customer id is required.',
+        ]);
+
+                if ($validator->fails()) {
+                    return response()->json([
+                       'status'  => 'error',
+                        'message' => implode(', ', $validator->errors()->all()),
+                    ], 422);
+             }
+
+        $subcategory_list = Subcategory::where('status', 'Active')
+        ->where('c_id', $request->category_id)
+        ->select('id','sc_name','sc_logo')
+        ->get()
+        
+          
+               ->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'sc_name' => $item->sc_name,
+                'sc_logo' => $item->sc_logo
+                    ? asset('image/subcatimage/' . $item->sc_logo)
+                    : asset('image/subcatimage/default.png'),
+            ];
+        });
+
+        
+          
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Subcategory List',
+            'subcategory' => $subcategory_list,
+
+        ], 200);
+ 
+
+    }
+
+
+    
+
+    
+//     public function category_list(Request $request)
+//    {
+//         // Validation
+//         $validator = Validator::make($request->all(), [
+//             'product_id'  => 'required|exists:product,id',
+//             'customer_id' => 'required|exists:customers,id',
+//         ], [
+//             'product_id.required'  => 'Product id is required.',
+//             'customer_id.required' => 'Customer id is required.',
+//         ]);
+
+//         if ($validator->fails()) {
+//             return response()->json([
+//                 'status'  => 'error',
+//                 'message' => implode(', ', $validator->errors()->all()),
+//             ], 422);
+//         }
+
+        
+//         $customer = Customer::where('status', 'Active')
+//             ->where('id', $request->customer_id)
+//             ->select('id', 'c_type')
+//             ->first();
+
+//         if (!$customer) {
+//             return response()->json([
+//                 'status' => 'error',
+//                 'message' => 'Customer not found or inactive.',
+//             ], 404);
+//         }
+
+       
+//         $category_list = Category::where('status', 'Active')
+//             ->where('p_id', $request->product_id)
+//             ->select('id', 'c_name')
+//             ->get();
+
+   
+//         $category_list->map(function ($category) use ($customer) 
+//         {
+//             $subcategories = Subcategory::where('status', 'Active')
+//                 ->where('c_id', $category->id)
+//                 ->select('id', 'sc_name', 'sc_logo', 'cat_a', 'cat_b', 'cat_c','cat_d','cat_e')
+//                 ->get();
+
+//             $subcategories->map(function ($sub) use ($customer) {
+//                 $sub->sc_logo = asset('image/subcatimage/' . $sub->sc_logo);
+
+               
+                
+//                 if ($customer->c_type === 'A') {
+//                     $sub->price = $sub->cat_a;
+//                 } elseif ($customer->c_type === 'B') {
+//                     $sub->price = $sub->cat_b;
+//                 } elseif ($customer->c_type === 'C') {
+//                     $sub->price = $sub->cat_c;
+//                 } 
+//                 elseif ($customer->c_type === 'D') {
+//                     $sub->price = $sub->cat_d;
+//                 } 
+//                 elseif ($customer->c_type === 'E') {
+//                     $sub->price = $sub->cat_e;
+//                 } 
+           
+
+            
+//                 unset($sub->cat_a, $sub->cat_b, $sub->cat_c, $sub->cat_d, $sub->cat_e);
+//                 return $sub;
+//             });
+
+//             $category->subcategories = $subcategories;
+//             return $category;
+//         });
+
+//         return response()->json([
+//             'status'  => 'success',
+//             'message' => 'Category List',
+//             'category' => $category_list,
+//         ], 200);
+//     }
 
 
     //subcategory list
      
-     public function subcategory_list(Request $request)
+     public function items_list(Request $request)
    {
         $validator = Validator::make($request->all(), [
             'subcategory_id'  => 'required|exists:subcategory,id',
@@ -239,7 +341,7 @@ class ApiCustomerController extends Controller
         // Fetch items under subcategory
         $items_list = Item::where('status', 'Active')
             ->where('sc_id', $sub->id)
-            ->select('id', 'code', 'sc_id', 'i_logo')
+            ->select('id', 'code', 'sc_id','types', 'i_logo')
             ->get();
 
         // Process item logos
@@ -286,7 +388,10 @@ public function addToCart(Request $request)
         'item_id.*'       => 'required|exists:items,id',
         'item_price'      => 'required|array|min:1',
         'item_price.*'    => 'required|string|min:0',
-        'subcategory_id'     => 'required|exists:subcategory,id',
+        'subcategory_id'      => 'required|array|min:1', 
+        'subcategory_id.*'    => 'required|exists:subcategory,id',
+        
+        //'subcategory_id'     => 'required|exists:subcategory,id',
     ], [
         'customer_id.required' => 'Customer ID is required.',
         'item_id.required'     => 'Item ID is required.',
@@ -303,15 +408,21 @@ public function addToCart(Request $request)
     $customerId  = $request->customer_id;
     $itemIds     = $request->item_id;
     $itemPrices  = $request->item_price;
-    $subcategoryId  = $request->subcategory_id;
+    $subcategoryIds  = $request->subcategory_id;
+
+    $singleSubcategory = count($subcategoryIds) === 1;
+
 
     foreach ($itemIds as $index => $itemId) {
         $price = $itemPrices[$index] ?? 0;
+        $subId = $singleSubcategory
+            ? $subcategoryIds[0]
+            : ($subcategoryIds[$index] ?? $subcategoryIds[0]);
 
         DB::table('mycart')->insert([
             'c_id'       => $customerId,
             'item_id'    => $itemId,
-            'subcategory_id'    => $subcategoryId,
+            'subcategory_id'    =>  $subId, 
             'qty'        => 1, // default quantity
             'amount'     => $price, // use the price from request
             'c_by'       => 1,
@@ -508,6 +619,8 @@ public function placeOrder(Request $request)
                 'no_of_products' =>$sum_quantity,
                 'status' => 'confirmed',
                 'transport_name' => $transport,
+                'lrn_no'      =>"N/A",
+                'lrn_image' =>0,
                 // 'payment_sts' => $paymentSts,
                 // 'transaction_id' => $transactionId,
                 // 'address_id' => $Address_id,
@@ -620,13 +733,15 @@ public function placeOrder(Request $request)
     $customerId = $request->input('customer_id');
 
     // Fetch orders
-    $orders = DB::table('order')
+    $rawOrders = DB::table('order')
         ->where('c_id', $customerId)
         ->select(
             'id',
             'order_id',
             'no_of_products',
             'status',
+            'lrn_no',
+            'lrn_image',
             DB::raw("CAST(ROUND(amount) AS CHAR) as amount"),
 
             DB::raw("DATE_FORMAT(created_at, '%d-%m-%Y') as created_at"),
@@ -634,6 +749,69 @@ public function placeOrder(Request $request)
         )
         ->orderBy('id', 'desc')   //new desc
         ->get();
+        $orders = $rawOrders->map(function ($order) {
+
+            $cartItems = DB::table('mycart')
+            ->where('order_id', $order->order_id)
+            ->select('item_id', 'qty','amount')
+            ->get(); 
+
+            $colorMap = DB::table('color')
+            ->pluck('co_name', 'id'); 
+                    $items = DB::table('items')
+            ->whereIn('items.id', $cartItems->pluck('item_id'))
+            ->leftJoin('subcategory', 'subcategory.id', '=', 'items.sc_id')
+            ->select('items.id', 'items.code','items.types' ,'items.i_color', 'subcategory.sc_name')
+            ->get()
+            ->map(function ($item) use ($cartItems, $colorMap) {
+                $cartItem = $cartItems->firstWhere('item_id', $item->id);
+        
+                return [
+                    'item_id'    => $item->id,
+                    'code'       => $item->code,
+                    'sc_name'    => $item->sc_name,
+                    // 'types'    => $item->types,
+                    'qty'        => $cartItem?->qty ?? 0,
+                    'price'      => $cartItem ? round($cartItem->amount) : 0,
+                    'color_name' => $colorMap[$item->i_color] ?? 'Unknown',
+                ];
+            /*
+            $items = DB::table('items')
+            ->whereIn('id', $cartItems->pluck('item_id'))
+             ->leftJoin('subcategory', 'subcategory.id', '=', 'items.sc_id')
+            ->select('id', 'code','i_color','sc_name')
+            ->get()
+
+
+             ->map(function ($item) use ($cartItems,$colorMap) {
+            // Find matching qty from mycart
+            $cartItem = $cartItems->firstWhere('item_id', $item->id);
+
+            return [
+                'item_id' => $item->id,
+                'code'    => $item->code,
+                 'sc_name'    => $item->sc_name,
+               'qty'     => $cartItem?->qty ?? 0,
+              'price' => $cartItem ? round($cartItem->amount) : 0,
+              'color_name' => $colorMap[$item->i_color] ?? 'Unknown',
+
+            ];*/
+        });
+
+                return [
+                    'id'             => $order->id,
+                    'order_id'       => $order->order_id,
+                    'no_of_products' => $order->no_of_products,
+                    'status'         => $order->status,
+                    'amount'         => $order->amount,
+                    'lrn_no'         => $order->lrn_no,
+                    'file' => $order->lrn_image ? url('image/lrn_image/' . rawurlencode($order->lrn_image)) : null,
+                    'created_at'     => $order->created_at,
+                    'items'          => $items,
+                ];
+        });
+
+        
 
     return response()->json([
         'status' => 'success',
@@ -667,7 +845,7 @@ public function order_summary(Request $request)
     // 1. Get order info
         $order = DB::table('order')
         ->where('id', $orderPrimaryId)
-        ->select('id','order_id', 
+        ->select('id','order_id','status', 
         DB::raw("CAST(ROUND(amount) AS CHAR) as total_amount"))
         //DB::raw('ROUND(amount) as total_amount'))
         ->first();
@@ -688,14 +866,25 @@ public function order_summary(Request $request)
                 'i.i_logo'
             )
             ->get();
-
-            foreach ($items as $item) {
-                $item->logo = $item->i_logo 
-                    ?   asset('image/itemimage/' . $item->i_logo)
-                    : url('uploads/items/default.png');
-                    unset($item->i_logo);
-            }   
             
+           
+                           
+        
+                    foreach ($items as $item) {
+            // Check if the item was returned using JSON-aware query
+            $isReturned = DB::table('order_return')
+                ->where('order_id', $order->order_id)
+                ->whereJsonContains('return_code', $item->item_code)
+                ->exists();
+        
+            $item->logo = $item->i_logo 
+                ? asset('image/itemimage/' . $item->i_logo)
+                : url('uploads/items/default.png');
+        
+            $item->return_sts = $isReturned;
+        
+            unset($item->i_logo);
+        }
 
 
             // 3. Add items into the order object
@@ -878,7 +1067,374 @@ public function update_token(Request $request)
             ]);
         }
     }
+
+
+    //product color and id based 
+
+    public function price_filter(Request $request)
+  {
     
+          //Log::info('Incoming price_filter request', $request->all());
+    // Log::info('API Request - price_filter', $request->all());
+     
+    //   return response()->json([
+    //     'status' => 'debug',
+    //     'data'   => $request->all(),
+    // ]);
+
+
+    // Step 1: Validate request
+    $validator = Validator::make($request->all(), [
+        'product_id'  => 'required|exists:product,id',
+        'customer_id' => 'required|exists:customers,id',
+        'min_price'   => 'required|numeric',
+        'max_price'   => 'required|numeric',
+        'color_id'    => 'sometimes|array', 
+        'color_id.*'  => 'exists:color,id', 
+    ],
+    // [
+    //     'product_id.required'  => 'Product ID is required.',
+    //     'product_id.exists'    => 'The selected product does not exist.',
+    //     'customer_id.required' => 'Customer ID is required.',
+    //     'customer_id.exists'    => 'The selected customer does not exist.',
+    //     'min_price.required'   => 'Minimum price is required.',
+    //     'min_price.numeric'    => 'Minimum price must be a number.',
+    //     'max_price.required'   => 'Maximum price is required.',
+    //     'max_price.numeric'    => 'Maximum price must be a number.',
+    //     'color_id.array'       => 'Color ID must be an array.',
+    //     'color_id.*.exists'    => 'One or more selected colors do not exist.',
+    // ]
+);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'status'  => 'error',
+            'message' => implode(', ', $validator->errors()->all()),
+        ], 422);
+    }
+
+    // Step 2: Get customer type    
+    $customer = Customer::where('status', 'Active')
+        ->where('id', $request->customer_id)
+        ->select('id', 'c_type')
+        ->first();
+
+    if (!$customer) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Customer not found or inactive.',
+        ], 404);
+    }
+
+    // Step 3: Determine price column
+    $priceColumn = match ($customer->c_type) {
+        'A' => 'cat_a',
+        'B' => 'cat_b',
+        'C' => 'cat_c',
+        'D' => 'cat_d',
+        'E' => 'cat_e',
+        default => null,
+    };
+
+    if (!$priceColumn) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Invalid customer type.',
+        ], 400);
+    }
+
+    // Step 4: Get subcategories with only needed columns
+    $subcategories = Subcategory::where('status', 'Active')
+        ->where('p_id', $request->product_id)
+        ->select('id', $priceColumn, 'sc_video') // Only the needed price column
+        ->get();
+
+    // Step 5: Filter subcategories based on price range
+    $filtered = $subcategories->filter(function ($sub) use ($priceColumn, $request) {
+        $price = (float) $sub->$priceColumn;
+        return $price >= $request->min_price && $price <= $request->max_price;
+    });
+
+    $responseData = $filtered->map(function ($sub) use ($priceColumn, $request, $customer) {
+        // Get all active items linked to the subcategory
+        $items = \App\Models\Item::where('sc_id', $sub->id)
+            ->where('status', 'Active')
+            ->when($request->has('color_id'), function ($query) use ($request) {
+                $query->whereIn('i_color', $request->color_id);
+            })
+            ->select('code', 'i_logo','types','id', 'i_color')
+            ->get();
+    
+        if ($items->isEmpty()) {
+            
+            return null;
+        }
+    
+        $itemsData = $items->map(function ($item) use ($customer) {
+            $inCart = DB::table('mycart')
+                ->where('item_id', $item->id)
+                ->where('c_id', $customer->id)
+                ->where('status', 'Active')
+                ->exists();
+    
+            return [
+                'code'    => $item->code,
+                'i_logo'  => $item->i_logo
+                    ? asset('image/itemimage/' . $item->i_logo)
+                    : asset('image/itemimage/default.png'),
+                'types'    => $item->types,
+                'item_id' => $item->id,
+                'isCart'  => $inCart,
+            ];
+        });
+    
+        return [
+            'subcategory_id' => $sub->id,
+            'price'          => (float) $sub->$priceColumn,
+            'items'          => $itemsData,
+        ];
+    })
+    ->filter()
+    ->values();
+        
+    return response()->json([
+        'status' => 'success',
+        'data'   => $responseData,
+    ]);
+    
+}   
+
+  
+   /*
+    $responseData = $filtered->map(function ($sub) use ($priceColumn) {
+        // Get all active items linked to the subcategory by sc_id
+        $items = \App\Models\Item::where('sc_id', $sub->id)
+            ->where('status', 'Active')
+            ->select('code', 'i_logo') // Only return needed fields
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'code'   => $item->code,
+                    'i_logo' => $item->i_logo,
+                ];
+            });
+   // dd($items);
+        return [
+            'id'        => $sub->id,
+            'price'     => (float) $sub->$priceColumn,
+            'sc_video'  => $sub->sc_video,
+            'items'     => $items,
+        ];
+    });
+
+    return response()->json([
+        'status' => 'success',
+        'data'   => $responseData->values(),
+    ]);
+    
+ */
+   
+    
+
+
+//color based
+/*
+public function color_list(Request $request)
+{
+    // Step 1: Validate request
+    $validator = Validator::make($request->all(), [
+        'product_id'  => 'required|exists:product,id',
+        'customer_id' => 'required|exists:customers,id',
+        'color_id'    => 'required|exists:color,id',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'status'  => 'error',
+            'message' => implode(', ', $validator->errors()->all()),
+        ], 422);
+    }
+
+    // Step 2: Get customer
+    $customer = Customer::where('status', 'Active')
+        ->where('id', $request->customer_id)
+        ->select('id', 'c_type')
+        ->first();
+
+    if (!$customer) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Customer not found or inactive.',
+        ], 404);
+    }
+
+    // Step 3: Determine price column
+    $priceColumn = match ($customer->c_type) {
+        'A' => 'cat_a',
+        'B' => 'cat_b',
+        'C' => 'cat_c',
+        'D' => 'cat_d',
+        'E' => 'cat_e',
+        default => null,
+    };
+
+    if (!$priceColumn) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Invalid customer type.',
+        ], 400);
+    }
+
+    // Step 4: Get subcategories
+    $subcategories = Subcategory::where('status', 'Active')
+        ->where('p_id', $request->product_id)
+        ->select('id', $priceColumn, 'sc_video')
+        ->get();
+
+    // Step 5: Attach items filtered by color_id
+    $responseData = $subcategories->map(function ($sub) use ($priceColumn, $request) {
+        $items = Item::where('sc_id', $sub->id)
+            ->where('status', 'Active')
+            ->where('i_color', $request->color_id)
+            ->select('code', 'i_logo')
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'code'   => $item->code,
+                    'i_logo' => $item->i_logo,
+                ];
+            });
+
+        return [
+            'id'        => $sub->id,
+            'price'     => (float) $sub->$priceColumn,
+            'sc_video'  => $sub->sc_video,
+            'items'     => $items,
+        ];
+    });
+
+    // Step 6: Return response
+    return response()->json([
+        'status' => 'success',
+        'data'   => $responseData->values(),
+    ]);
+}
+*/
+
+//color list
+
+public function color_filter(Request $request)
+{
+    // Step 1: Validate request
+    $validator = Validator::make($request->all(), [
+        'product_id'  => 'required|exists:product,id',
+        'customer_id' => 'required|exists:customers,id',
+        // 'color_id'    => 'required|exists:color,id',
+        'color_id'    => 'required|array',
+        'color_id.*'  => 'exists:color,id',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'status'  => 'error',
+            'message' => implode(', ', $validator->errors()->all()),
+        ], 422);
+    }
+
+    // Step 2: Get customer
+    $customer = Customer::where('status', 'Active')
+        ->where('id', $request->customer_id)
+        ->select('id', 'c_type')
+        ->first();
+
+    if (!$customer) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Customer not found or inactive.',
+        ], 404);
+    }
+
+    // Step 3: Determine price column
+    $priceColumn = match ($customer->c_type) {
+        'A' => 'cat_a',
+        'B' => 'cat_b',
+        'C' => 'cat_c',
+        'D' => 'cat_d',
+        'E' => 'cat_e',
+        default => null,
+    };
+
+    if (!$priceColumn) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Invalid customer type.',
+        ], 400);
+    }
+
+    // Step 4: Get subcategories
+    $subcategories = Subcategory::where('status', 'Active')
+        ->where('p_id', $request->product_id)
+        ->select('id as subcategory_id', $priceColumn, 'sc_video')
+        ->get();
+
+    // Step 5: Map and filter only subcategories that have items matching color_id
+$responseData = $subcategories->map(function ($sub) use ($priceColumn, $request) {
+    $items = Item::where('sc_id', $sub->id)
+        ->where('status', 'Active')
+        ->whereIn('i_color', $request->color_id)  // ✅ Accept multiple colors
+        ->select('code', 'i_logo','i_color','id as item_id')
+        ->get()
+        ->map(function ($item) {
+            return [
+                'item_id'   => $item->item_id,
+                'code'      => $item->code,
+                'i_logo'    => $item->i_logo,
+                'color_id'  => $item->i_color,
+            ];
+        });
+
+    if ($items->isEmpty()) {
+        return null;
+    }
+
+    return [
+        'id'        => $sub->id,
+        'price'     => (float) $sub->$priceColumn,
+        'sc_video'  => $sub->sc_video,
+        'items'     => $items,
+    ];
+})->filter()->values(); // remove nulls and reset keys
+
+
+    // Step 6: Return response
+    return response()->json([
+        'status' => 'success',
+        'data'   => $responseData->values(), // reset array keys
+    ]);
+}
+
+
+//color list
+public function color_list(){
+
+    $color_list = Color::where('status', 'Active')
+    ->select('id','co_name')
+    ->get();
+
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Color List',
+        'color' => $color_list,
+
+    ], 200);
+
+
+}
+
+
+   
+
+
 
 
 }

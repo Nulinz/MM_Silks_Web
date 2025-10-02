@@ -20,6 +20,7 @@
                         title="" alt=""></a>
             </div>
             <div class="col-lg-4">
+                <!--
                 <div class="search-container">
                     <div class="searchdiv col-sm-12 col-md-12">
                         <select class="headerDropdown form-select border-0 rounded-0">
@@ -31,7 +32,7 @@
                     <div class="searchbox mx-auto">
                         <button><i class="fas fa-search text-center"></i></button>
                     </div>
-                </div>
+                </div>-->
             </div>
             <ul class="navbar-nav col-lg-6 align-items-lg-center justify-content-lg-evenly" id="navbarNav">
                 <li class="nav-item" id="home">
@@ -39,70 +40,11 @@
                         href="{{ route('pages.index') }}"><i class="bx bx-home pe-2 fs-5"></i> <span>Home</span></a>
                 </li>
                 <li class="nav-item" id="offers">
-                    <a class="nav-link d-flex align-items-center {{ Request::routeIs('pages.offers', 'pages.offers-details') ? 'active' : '' }}"
-                        href=""><i class="fa-regular fa-percent fs-5 pe-2"></i> Offers</a>
+                    <a class="nav-link d-flex align-items-center {{ Request::routeIs('footer.contact') ? 'active' : '' }}"
+                        href="{{ route('footer.contact') }}"></i> Contact</a>
                 </li>
-                <li class="nav-item" id="wishlist">
-                    <a class="nav-link d-flex align-items-center {{ Request::routeIs('pages.wishlist') ? 'active' : '' }}"
-                        href=""><i class="bx bx-heart pe-2 fs-5"></i> Wishlist</a>
-                </li>
-                <li class="nav-item" id="cart">
-                    <a class="nav-link d-flex align-items-center {{ Request::routeIs('pages.mycart') ? 'active' : '' }}"
-                        href=""><i class="bx bx-cart pe-2 fs-5"></i> My Cart</a>
-                </li>
-                <li class="nav-item" id="orders">
-                    <a class="nav-link d-flex align-items-center {{ Request::routeIs('pages.myorders') ? 'active' : '' }}"
-                        href=""><i class="bx bxs-package pe-2 fs-5"></i> My Orders</a>
-                </li>
-                <li class="nav-item" id="user">
-                    <a class="nav-link">
-                        <img src="{{ asset('assets/images/avatar_3.png') }}" height="30px" width="30px" alt="">
-                        <span class="ps-1">saranya</span>
-                    </a>
-                    <div class="maindropdown">
-                        <div class="dropdowndiv">
-                            <div class="dropdownimg">
-                                <img src="{{ asset('assets/images/avatar_3.png') }}" class="d-flex mx-auto" alt="">
-                                <label for="file-upload" class="img-upload">
-                                    <i class="fas fa-camera"></i>
-                                </label>
-                                <input type="file" hidden id="file-upload" class="file-input" accept="image/*">
-                                <h6 class="mb-0 text-center">saranya</h6>
-                            </div>
-                            <ul class="p-0">
-                                <li>
-                                    <a data-bs-toggle="modal" data-bs-target="#editProfileModal"
-                                        class="d-flex align-items-center gap-3">
-                                        <i class="bx bx-edit-alt"></i>
-                                        <span>Edit Profile</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" class="d-flex align-items-center gap-3">
-                                        <i class="bx bx-badge-check"></i>
-                                        <span>Invite Friends</span>
-                                    </a>
-                                </li>
-                                <li>
-                                <form method="POST" action="">
-                                    @csrf
-                                     <button type="submit" class="d-flex align-items-center gap-3" style="background: none; border: none;">
-                                       <i class="fa-solid fa-right-from-bracket" style="color: red;"></i>
-                                      <span>Logout</span>
-                                    </button>
-                                    <!--
-                                    <a href="{{ route('login') }}" class="d-flex align-items-center gap-3">
-                                        <i class="bx bx-log-out-circle text-danger"></i>
-                                        <span>Logout</span>
-                                    </a>-->
-                                </form>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
+               
             </ul>
-
         </div>
     </div>
 </nav>

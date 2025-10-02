@@ -13,4 +13,15 @@ class Product extends Model
     protected $fillable = [
         'p_name', 'status'
     ];
+
+    public function categories()
+  {
+    return $this->hasMany(Category::class, 'p_id');
+   }
+   public function subcategories()
+   {
+     return $this->hasMany(Subcategory::class, 'p_id');
+    }
+
+    
 }

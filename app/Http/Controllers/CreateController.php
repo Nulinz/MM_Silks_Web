@@ -16,26 +16,28 @@ class CreateController extends Controller
 {
     //view product list
     public function product_list(){
-        $product_list = Product::all();
+        $product_list = Product::withCount(['categories', 'subcategories'])->get();
 
         return view('create.product.product',compact('product_list'));
     }
     //view category list
     public function category_list(){
-        $category_list = Category::with('product')->get();  
-       // dd($category_list->pluck('c_name'));
+        $category_list = Category::with(['product', 'subcategories'])->get();
+        //$category_list = Category::with('product')->get();  
+       
          
         //$product_list = Product::all();
         $product_list = Product::where('status', 'Active')->get();
 
 
-        return view('create.category.category',compact('product_list'),compact('category_list'));
+        return view('create.category.category', compact('product_list', 'category_list'));
+
     }
 
     //view subcategory list
     public function subcategory_list(){
 
-        $subcategory_list = Subcategory::with(['product', 'category'])->get();
+        $subcategory_list = Subcategory::with(['product', 'category','item'])->get();
 
         $product_list = Product::where('status', 'Active')->get();
         $category_list = Category::where('status', 'Active')->get();
@@ -313,67 +315,121 @@ class CreateController extends Controller
 
       else{
 
-          $barcode = $req->i_code;
+                $barcode = $req->i_code;
+                $newType = $req->types;
 
              // Check if barcode already exists
-          $exists = DB::table('items')->where('code', $barcode)->exists();
+                $item = DB::table('items')->where('code', $barcode)->first();
 
-          if ($exists) {
-               return redirect()->back()->with('message', 'Barcode already exists!');
-           }
+             if (!$item) {
+                    // return redirect()->back()->with('message', 'Barcode already exists!');
+                
 
-        $filename = null;
-    
-        if ($req->hasFile('i_logo')) {
-            $image = $req->file('i_logo');
-            $filename = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('image/itemimage'), $filename);
-        } 
+                    $filename = null;
+                
+                    if ($req->hasFile('i_logo')) {
+                        $image = $req->file('i_logo');
+                        $filename = time() . '_' . $image->getClientOriginalName();
+                        $image->move(public_path('image/itemimage'), $filename);
+                    } 
 
-        else if ($req->i_logo && strpos($req->i_logo, 'data:image') === 0) {
-            $imageData = $req->i_logo;
-    
-            $image_parts = explode(";base64,", $imageData);
-            if (count($image_parts) == 2) {
-                $mime_type = $image_parts[0];
-                $image_base64 = base64_decode($image_parts[1]);
-    
-                // Detect file extension
-                if (strpos($mime_type, 'jpeg') !== false) {
-                    $extension = 'jpg';
-                } else if (strpos($mime_type, 'png') !== false) {
-                    $extension = 'png';
-                } else {
-                    return back()->with('error', 'Unsupported image format');
-                }
-    
-                $filename = time() . '.' . $extension;
-                file_put_contents(public_path('image/itemimage/') . $filename, $image_base64);
-            } else {
-                return back()->with('error', 'Invalid base64 image data');
-            }
-        } 
-    
+                    else if ($req->i_logo && strpos($req->i_logo, 'data:image') === 0) 
+                    {
+                          $imageData = $req->i_logo;
+                
+                        $image_parts = explode(";base64,", $imageData);
+                        if (count($image_parts) == 2) {
+                            $mime_type = $image_parts[0];
+                            $image_base64 = base64_decode($image_parts[1]);
+                
+                            // Detect file extension
+                            if (strpos($mime_type, 'jpeg') !== false) {
+                                $extension = 'jpg';
+                            } else if (strpos($mime_type, 'png') !== false) {
+                                $extension = 'png';
+                            } else {
+                                return back()->with('error', 'Unsupported image format');
+                            }
         
-        else {
-            return back()->with('error', 'Please upload an item image');
-        }
+                            $filename = time() . '.' . $extension;
+                            file_put_contents(public_path('image/itemimage/') . $filename, $image_base64);
+                        } else {
+                            return back()->with('error', 'Invalid base64 image data');
+                        }
+                   } 
+    
+                    
+                    else {
+                        return back()->with('error', 'Please upload an item image');
+                    }
 
-        $c_insert =  DB::table('items')->insert([
-            'sc_id'=>$req->sub_id,
-            'code'=>$barcode,
-            'i_color'=>$req->color,
-            'types'=>$req->types,
-            'i_logo'=>$filename,
-            'status'=>'Active', 
-            'created_at'=>now(),
-            'updated_at'=>now()
-        ]);
-       
-        if($c_insert){
-            return back();
+                    $c_insert =  DB::table('items')->insert([
+                        'sc_id'=>$req->sub_id,
+                        'code'=>$barcode,
+                        'i_color'=>$req->color,
+                        'types'=>$req->types,
+                        'i_logo'=>$filename,
+                        'status'=>'Active', 
+                        'created_at'=>now(),
+                        'updated_at'=>now()
+                    ]);
+        
+                    if($c_insert){
+                        return back();
+                    }
+               }
+               else {
+                // Barcode exists
+                    if ($item->types === 'ready') {
+                        return redirect()->back()->with('message', 'Barcode already exists!');
+                    }
+
+                   
+                    if ($newType === 'ready') {
+                        // Prepare image if needed
+                        $filename = $item->i_logo; // default to existing
+
+                        if ($req->hasFile('i_logo')) {
+                            $image = $req->file('i_logo');
+                            $filename = time() . '_' . $image->getClientOriginalName();
+                            $image->move(public_path('image/itemimage'), $filename);
+                        } else if ($req->i_logo && strpos($req->i_logo, 'data:image') === 0) {
+                            $imageData = $req->i_logo;
+
+                                $image_parts = explode(";base64,", $imageData);
+                                if (count($image_parts) == 2) {
+                                    $mime_type = $image_parts[0];
+                                    $image_base64 = base64_decode($image_parts[1]);
+
+                                    if (strpos($mime_type, 'jpeg') !== false) {
+                                        $extension = 'jpg';
+                                    } else if (strpos($mime_type, 'png') !== false) {
+                                        $extension = 'png';
+                                    } else {
+                                        return back()->with('error', 'Unsupported image format');
+                                    }
+
+                                    $filename = time() . '.' . $extension;
+                                    file_put_contents(public_path('image/itemimage/') . $filename, $image_base64);
+                                } else {
+                                    return back()->with('error', 'Invalid base64 image data');
+                                }
+                        }
+
+            // Update all fields now
+                                DB::table('items')->where('code', $barcode)->update([
+                                    'sc_id'      => $req->sub_id,
+                                    'i_color'    => $req->color,
+                                    'types'      => $newType,
+                                    'i_logo'     => $filename,
+                                    'status'     => 'Active',
+                                    'updated_at' => now()
+                                ]);
+
+                                return redirect()->back()->with('message', 'Item updated to finished.');
+                    }
+                }
         }
-      }
     }
   //product status update
 

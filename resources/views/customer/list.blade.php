@@ -45,7 +45,7 @@
                         <th>C Category Type</th>
                         <th>Permission Type</th>
                         <th>Permission Date</th>
-                        <th>By</th>
+                        <!--<th>By</th>-->
                         <th>status</th>
                         <th>Action</th>
                     </tr>
@@ -60,7 +60,7 @@
                         <td>{{ $customer->c_type  }}</td>
                         <td>{{ $customer->permission_type  }}</td>
                         <td>{{ $customer->permission_time  }}</td>
-                        <td>{{ $customer->cby  }}</td>
+                        <!--<td>{{ $customer->cby  }}</td>-->
                         <td>{{ $customer->status  }}</td>
                         <td>
                             <div class="d-flex align-items-center gap-2">

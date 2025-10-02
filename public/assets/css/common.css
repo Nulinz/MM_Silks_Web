@@ -1,4 +1,4 @@
-.theme-light {
+:root {
     --main: #34A853;
     --primary: #000;
     --secondary: #fff;
@@ -17,26 +17,5 @@
     --green: #009400;
     --red: #ca0000;
     --box-shadow: 0 0 0.875rem 0 rgba(33, 37, 41, 0.05);
-    --transition: 0.15s ease-in-out;
-}
-
-.theme-dark {
-    --main: #fff;
-    --primary: #fff;
-    --secondary: #34A853;
-    --bg: #1b1d23;
-    --stages-bg: #1b1d231b;
-    --label: #d1d1d1;
-    --input-border: #ffffff30;
-    --input-bg: #2c3e50;
-    --tinp-border: #6c757d;
-    --trow: transparent !important;
-    --thead: #b0b3b8;
-    --tdata: #e1e4e9;
-    --aside-li: #d1d1d1;
-    --mandatory: #ff6b6b;
-    --green: #00ff94;
-    --red: #ff5f5f;
-    --box-shadow: 0 0 0.875rem 0 rgba(0, 0, 0, 0.2);
     --transition: 0.15s ease-in-out;
 }

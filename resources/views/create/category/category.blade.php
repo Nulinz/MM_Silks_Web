@@ -41,8 +41,9 @@
                         <tr>
                             <th>#</th>
                             <th>Product Name</th>
-                            <th style="width: 450px">Category Title</th>
+                            <th style="width: 250px">Category Title</th>
                             <th>Image</th>
+                            <th>Subcategory Count</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -52,14 +53,14 @@
 
                        <tr>
                          <td> {{$loop->iteration}} </td>
-                         <td>{{ $category->product->p_name   }}</p>
+                         <td>{{ $category->product->p_name}}</p>
                          <td>{{ $category->c_name }}</td>
                          <td>
                          <div>
                          <img src="{{ asset('image/catimage/' . $category->c_logo) }}" height="40px" alt="category Logo">
                          </div>
                          </td>
-                      
+                         <td>{{ count($category->subcategories ?? []) }}</td>
                         <td>{{ $category->status }}</td>
                         <td> 
                           <div class="d-flex align-items-center gap-2">

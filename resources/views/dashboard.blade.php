@@ -13,8 +13,10 @@
         <div class="row">
 
             <!-- Head Card -->
+           
             <div class="col-sm-12 col-md-3 col-xl-3 pe-0 mb-3 cards">
                 <div class="cardsdiv">
+                <a href="{{route('customer.customer_list')}}">
                     <div class="cardshead_1">
                         <h6 class="card1h6">Customers</h6>
                     </div>
@@ -23,9 +25,12 @@
                         <!-- <h6 class="card2h6 mb-0 text-end">Last 30 days <br> 2568</h6>-->
                     </div>
                 </div>
+                </a>
             </div>
+          
             <div class="col-sm-12 col-md-3 col-xl-3 pe-0 mb-3 cards">
                 <div class="cardsdiv">
+                    <a href="{{ route('create.product-list') }}">
                     <div class="cardshead_1">
                         <h6 class="card1h6">Product</h6>
 
@@ -34,10 +39,12 @@
                         <h5 class="card1h5 mb-0"> {{$total_product}}</h5>
                         <!--<h6 class="card2h6 mb-0 text-end">+15.03% <i class="fas fa-arrow-trend-up"></i></h6>-->
                     </div>
+                  </a>
                 </div>
             </div>
             <div class="col-sm-12 col-md-3 col-xl-3 pe-0 mb-3 cards">
                 <div class="cardsdiv">
+                    <a href="{{ route('create.item_list')}}">
                     <div class="cardshead_1">
                         <h6 class="card1h6">Items</h6>
                     </div>
@@ -45,10 +52,12 @@
                         <h5 class="card1h5 mb-0">{{$total_items}}</h5>
                         <!--<h6 class="card2h6 mb-0 text-end">Last 30 days <br> 2568</h6>-->
                     </div>
+                   </a>
                 </div>
             </div>
             <div class="col-sm-12 col-md-3 col-xl-3 pe-0 mb-3 cards">
                 <div class="cardsdiv">
+                  <a href="{{ route('order.order-list') }}">
                     <div class="cardshead_1">
                         <h6 class="card1h6">Orders</h6>
                     </div>
@@ -56,6 +65,7 @@
                         <h5 class="card1h5 mb-0">{{$total_orders}}</h5>
                         <!--<h6 class="card2h6 mb-0 text-end">-0.36% <i class="fas fa-arrow-trend-down"></i></h6>-->
                     </div>
+                   </a>
                 </div>
             </div>
 
@@ -82,6 +92,7 @@
                                     <th>Quantity</th>
                                     <th>Amount</th>
                                     <th>Status</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -94,8 +105,16 @@
                                     <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d-m-Y') }}</td>
                                     <td>{{ $order->no_of_products }}</td>
                                     <td>{{ $order->amount }}</td>
-
-                                    <td><span class="text-primary">{{ $order->status }}</span></td>
+                                    <!--<span class="text-primary">{{ $order->status }}</span>-->
+                                    <td>
+                                        
+                                    <a href="{{ route('order.order-profile', ['id' => $order->id]) }}"
+                                        class="btn btn-primary btn-sm"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-title="Profile">
+                                        <i class=""></i>{{ $order->status }}
+                                        </a>
+                                        </td>
                                 </tr>
                                 @endforeach
 

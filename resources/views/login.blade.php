@@ -46,7 +46,7 @@
                         <div class="col-10 mx-auto mb-2">
                             <div class="inpflex">
                                 <input type="password" class="form-control border-0" name="password" id="password"
-                                    minlength="6" placeholder="Password" required>
+                                     placeholder="Password" required>
                                 <i class="fa-solid fa-eye-slash" id="passHide_1"
                                     onclick="togglePasswordVisibility('password1', 'passShow_1', 'passHide_1')"
                                     style="display:none; cursor:pointer;"></i>

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
+use App\Models\Item;
+use App\Models\Customer;
+
 
 class OrderController extends Controller
 {
@@ -28,7 +31,7 @@ class OrderController extends Controller
         $odr_cdetails = DB::table('order as o')
         ->where('o.id','=',$req->id)
         ->leftJoin('customers as c', 'c.id', '=', 'o.c_id')
-        ->select('c.*','o.*','o.created_at as order_date','o.status as odr_status','o.id as odr_primaryid')
+        ->select('c.*','o.*','o.created_at as order_date','o.status as odr_status','o.id as odr_primaryid','transport_name')
         ->first();
         
         if ($odr_cdetails) {
@@ -81,7 +84,7 @@ class OrderController extends Controller
 
         if ($order_details) {
             return response()->json([
-               
+               'status' => $req->odr_status,
                'order_details' => $order_details
                
             ]);
@@ -158,7 +161,7 @@ class OrderController extends Controller
     // Validate if item_code is present
     //dd($request->all());
     if (!isset($request->item_code) || !is_array($request->item_code)) {
-        return response()->json(['error' => 'No item codes provided'], 400);
+        return back();
     }
     
     
@@ -185,6 +188,221 @@ class OrderController extends Controller
     return back();
 
     // return response()->json(['success' => 'Status updated successfully']);
+}
+
+ 
+
+
+public function updateLRN(Request $request)
+{
+    $request->validate([
+        'order_id' => 'required|exists:order,order_id',
+        'lrn_no' => 'required|string|max:255',
+        'lrn_image'=>'required',
+        'order_status'=>'required'
+    ]);
+    //dd($request->all());
+    //Log::info('LRN form submitted', $request->all());
+
+    $image = $request->file('lrn_image');
+    $filename = time() . '_' . $image->getClientOriginalName();
+    $image->move(public_path('image/lrn_image'), $filename);   
+
+    $updateData = [
+        'lrn_no' => $request->lrn_no,
+        'lrn_image' => $filename,
+        
+    ];
+
+    $update_lrn_no = DB::table('order')->where('order_id', $request->order_id)->update($updateData);
+    // dd($request->all());
+    // Log::info('LRN form submitted', $request->all());
+
+    //$order = Order::where('order_id', $request->order_id)->first();
+    // $order->lrn_no = $request->lrn_no;
+    // //$order->status = $request->status ?? $order->status;
+    // $order->save();
+
+    return response()->json([
+        'message' => 'LRN updated successfully',
+        //'lrn_no' => $order->lrn_no
+    ]);
+}
+
+
+//barcode
+
+public function checkBarcode(Request $request)
+{
+    $barcode = $request->input('barcode');
+    $customer_id = $request->input('customer_id');
+
+    // Fetch the item and its related customer and subcategory
+    $customer = Customer::find($customer_id);
+   // Log::info('Customer ID:', ['id' => $customer_id]);
+   //Log::info('Customer Data:', ['customer' => $customer]);
+
+
+    if (!$customer) {
+        return response()->json([
+            'exists' => false,
+            'message' => 'Customer not found'
+        ]);
+    }
+    $item = Item::where('code', $barcode)
+    ->where('items.status', 'Active')
+    // ->join('customers', 'customers.id', '=',  $customer_id) // Ensure correct relationship
+    ->join('subcategory', 'subcategory.id', '=', 'items.sc_id') // Ensure correct subcategory relation (fix the typo here)
+    ->first([
+        'items.*',  // All columns from items table
+         'items.id as item_id',
+         'items.i_logo as item_logo',
+
+        'subcategory.id as subcategory_id',
+        // 'customers.c_type',  // Customer type (A, B, etc.)
+        'subcategory.cat_a', // Subcategory prices
+        'subcategory.cat_b',
+        'subcategory.cat_c'
+    ]);
+
+        //dd($item);
+    $price = null;
+    
+    if ($item) {
+        // Determine price based on customer type
+        switch ($customer->c_type) {
+            case 'A':
+                $price = $item->cat_a;
+                break;
+            case 'B':
+                $price = $item->cat_b;
+                break;
+            case 'C':
+                $price = $item->cat_c;
+                break;
+            default:
+                $price = $item->cat_a; // fallback
+                break;
+        }
+
+        return response()->json([
+            'exists' => true,
+            'item' => [
+                'i_code' => $item->code,
+                'item_logo' => $item->item_logo,
+                'item_id' => $item->item_id,
+                'customer_id' => $customer_id,
+                'subcategory_id' => $item->subcategory_id,
+                'price' => $price
+            ]
+        ]);
+    } else {
+        return response()->json([
+            'exists' => false,
+            'message' => 'No item found or status inactive'
+        ]);
+    }
+}
+
+//mycart add
+
+public function submitCart(Request $request)
+{
+    
+    $customer_id = $request->input('customer_id');
+    $items = $request->input('items');
+
+    //info('Customer ID:', ['customer_id' => $request->input('customer_id')]);
+    //info('Items:', $request->input('items'));
+
+    
+
+    if (!$customer_id || empty($items)) {
+        return response()->json(['message' => 'Invalid data'], 400);
+    }
+
+    
+    $lastOrder = DB::table('order')->orderBy('id', 'desc')->first();
+    if ($lastOrder) {
+        $lastId = $lastOrder->order_id;
+        //info("Last Order ID: " . $lastId);
+        $newOrderId = str_pad(intval($lastId) + 1, 4, '0', STR_PAD_LEFT);
+    } else {
+        $newOrderId = '0001';
+    }
+    //info("New Order ID: " . $newOrderId);
+
+
+   
+        // Assuming you have a MyCart model for `mycart` table
+        foreach ($items as $item) {
+            DB::table('mycart')->insert([   
+                'c_id' => $customer_id,
+                'item_id' => $item['item_id'],
+                'subcategory_id' => $item['item_subcategoryid'],   // make sure the item object contains 'id'
+                'qty' => $item['item_qty'],
+                'amount' => $item['item_price'],
+                'order_id'=> $newOrderId,
+                'c_by' =>1,
+                'created_at' => now(),      // if you have timestamps
+                'updated_at' => now()
+            ]);
+   // }
+   
+}
+    //sum quantity
+    $sum_quantity = DB::table('mycart')
+    ->where('order_id', $newOrderId)
+    ->where('status', 'Active')
+    ->sum('qty');
+   
+    //amount sum
+    $sum_amount = DB::table('mycart')
+    ->where('order_id', $newOrderId)
+    ->where('status', 'Active')
+    ->sum('amount');
+     
+    //order table insert
+    $orderId = DB::table('order')->insertGetId([
+        'c_id' => $customer_id,
+        'order_id' => $newOrderId,
+        'lrn_no' =>1,
+        // 'lrn_image'=>"null",
+         'amount' => $sum_amount,
+        'no_of_products' =>$sum_quantity,
+        'status' => 'confirmed',
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]);
+    //mycart table order id status to be inactive
+    DB::table('mycart')
+    ->where('order_id', $newOrderId)
+    ->update([
+        'status' => 'Inactive',
+         'updated_at' => now(),
+    ]);
+
+    //new orer matched items get 
+    $itemIds = DB::table('mycart')
+    ->where('order_id', $newOrderId)
+    ->pluck('item_id');  // Fetch item_ids as Collection
+
+    if ($itemIds->isEmpty()) {
+        // No items found in mycart for this order
+        return response()->json(['status' => 'error', 'message' => 'No items found for this Order.']);
+    }
+
+    // Step 2: Update status to 'Inactive' in items table for matching item_ids
+    DB::table('items')
+        ->whereIn('id', $itemIds)
+        ->update([
+            'status' => 'Inactive',
+            'updated_at' => now(),
+        ]);
+
+    return response()->json(['message' => 'Cart submitted successfully!']);
+    }
+
 }
 
 
@@ -239,4 +457,4 @@ class OrderController extends Controller
 
 
 
-}
+

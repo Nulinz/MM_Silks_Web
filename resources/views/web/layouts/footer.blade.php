@@ -6,7 +6,7 @@
                 <div class="footeritems mb-3">
                     <div class="d-flex justify-content-start align-items-start flex-column" id="cmpnyinfo">
                         <div class="col footerlogo">
-                            <img src="{{ asset('assets/web/images/logo.png') }}" class="d-flex mx-auto" height="50px"
+                            <img src="{{ asset('image/logo/mmtexlogo.png') }}" class="d-flex mx-auto" height="50px"
                                 alt="">
                         </div><br>
                         <h5 class="d-flex align-items-center gap-2">

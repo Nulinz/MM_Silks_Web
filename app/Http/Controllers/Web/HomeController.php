@@ -9,7 +9,11 @@ class HomeController extends Controller
 {
     public function index(){
         return view('web.pages.index');
-
+        
+    }
+    public function  footer_contact(){
+        return view('web.layouts.footer');
+       
     }
     public function aboutus()
     {

@@ -22,4 +22,8 @@ class Subcategory extends Model
     {
       return $this->belongsTo(Category::class, 'c_id');
     }
+    public function item()
+  {
+    return $this->hasMany(Item::class, 'sc_id');
+  }
 }

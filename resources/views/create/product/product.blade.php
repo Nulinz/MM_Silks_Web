@@ -71,6 +71,8 @@
                         <tr>
                             <th>#</th>
                             <th>Product Name</th>
+                            <th>Cat Count</th>
+                            <th>SubCat Count</th>
                             <th>Status</th>
                             <th>Action</th>
                            
@@ -81,7 +83,9 @@
                       <tr>
                          <td> {{$loop->iteration}} </td>
                          <td>{{ $product_value->p_name }}</td>
-                         <td>{{ $product_value->status }}</td> 
+                         <td>{{ $product_value->categories_count }}</td>
+                         <td>{{ $product_value->subcategories_count }}</td>
+                         <td>{{ $product_value->status }}</td>
                          <td> 
                           <div class="d-flex align-items-center gap-2">
                                                  

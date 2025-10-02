@@ -40,8 +40,8 @@
                         <input type="hidden" class="form-control" name="sub_id" id="sub_id" value="{{ $id }}" readonly>
                         <!--types-->
                         <label for="empname" class="col-form-label">Types</label><br>
-                        <label for="contact">Finished</label>
-                        <input type="radio" id="vehicle" name="types" value="finished">
+                        <label for="contact">Ready</label>
+                        <input type="radio" id="vehicle" name="types" value="ready">
                         <label for="altcontact">Not Finished</label>
                         <input type="radio" id="vehicle1" name="types" value="not_finished"><br>
                         <!--colors-->
@@ -134,19 +134,19 @@
 
     <script>
             Webcam.set({
-    width: 600,
-    height: 350,
-    image_format: 'jpeg',
-    jpeg_quality: 90
-});
+            width: 600,
+            height: 350,
+            image_format: 'jpeg',
+            jpeg_quality: 90
+        });
 
-Webcam.attach('#my_camera');    
+        Webcam.attach('#my_camera');    
 
-// Webcam Load Error Handling
-Webcam.on('error', function(err) {
-    console.error('Webcam Error:', err);
-    document.getElementById('webcam-error').style.display = 'block';
-});
+        // Webcam Load Error Handling
+        Webcam.on('error', function(err) {
+            console.error('Webcam Error:', err);
+            document.getElementById('webcam-error').style.display = 'block';
+        });
     </script>
 
 

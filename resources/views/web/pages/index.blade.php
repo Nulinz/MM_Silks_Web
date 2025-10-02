@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <!-- Brands -->
+    <!-- Brands -
     <div class="brands">
         <div class="brandsdiv">
             <div id="carousel2" class="splide">
@@ -75,9 +75,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
-    <!-- Products -->
+    <!-- Products 
     <div class="products">
         <div class="productsdiv">
             <div id="carousel3" class="splide">
@@ -149,9 +149,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
-    <!-- Offer Cards -->
+    <!-- Offer Cards 
     <div class="offercard">
         <div class="offercarddiv">
             <div class="offercard1">
@@ -177,9 +177,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
-    <!-- Offer End Sales -->
+    <!-- Offer End Sales 
     <div class="products">
         <div class="productsdiv">
             <div id="carousel4">
@@ -383,9 +383,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
-    <!-- Explore Category -->
+    <!-- Explore Category 
     <div class="brands">
         <div class="brandsdiv">
             <div id="carousel5" class="splide">
@@ -416,9 +416,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
-    <!-- Snacks -->
+    <!-- Snacks 
     <div class="products">
         <div class="productsdiv">
             <div id="carousel6" class="splide">
@@ -637,13 +637,13 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
     <!-- App -->
     <div class="app">
         <div class="appdiv">
             <div class="appleft">
-                <h1>Shop Faster With Maharandam Mart App</h1>
+                <h1>Shop Faster With M.M Textiles App</h1>
                 <a href="">
                     <img src="{{ asset('assets/web/images//home/playstore.png') }}" height="60px" alt="">
                 </a>

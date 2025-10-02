@@ -46,14 +46,16 @@
                             <th>Price A</th>
                             <th>Price B</th>
                             <th>Price C</th>
+                            <!--
                             <th>Price D</th>
-                            <th>Price E</th>
+                            <th>Price E</th>-->
                             <th>Image</th>
+                            <th>Item count</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody> 
                       @foreach($subcategory_list as $subcategory)
 
                       <tr>
@@ -64,12 +66,13 @@
                         <td>{{ $subcategory->cat_a  }}</td>
                         <td>{{ $subcategory->cat_b  }}</td>
                         <td>{{ $subcategory->cat_c  }}</td>
-                        <td>{{ $subcategory->cat_d  }}</td>
-                        <td>{{ $subcategory->cat_e  }}</td>
+                        <!--<td>{{ $subcategory->cat_d  }}</td>
+                        <td>{{ $subcategory->cat_e  }}</td>-->
                         
                         <td> <img src="{{ asset('image/subcatimage/' . $subcategory->sc_logo) }}" height="40px" alt="subcategory Logo">
                         
                         </td>
+                        <td>{{ count($subcategory->item ?? []) }}</td>
                         <td>{{ $subcategory->status  }}</td>
                         <td> 
                           <div class="d-flex align-items-center gap-2">
@@ -144,6 +147,7 @@
                             <label for="category" class="col-form-label">Category C</label>
                             <input type="text" class="form-control" name="cat_c" id="cat_price">
                         </div>
+                        <!--
                         <div class="col-sm-12 col-md-12 mb-1">
                             <label for="category" class="col-form-label">Category D</label>
                             <input type="text" class="form-control" name="cat_d" id="cat_price">
@@ -152,7 +156,7 @@
                             <label for="category" class="col-form-label">Category E</label>
                             <input type="text" class="form-control" name="cat_e" id="cat_price">
                         </div>
-
+                        -->
                         <div class="col-sm-12 col-md-12 mb-1">
                             <label for="categorytitle" class="col-form-label">subcategory Image</label>
                             <input type="file" name="sc_logo" class="form-control">
@@ -227,6 +231,7 @@
                             <label for="category" class="col-form-label">Category C</label>
                             <input type="text" class="form-control" name="catprice_c" id="catprice_c">
                         </div>
+                        <!--
                         <div class="col-sm-12 col-md-12 mb-1">
                             <label for="category" class="col-form-label">Category D</label>
                             <input type="text" class="form-control" name="catprice_d" id="catprice_d">
@@ -234,7 +239,7 @@
                         <div class="col-sm-12 col-md-12 mb-1">
                             <label for="category" class="col-form-label">Category E</label>
                             <input type="text" class="form-control" name="catprice_e" id="catprice_e">
-                        </div>
+                        </div>-->
 
                         <div class="col-sm-12 col-md-12 mb-1">
                             <label for="categorytitle" class="col-form-label">subcategory Image</label>
@@ -373,10 +378,6 @@
                     $('#catprice_c').val(response.cat_c);
                     $('#catprice_d').val(response.cat_d);
                     $('#catprice_e').val(response.cat_e);
-
-
-
-
                 
 
                     const select = $('#product_drop');
