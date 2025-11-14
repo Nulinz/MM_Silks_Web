@@ -63,6 +63,16 @@
     }
 </script>
 
+<script>
+    function validate_contact(input) {
+        let value = input.value.replace(/\D/g, "");
+        if (value.length > 10) {
+            value = value.slice(0, 10);
+        }
+        input.value = value;
+    }
+</script>
+
 </body>
 
 </html>

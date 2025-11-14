@@ -31,8 +31,8 @@
                 </div>
                 <div class="col-sm-12 col-md-3 col-xl-3 mb-3 inputs">
                     <label for="contact">Contact Number</label>
-                    <input type="text" class="form-control" name="c_contact" id="c_contact"
-                        maxlength="10" onkeyup="checkPhone()">
+                    <input type="number" class="form-control" name="c_contact" id="c_contact" min="6000000000"
+                        max="9999999999" oninput="validate_contact(this)" onkeyup="checkPhone()">
                     <small id="phone-error"></small>
                 </div>
                 <!--    

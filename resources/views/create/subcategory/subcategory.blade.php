@@ -137,7 +137,7 @@
                      
                         <div class="col-sm-12 col-md-12 mb-1">
                             <label for="category" class="col-form-label">Category A</label>
-                            <input type="text" class="form-control" name="cat_a" id="cat_price">
+                            <input type="text" class="form-control" name="cat_a" id="cat_price" value="0" readonly>
                         </div>
                         <div class="col-sm-12 col-md-12 mb-1">
                             <label for="category" class="col-form-label">Category B</label>
@@ -221,7 +221,7 @@
                         </div>
                         <div class="col-sm-12 col-md-12 mb-1">
                             <label for="category" class="col-form-label">Category A</label>
-                            <input type="text" class="form-control" name="catprice_a" id="catprice_a">
+                            <input type="text" class="form-control" name="catprice_a" id="catprice_a" readonly>
                         </div>
                         <div class="col-sm-12 col-md-12 mb-1">
                             <label for="category" class="col-form-label">Category B</label>

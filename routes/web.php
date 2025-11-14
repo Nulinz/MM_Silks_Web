@@ -66,6 +66,10 @@ Route::middleware('auth')->group(function () {
     Route::get('customer-profile/{id}',  [CustomerController::class, 'customer_profile'])->name('customer.customer-profile');
     Route::get('customer-edit-basic/{id}',  [CustomerController::class, 'customer_edit_basic'])->name('customer.edit-basic');
     Route::post('/validate-phone', [CustomerController::class, 'checkPhone']);
+    Route::get('/delete_customer/{id}', [CustomerController::class, 'delete_customer'])->name('delete_customer');
+    Route::post('/edit-number', [CustomerController::class, 'check_edit_number']);
+
+
 
 
 

@@ -36,9 +36,18 @@ class CustomerController extends Controller
         if ($req->cus_id) {
 
 
-            $permission_time = $req->cus_permission_type === 'fullaccess'
-                ? Carbon::now()->setTimezone('Asia/Kolkata')->addYears(5)->toDateString()
-                : $req->cus_permission_time;
+            if ($req->cus_permission_type === 'fullaccess') {
+                // 5 years from now
+                $permission_time = Carbon::now()
+                    ->setTimezone('Asia/Kolkata')
+                    ->addYears(5)
+                    ->toDateString();
+            } elseif ($req->cus_permission_type === 'onetime') {
+                // Current date
+                $permission_time = Carbon::now()
+                    ->setTimezone('Asia/Kolkata')
+                    ->toDateString();
+            }
 
 
             $updateData = [
@@ -48,7 +57,7 @@ class CustomerController extends Controller
                 'c_type' => $req->cus_type,
                 'permission_type' => $req->cus_permission_type,
                 'permission_time' => $permission_time,
-                'joindate' => $req->cus_join_date,
+                // 'joindate' => $req->cus_join_date,
                 'cby' => $req->cus_created_by,
 
             ];
@@ -59,12 +68,14 @@ class CustomerController extends Controller
             if ($customer_update) {
 
                 $c_list = DB::table('customers')
-                    ->where('id', $req->cus_id)
-                    ->first();
-                return view('customer.profile', ['c_list' => $c_list]);
+                    ->get();
+                    //return back();
+                return view('customer.list', ['customer_list' => $c_list]);
                 //return back()->with('message', 'customer updated successfully');
             } else {
-                return back()->with('info', 'No changs made to the customer');
+                $c_list = DB::table('customers')
+                ->get();
+                return view('customer.list', ['customer_list' => $c_list]);
             }
         }
 
@@ -121,21 +132,10 @@ class CustomerController extends Controller
         //dd($req->id);
         //$req->id;
 
-        //dd($req->id);
-        // $req->id;
-
+       
         $c_list = DB::table('customers')
             ->where('id', $req->id)
             ->first();
-
-        //return view('employee.profile',['e_list'=>$e_list]);
-
-
-
-        // $e_list =  DB::table('employee as e')->where('e.id',$req->id)
-        // ->leftJoin('employee_salary as es', 'es.e_id','=','e.id')
-        // ->select('e.*','es.*','e.id as employee_id','e.e_id as employee_code')
-        // ->first();,['e_list'=>$e_list]
 
         return view('customer.profile', ['c_list' => $c_list]);
     }
@@ -193,4 +193,44 @@ class CustomerController extends Controller
         $exists = Customer::where('c_contact', $request->phone)->exists();
         return response()->json(['exists' => $exists]);
     }
+
+    public function delete_customer($id)
+   {
+        $customer = Customer::find($id);
+
+        if (!$customer) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Customer not found.',
+            ], 404);
+        }
+
+        $customer->delete();
+
+        return back();
+  }
+
+  public function check_edit_number(Request $request)
+  {
+   // dd($request->all());
+    $request->validate([
+        'phone' => 'required|numeric',
+    ]);
+
+    // If editing, pass current customer ID from frontend (optional)
+    $customerId = $request->input('id'); 
+
+    $query = Customer::where('c_contact', $request->phone);
+
+    // Exclude the current record if editing
+    if ($customerId) {
+        $query->where('id', '!=', $customerId);
+    }
+
+    $exists = $query->exists();
+
+    return response()->json(['exists' => $exists]);
+  }
+
+
 }

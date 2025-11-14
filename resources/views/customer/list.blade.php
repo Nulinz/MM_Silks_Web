@@ -71,8 +71,12 @@
                                 <button class="btn btn-sm btn-success status_button" data-id="{{ $customer->id }}" data-status_button="{{ $customer->status }}">Active </button>
                                 @endif
 
-
-                                <!-- <a href="{{ route('customer.customer-profile',['id'=>$customer->id]) }}" data-bs-toggle="tooltip"
+                                <a href="{{ route('customer.edit-basic',$customer->id)}}" data-bs-toggle="tooltip"
+                                data-bs-title="Edit Basic Details"><i class="fas fa-pen-to-square"></i></a> 
+                                
+                                <a href="{{ route('delete_customer',$customer->id)}}" data-bs-toggle="tooltip"
+                                data-bs-title="Delete Customer"><i class="fas fa-trash-alt"></i></a> 
+                                 <!--<a href="{{ route('customer.customer-profile',['id'=>$customer->id]) }}" data-bs-toggle="tooltip"
                                     data-bs-title="Profile"><i class="fas fa-arrow-up-right-from-square"></i></a> -->
 
                             </div>

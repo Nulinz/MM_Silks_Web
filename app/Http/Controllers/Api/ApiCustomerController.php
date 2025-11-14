@@ -285,6 +285,7 @@ class ApiCustomerController extends Controller
      
      public function items_list(Request $request)
    {
+    
         $validator = Validator::make($request->all(), [
             'subcategory_id'  => 'required|exists:subcategory,id',
             'customer_id'  => 'required|exists:customers,id',
@@ -761,7 +762,7 @@ public function placeOrder(Request $request)
                     $items = DB::table('items')
             ->whereIn('items.id', $cartItems->pluck('item_id'))
             ->leftJoin('subcategory', 'subcategory.id', '=', 'items.sc_id')
-            ->select('items.id', 'items.code','items.types' ,'items.i_color', 'subcategory.sc_name')
+            ->select('items.id', 'items.code','items.types' ,'items.i_color', 'subcategory.sc_name','subcategory.id as sub_id')
             ->get()
             ->map(function ($item) use ($cartItems, $colorMap) {
                 $cartItem = $cartItems->firstWhere('item_id', $item->id);
@@ -770,6 +771,7 @@ public function placeOrder(Request $request)
                     'item_id'    => $item->id,
                     'code'       => $item->code,
                     'sc_name'    => $item->sc_name,
+                    'sub_id'    => $item->sub_id,
                     // 'types'    => $item->types,
                     'qty'        => $cartItem?->qty ?? 0,
                     'price'      => $cartItem ? round($cartItem->amount) : 0,
@@ -904,7 +906,7 @@ public function order_summary(Request $request)
      //popup version update
     public function popup(Request $request)
     {
-        return response()->json(['version' => '0.0.1'], 200);
+        return response()->json(['version' => '0.0.2'], 200);
     }
 
     
@@ -1430,9 +1432,6 @@ public function color_list(){
 
 
 }
-
-
-   
 
 
 
