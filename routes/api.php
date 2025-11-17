@@ -35,7 +35,7 @@ Route::post('update_popup', [ApiCustomerController::class, 'popup']);
 Route::post('update_token', [ApiCustomerController::class, 'update_token']);
 Route::post('logout', [ApiCustomerController::class, 'logout']);
 Route::post('order_return', [ApiCustomerController::class, 'order_return']);
-Route::get('price_filter', [ApiCustomerController::class, 'price_filter']);
+Route::post('price_filter', [ApiCustomerController::class, 'price_filter']);
 Route::get('color_filter', [ApiCustomerController::class, 'color_filter']);
 Route::get('color_list', [ApiCustomerController::class, 'color_list']);
 

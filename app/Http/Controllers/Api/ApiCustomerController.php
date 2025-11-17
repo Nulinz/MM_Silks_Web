@@ -1156,6 +1156,8 @@ public function update_token(Request $request)
         $price = (float) $sub->$priceColumn;
         return $price >= $request->min_price && $price <= $request->max_price;
     });
+    
+    Log::info($filtered);
 
     $responseData = $filtered->map(function ($sub) use ($priceColumn, $request, $customer) {
         // Get all active items linked to the subcategory
