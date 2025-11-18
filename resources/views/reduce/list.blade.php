@@ -37,6 +37,11 @@
                 @csrf
                 <input type="file" name="csv_file" accept=".csv" required class="form-control">
                 <button type="submit" class="btn btn-success w-100">Upload CSV</button>
+                <a href="{{ asset('sample/sample_reduce_items.csv') }}" 
+                    class="mt-3 d-block text-primary"
+                    download>
+                     Download Sample CSV
+                </a>
                 
             </form>
         </div>
@@ -44,11 +49,14 @@
 </div>
 
 <!-- Add spacing below the card -->
+<div id="submitContainer" class="mt-4 text-end px-4" style="display:none;">
+    <button class="btn btn-success" style="width:150px;">Submit</button>
+</div>
 <div id="matchedTableContainer" class="mt-5 px-4"></div>
 
-<div id="submitContainer" class="mt-4 text-end px-4" style="display:none;">
+{{-- <div id="submitContainer" class="mt-4 text-end px-4" style="display:none;">
     <button class="btn btn-primary" style="width:150px;">Submit</button>
-</div>
+</div> --}}
 
 
 
@@ -275,6 +283,66 @@ $(document).ready(function() {
             },
             error: function(xhr) {
                 alert('Error fetching matched data: ' + xhr.responseText);
+            }
+        });
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    // Use event delegation for dynamically shown button
+    $(document).on('click', '#submitContainer button', function() {
+        var itemIds = [];
+
+        // Collect all item IDs from the dynamically loaded table
+        $('#matchedTableContainer table tbody tr').each(function() {
+            var id = $(this).data('id');
+            if(id !== undefined) itemIds.push(id);
+        });
+
+        if (itemIds.length === 0) {
+            alert('No items to update.');
+            return;
+        }
+
+        $.ajax({
+            url: "{{ route('reduce_items.inactivate') }}",
+            type: 'POST',
+            dataType: 'json', // Ensure response is treated as JSON
+            data: {
+                ids: itemIds,
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(response) {
+
+               $('#alertContainer').html(`
+                    <div style="
+                        position: fixed;
+                        bottom: 20px;
+                        right: 20px;
+                        width: 250px;
+                        z-index: 9999;
+                    ">
+                        <div class="alert alert-success alert-dismissible fade show text-center p-2"
+                            role="alert" style="font-size:14px;">
+                            ${response.message}
+                            <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert"></button>
+                        </div>
+                    </div>
+                `);
+               
+                if (response.status === 'success') {
+                    $('#submitContainer').hide();
+                    $('#matchedTableContainer').hide();
+                    
+                            setTimeout(() => {
+                    location.reload();
+                }, 1200);
+                }
+            },
+            error: function(xhr) {
+                alert('Error: ' + xhr.responseText);
             }
         });
     });

@@ -59,6 +59,7 @@ Route::middleware('auth')->group(function () {
     Route::get('reduce-item-list', [CreateController::class, 'reduce_list'])->name('create.reduce_list');
     Route::post('reduce-item-details', [CreateController::class, 'reduce_items'])->name('create.reduce_items');
     Route::post('get-reduce-item', [CreateController::class, 'get_reduce_items'])->name('get.reduce_items');
+    Route::post('reduce-items-inactivate', [CreateController::class, 'inactivate_items'])->name('reduce_items.inactivate');
 
 
 

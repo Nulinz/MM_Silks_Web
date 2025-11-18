@@ -722,7 +722,7 @@ public function reduce_items(Request $request)
                             <tr  data-id="{{ $item->id }}">
                                 <th>#</th>
                                 <th>Code</th>
-                              
+                                <th>Image</th>
                                
                             </tr>
                         </thead>
@@ -736,6 +736,7 @@ public function reduce_items(Request $request)
                 $html .= '<tr data-id="' . $item->id . '">
                             <td>' . ($key + 1) . '</td>
                             <td>' . $item->code . '</td>
+                            <td><img src="' . $imagePath . '" height="40" alt="Item Image"></td>
                             
                            
                           </tr>';
@@ -748,7 +749,25 @@ public function reduce_items(Request $request)
         return response($html);
     }
 
-} 
+    public function inactivate_items(Request $request)
+    {
+        $itemIds = $request->ids; // array of item IDs
+
+        if (!$itemIds || !is_array($itemIds)) {
+            return response()->json(['status' => 'error', 'message' => 'No items selected']);
+        }
+
+        Item::whereIn('id', $itemIds)->update(['status' => 'Inactive']);
+
+        return response()->json(['status' => 'success', 'message' => 'Items marked as inactive']);
+    }
+
+    
+
+}
+
+
+
 
 
 
