@@ -56,6 +56,13 @@ Route::middleware('auth')->group(function () {
     Route::get('color-list', [CreateController::class, 'color_list'])->name('create.color_list');
     Route::get('subcategory-wise-list', [CreateController::class, 'subcategory_wise_list'])->name('subcategory_wise_list');
     Route::get('item-details-list', [CreateController::class, 'item_details_list'])->name('create.item_details_list');
+    Route::get('reduce-item-list', [CreateController::class, 'reduce_list'])->name('create.reduce_list');
+    Route::post('reduce-item-details', [CreateController::class, 'reduce_items'])->name('create.reduce_items');
+    Route::post('get-reduce-item', [CreateController::class, 'get_reduce_items'])->name('get.reduce_items');
+
+
+
+
 
     Route::get('customer-wise-list', [CustomerController::class, 'customer_wise_list'])->name('customer_wise_list'); //new rout
     Route::get('customer-details-list', [CustomerController::class, 'customer_details_list'])->name('customer.customer_details_list');  //new route

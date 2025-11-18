@@ -126,4 +126,20 @@
     </a>
 </li>
 
+<li class="mb-1">
+    <a href="{{route('create.reduce_list')}}">
+        <button class="btn0 mx-auto btn-toggle collapsed"
+            data-bs-toggle="collapse" data-bs-target="#collapse8" aria-expanded="false">
+            <div class="righticon d-flex mx-auto">
+                <i class="fa-solid fa-angle-right"></i>
+            </div>
+            <div class="btnname">
+                <i class="fa-solid fa-user"></i> &nbsp;Reduce 
+            </div>
+        </button>
+    </a>
+</li>
+
+
+
 
