@@ -61,7 +61,7 @@
                       <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{ $subcategory->product->p_name  }}</td>
-                        <td>{{ $subcategory->category->c_name  }}</td>   
+                        <td>{{ $subcategory->category->c_name ?? 'No Data'  }}</td>   
                         <td>{{ $subcategory->sc_name  }}</td>
                         <td>{{ $subcategory->cat_a  }}</td>
                         <td>{{ $subcategory->cat_b  }}</td>
@@ -85,7 +85,15 @@
                              
                             <a data-bs-toggle="modal" data-bs-target="#editsubcategory"><i
                                         class="fas fa-pen-to-square edit_button" data-id="{{ $subcategory->id }}"></i></a>
-                                        </div>
+
+                              <form action="{{ route('delete_subcategory', $subcategory->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                <button type="submit" 
+                                        style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                                    <i class="fas fa-trash-alt" style="color: black;"></i>
+                                </button>
+                            </form>
+                           </div>
                            
                          </td>
                     </tr>

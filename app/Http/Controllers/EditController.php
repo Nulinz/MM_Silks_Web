@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Models\Subcategory;
+use App\Models\Item;
 
 class EditController extends Controller
 {
@@ -82,6 +85,53 @@ class EditController extends Controller
          $color_details =  DB::table('color')->where('id',$req->id)->first(); 
          return response()->json($color_details,200);
     }
+
+    public function delete_category($id)
+    {
+         $category = Category::find($id);
+ 
+         if (!$category) {
+             return response()->json([
+                 'status' => 'error',
+                 'message' => 'Customer not found.',
+             ], 404);
+         }
+ 
+         $category->delete();
+ 
+         return back();
+   }
+   public function delete_subcategory($id)
+   {
+        $subcategory = Subcategory::find($id);
+
+        if (!$subcategory) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Customer not found.',
+            ], 404);
+        }
+
+        $subcategory->delete();
+
+        return back();
+   }
+   public function delete_items($id)
+   {
+        $item = Item::find($id);
+
+        if (!$item) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Customer not found.',
+            ], 404);
+        }
+
+        $item->delete();
+
+        return back();
+    }
+
 
 
 }

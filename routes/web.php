@@ -130,7 +130,12 @@ Route::middleware('auth')->group(function () {
     Route::post('subcategory-edit', [EditController::class, 'edit_subcategory'])->name('edit.subcategory-profile');
     Route::post('items-edit', [EditController::class, 'edit_items'])->name('edit.items-profile');
     Route::post('color-edit', [EditController::class, 'edit_color'])->name('edit.color-profile');
+    Route::post('/delete_category/{id}', [EditController::class, 'delete_category'])->name('delete_category');
+    Route::post('/delete_subcategory/{id}', [EditController::class, 'delete_subcategory'])->name('delete_subcategory');
+    Route::post('/delete_items/{id}', [EditController::class, 'delete_items'])->name('delete_items');
 
+
+    
     Route::post('admin-edit', [AdminController::class, 'edit_admin'])->name('admin_edit');
 });
 

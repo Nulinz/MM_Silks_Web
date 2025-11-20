@@ -73,8 +73,18 @@
                              
                             <a data-bs-toggle="modal" data-bs-target="#editcategory"><i
                                         class="fas fa-pen-to-square edit_button" data-id="{{ $category->id }}"></i></a>
-                                        </div>
-                           
+
+                             {{-- <a data-bs-toggle="modal" data-bs-target="#editcategory"><i
+                                        class="fas fa-trash-alt edit_button" data-id="{{ $category->id }}"></i></a> --}}
+
+                            <form action="{{ route('delete_category', $category->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                <button type="submit" 
+                                        style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                                    <i class="fas fa-trash-alt" style="color: black;"></i>
+                                </button>
+                            </form>
+                            </div> 
                          </td>
                     </tr>  
                     @endforeach      
