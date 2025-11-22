@@ -250,6 +250,7 @@
         <thead>
             <tr>
                 <th>#</th>
+                <th>Select</th>
                 <th>Subcategory</th>
                 <th>Code</th>
                 <th>Image</th>
@@ -261,7 +262,13 @@
         </tbody>
     </table>
      <!-- ✅ Item table closed -->
+    <div class="mb-3">
+   <button id="deleteSelectedItems" class="btn btn-danger" disabled>Delete</button>
+</div>
+
+
 </div> <!-- ✅ Item container div closed -->
+
 
 
 
@@ -627,6 +634,48 @@ $(document).ready(function () {
 });
 </script>
 
+<script>
+$(document).ready(function() {
+
+    // Enable/disable Delete button whenever any checkbox changes
+    $(document).on('change', '.select_item', function() {
+        // Check if any checkboxes are selected
+        let anyChecked = $('.select_item:checked').length > 0;
+        $('#deleteSelectedItems').prop('disabled', !anyChecked);
+    });
+
+    // Delete selected items
+    $('#deleteSelectedItems').on('click', function() {
+        let selectedIds = $('.select_item:checked').map(function() {
+            return $(this).val();
+        }).get();
+
+        if(selectedIds.length === 0) return; // just in case
+
+        if(!confirm('Are you sure you want to delete selected items?')) return;
+
+        $.ajax({
+            url: "{{ route('subitem_deleteMultiple') }}", // make sure this route exists
+            type: 'POST',
+            data: {
+                ids: selectedIds,
+                _token: "{{ csrf_token() }}"
+            },
+            success: function(response) {
+                // Remove deleted rows
+                $('.select_item:checked').closest('tr').remove();
+
+                // Disable button again
+                $('#deleteSelectedItems').prop('disabled', true);
+            },
+            error: function(xhr) {
+                console.error('Error:', xhr.responseText);
+            }
+        });
+    });
+});
+
+</script>
 
 
 

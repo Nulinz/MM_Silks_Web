@@ -135,6 +135,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/delete_items/{id}', [EditController::class, 'delete_items'])->name('delete_items');
     Route::post('/delete_colors/{id}', [EditController::class, 'delete_colors'])->name('delete_colors');
     Route::post('/items/delete-multiple', [EditController::class, 'deleteMultiple'])->name('delete_items_multiple');
+    Route::post('/subitem/delete-multiple', [EditController::class, 'subitem_deleteMultiple'])->name('subitem_deleteMultiple');
+
     // routes/web.php
     Route::get('/category/{id}/subcategories', [EditController::class, 'getSubcategories'])
     ->name('category.subcategories');

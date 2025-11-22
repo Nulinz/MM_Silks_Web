@@ -255,6 +255,7 @@ class EditController extends Controller
 
         $html .= '<tr>';
         $html .= '<td>' . ($key + 1) . '</td>';
+        $html .= '<td><input type="checkbox" class="select_item" value="' . $item->id . '"></td>';
         $html .= '<td>' . $item->subcategory->sc_name . '</td>';
         $html .= '<td>' . $item->code . '</td>';
         $html .= '<td><img src="' . asset("image/itemimage/" . $item->i_logo) . '" height="30"></td>';
@@ -264,6 +265,16 @@ class EditController extends Controller
 
     return $html;
 }
+public function subitem_deleteMultiple(Request $request)
+{
+    $ids = $request->ids;
+    if(!empty($ids)) {
+        Item::whereIn('id', $ids)->delete();
+        return response()->json(['message' => 'Items deleted successfully']);
+    }
+    return response()->json(['message' => 'No items selected'], 400);
+}
+
 
 
 }
