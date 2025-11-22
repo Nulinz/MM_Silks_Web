@@ -60,7 +60,7 @@
 
                       <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{ $subcategory->product->p_name  }}</td>
+                        <td>{{ $subcategory->product->p_name ?? '-'  }}</td>
                         <td>{{ $subcategory->category->c_name ?? 'No Data'  }}</td>   
                         <td>{{ $subcategory->sc_name  }}</td>
                         <td>{{ $subcategory->cat_a  }}</td>
@@ -145,15 +145,15 @@
                      
                         <div class="col-sm-12 col-md-12 mb-1">
                             <label for="category" class="col-form-label">Category A</label>
-                            <input type="text" class="form-control" name="cat_a" id="cat_price" value="0" readonly>
+                            <input type="text" class="form-control" name="cat_a" id="cat_a" value="0" readonly>
                         </div>
                         <div class="col-sm-12 col-md-12 mb-1">
                             <label for="category" class="col-form-label">Category B</label>
-                            <input type="text" class="form-control" name="cat_b" id="cat_price">
+                            <input type="text" class="form-control" name="cat_b" id="cat_b" required>
                         </div>
                         <div class="col-sm-12 col-md-12 mb-1">
                             <label for="category" class="col-form-label">Category C</label>
-                            <input type="text" class="form-control" name="cat_c" id="cat_price">
+                            <input type="text" class="form-control" name="cat_c" id="cat_c">
                         </div>
                         <!--
                         <div class="col-sm-12 col-md-12 mb-1">
@@ -487,6 +487,81 @@ $(document).ready(function () {
     });
 });
 </script>
+
+
+<script>
+    const catBInput = document.getElementById("cat_b");
+
+    // Listen for input changes
+    catBInput.addEventListener("input", function () {
+        if (this.value.trim() === "" || this.value.trim() === "0") {
+            // Set a custom message
+            this.setCustomValidity("This field cannot be empty or 0.");
+        } else {
+            // Clear the message if valid
+            this.setCustomValidity("");
+        }
+
+        // Trigger validity display immediately
+        this.reportValidity();
+    });
+</script>
+<script>
+    const catCInput = document.getElementById("cat_c");
+
+    // Listen for input changes
+    catCInput.addEventListener("input", function () {
+        if (this.value.trim() === "" || this.value.trim() === "0") {
+            // Set a custom message
+            this.setCustomValidity("This field cannot be empty or 0.");
+        } else {
+            // Clear the message if valid
+            this.setCustomValidity("");
+        }
+
+        // Trigger validity display immediately
+        this.reportValidity();
+    });
+</script>
+
+<script>
+    const catpriceBInput = document.getElementById("catprice_b");
+
+    // Listen for input changes
+    catpriceBInput.addEventListener("input", function () {
+        if (this.value.trim() === "" || this.value.trim() === "0") {
+            // Set a custom message
+            this.setCustomValidity("This field cannot be empty or 0.");
+        } else {
+            // Clear the message if valid
+            this.setCustomValidity("");
+        }
+
+        // Trigger validity display immediately
+        this.reportValidity();
+    });
+</script>
+<script>
+    const catpriceCInput = document.getElementById("catprice_c");
+
+    // Listen for input changes
+    catpriceCInput.addEventListener("input", function () {
+        if (this.value.trim() === "" || this.value.trim() === "0") {
+            // Set a custom message
+            this.setCustomValidity("This field cannot be empty or 0.");
+        } else {
+            // Clear the message if valid
+            this.setCustomValidity("");
+        }
+
+        // Trigger validity display immediately
+        this.reportValidity();
+    });
+</script>
+
+
+
+
 
 
 

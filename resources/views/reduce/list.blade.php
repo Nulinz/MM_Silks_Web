@@ -49,14 +49,14 @@
 </div>
 
 <!-- Add spacing below the card -->
-<div id="submitContainer" class="mt-4 text-end px-4" style="display:none;">
+{{-- <div id="submitContainer" class="mt-4 text-end px-4" style="display:none;">
     <button class="btn btn-success" style="width:150px;">Submit</button>
-</div>
+</div> --}}
 <div id="matchedTableContainer" class="mt-5 px-4"></div>
 
-{{-- <div id="submitContainer" class="mt-4 text-end px-4" style="display:none;">
+<div id="submitContainer" class="mt-4 px-4 mb-3" style="display:none;">
     <button class="btn btn-primary" style="width:150px;">Submit</button>
-</div> --}}
+</div>
 
 
 

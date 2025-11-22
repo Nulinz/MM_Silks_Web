@@ -93,6 +93,14 @@
                              
                             <a data-bs-toggle="modal" data-bs-target="#editproduct"><i
                                         class="fas fa-pen-to-square edit_button" data-id="{{ $color_value->id }}"></i></a>
+
+                             <form action="{{ route('delete_colors', $color_value->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                <button type="submit" 
+                                        style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                                    <i class="fas fa-trash-alt" style="color: black;"></i>
+                                </button>
+                            </form>
                                         </div>
                            
                          </td>

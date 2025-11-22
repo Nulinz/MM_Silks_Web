@@ -39,7 +39,8 @@
                 <table class="example table">
                     <thead>
                         <tr>
-                            <th>#</th>
+                           <th>#</th>
+                           <th>Select</th>
                             <th>Subcategory</th>
                             <th>Code</th>
                             <th>Image</th>
@@ -50,8 +51,9 @@
                     <tbody>
                      @foreach($item_list as $item)
                        <tr>
-                       <td>{{$loop->iteration}}</td>
-                      <td>{{ $item->subcategory?->sc_name ?? '-' }}</td>
+                       <td>{{$loop->iteration}}</td>    
+                        <td><input type="checkbox" class="select_item" value="{{ $item->id }}"></td> 
+                      <td>{{ $item->subcategory?->sc_name ?? 'No Data' }}</td>
                        <td>{{ $item->code  }}</td>
                         <td>
                         <div>
@@ -230,6 +232,11 @@
             </div>
         </div>
     </div>
+    <button id="delete_selected" class="btn btn-danger" 
+            style="margin: 20px; padding: 10px 10px;" disabled>
+        Delete
+    </button>
+
 
     <!-- Scripts -->
     <!-- jQuery -->
@@ -427,6 +434,64 @@
     });
 </script>
 
+<script>
+$(document).ready(function() {
+    // Select/Deselect all checkboxes
+    $('#select_all').on('change', function() {
+        $('.select_item').prop('checked', $(this).prop('checked'));
+        toggleDeleteButton();
+    });
+
+    // Toggle Delete button when individual checkbox changed
+    $('.select_item').on('change', function() {
+        // If all are selected, check 'select_all', else uncheck it
+        $('#select_all').prop('checked', $('.select_item:checked').length === $('.select_item').length);
+        toggleDeleteButton();
+    });
+
+    function toggleDeleteButton() {
+        if ($('.select_item:checked').length > 0) {
+            $('#delete_selected').prop('disabled', false);
+        } else {
+            $('#delete_selected').prop('disabled', true);
+        }
+    }
+
+    // Delete selected items on button click
+    $('#delete_selected').on('click', function() {
+        var selectedIds = $('.select_item:checked').map(function() {
+            return $(this).val();
+        }).get();
+
+        if(selectedIds.length === 0) {
+            alert('Please select at least one item to delete.');
+            return;
+        }
+
+        if(!confirm('Are you sure you want to delete selected items?')) {
+            return;
+        }
+
+        $.ajax({
+            url: "{{ route('delete_items_multiple') }}", // Create this route in your backend
+            method: 'POST',
+            data: {
+                ids: selectedIds,
+                _token: "{{ csrf_token() }}"
+            },
+            success: function(response) {
+                // Optionally reload page or remove deleted rows dynamically
+                location.reload();
+            },
+            error: function(xhr, status, error) {
+                console.error('Error deleting items:', xhr.responseText);
+                alert('Failed to delete selected items.');
+            }
+        });
+    });
+});
+
+</script>
 
 
 @endsection

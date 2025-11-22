@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Models\Subcategory;
 use App\Models\Item;
+use App\Models\Color;
 
 class EditController extends Controller
 {
@@ -101,7 +102,7 @@ class EditController extends Controller
  
          return back();
    }
-   public function delete_subcategory($id)
+   public function delete_subcategory(Request $request,$id)
    {
         $subcategory = Subcategory::find($id);
 
@@ -111,6 +112,14 @@ class EditController extends Controller
                 'message' => 'Customer not found.',
             ], 404);
         }
+
+        if ($request->wantsJson()) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Category deleted successfully.',
+            ]);
+        }
+    
 
         $subcategory->delete();
 
@@ -132,6 +141,129 @@ class EditController extends Controller
         return back();
     }
 
+    public function delete_colors($id)
+    {
+         $color = Color::find($id);
+ 
+         if (!$color) {
+             return response()->json([
+                 'status' => 'error',
+                 'message' => 'Customer not found.',
+             ], 404);
+         }
+ 
+         $color->delete();
+ 
+         return back();
+     }
+
+     public function deleteMultiple(Request $request)
+     {
+         $ids = $request->ids;
+         if(!empty($ids)) {
+             Item::whereIn('id', $ids)->delete();
+             return response()->json(['message' => 'Items deleted successfully']);
+         }
+         return response()->json(['message' => 'No items selected'], 400);
+     }
+     
+     public function getSubcategories($id) {
+        $subcategories = Subcategory::where('c_id', $id)->with('item','product','category')->get();
+    
+        $html = '';
+        foreach($subcategories as $key => $sub) {
+            $itemCount = count($sub->item);
+
+            $html .= '<tr>';
+            $html .= '<td>'.($key+1).'</td>';
+            $html .= '<td>'.$sub->product->p_name.'</td>';
+            $html .= '<td>'.$sub->category->c_name.'</td>';
+            $html .= '<td>'.$sub->sc_name.'</td>';
+            $html .= '<td>'.$sub->cat_a.'</td>';
+            $html .= '<td>'.$sub->cat_b.'</td>';
+            $html .= '<td>'.$sub->cat_c.'</td>';
+            $html .= '<td><img src="'.asset("image/subcatimage/".$sub->sc_logo).'" height="30"></td>';
+            $html .= '<td>' . count($sub->item) . '</td>';
+           
+            // LIST LINK (no Blade syntax)
+            if ($itemCount > 0) {
+                $html .= '<td>
+                            <a href="#" class="view_subitems" data-subcategory="' . $sub->id . '">List</a>
+                          </td>';
+            } else {
+                $html .= '<td>No Items</td>';
+            }        //     <td>
+        //     @if($category->subcategories->count() > 0)
+        //         <span class="badge bg-info">{{ $total_items }} Items</span><br>
+        //         <a href="#" class="view_subcategories" data-category="{{ $category->id }}">List</a>
+        //     @else
+        //         No Subcategories
+        //     @endif
+        // </td>
+
+            $html .= '<td>'.$sub->status.'</td>';
+    
+            // Action Buttons (Edit + Delete)
+            // $html .= '<td style="display:flex; gap:10px; align-items:center;">';
+    
+            // // EDIT BUTTON
+            // $html .= '<a data-bs-toggle="modal" data-bs-target="#editsubcategory">
+            //             <i class="fas fa-pen-to-square edit_sub_button" 
+            //                 style="color:black; cursor:pointer;" 
+            //                 data-id="'.$sub->id.'"></i>
+            //           </a>';
+    
+            // // DELETE BUTTON
+            // $html .= '<button class="delete-subcategory-btn" data-id="'.$sub->id.'" 
+            //                 style="background:none; border:none; cursor:pointer;">
+            //                 <i class="fas fa-trash-alt" style="color:black;"></i>
+            //           </button>';
+    
+            // $html .= '</td>';
+            $html .= '</tr>';
+        }
+    
+        return $html;
+    }
+    
+    public function delete_subcategory_details(Request $request,$id)
+   {
+        $subcategory = Subcategory::find($id);
+
+        if (!$subcategory) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Customer not found.',
+            ], 404);
+        }
+
+        $subcategory->delete();
+
+        return back();
+   }
+
+
+  
+
+    public function getSubItems($id)
+{
+    $items = Item::with('subcategory')->where('sc_id', $id)->get();
+
+    $html = '';
+
+    foreach ($items as $key => $item) {
+
+        $html .= '<tr>';
+        $html .= '<td>' . ($key + 1) . '</td>';
+        $html .= '<td>' . $item->subcategory->sc_name . '</td>';
+        $html .= '<td>' . $item->code . '</td>';
+        $html .= '<td><img src="' . asset("image/itemimage/" . $item->i_logo) . '" height="30"></td>';
+        $html .= '<td>' . $item->status . '</td>';
+        $html .= '</tr>';
+    }
+
+    return $html;
+}
 
 
 }

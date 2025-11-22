@@ -5,10 +5,25 @@
     <link rel="stylesheet" href="{{ asset('assets/css/modal.css') }}">
 
     <style>
-        .table thead th {
-            background-color: var(--theadbg) !important;
-        }
-    </style>
+    /* Category Table Header Color */
+    .table thead th {
+        background-color: var(--theadbg) !important;
+    }
+
+    /* Add left-right spacing to Subcategory & Item sections */
+    #subcategoryContainer,
+    #itemContainer {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    /* Ensure tables take full width inside the padding */
+    #subcategoryContainer table,
+    #itemContainer table {
+        width: 100% !important;
+    }
+</style>
+
 
     <div class="sidebodydiv px-4 py-1">
         <div class="sidebodyhead">
@@ -44,6 +59,7 @@
                             <th style="width: 250px">Category Title</th>
                             <th>Image</th>
                             <th>Subcategory Count</th>
+                            <th>Subcategories</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -61,6 +77,18 @@
                          </div>
                          </td>
                          <td>{{ count($category->subcategories ?? []) }}</td>
+                         <td>
+                            @if(count($category->subcategories ?? []) > 0)
+                                <a href="#" class="view_subcategories" data-category="{{ $category->id }}">
+                                    {{-- {{ count($category->subcategories) }} Subcategories --}}
+                                   List
+
+                                </a>
+                            @else
+                                No Subcategories
+                            @endif
+                        </td>
+
                         <td>{{ $category->status }}</td>
                         <td> 
                           <div class="d-flex align-items-center gap-2">
@@ -185,6 +213,58 @@
             </div>
         </div>
     </div>
+   
+   <!--ist of subcategoryies-->
+
+  <!-- Subcategory Table Container (Hidden by default) -->
+<div id="subcategoryContainer" style="display:none; margin-top:20px;">
+    <button id="backToCategories" class="btn btn-secondary mb-3">Back to Categories</button>
+    <h5>Subcategories</h5>
+    <table class="table table-bordered" id="subcategoryTable">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Subcategory</th>
+                <th>Price A</th>
+                <th>Price B</th>
+                <th>Price C</th>
+                <th>Image</th>
+                <th>Item Count</th>  
+                <th>List</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="subcategoryBody">
+            <!-- Loaded dynamically -->
+        </tbody>
+    </table> <!-- ✅ Subcategory table closed -->
+</div> <!-- ✅ Subcategory container div closed -->
+
+<!-- Item Table Container (Hidden by default) -->
+<div id="itemContainer" style="display:none; margin-top:20px;">
+    <button id="backToSubcategories" class="btn btn-secondary mb-3">Back to Subcategories</button>
+    <h5>Items</h5>
+    <table class="table table-bordered" id="itemTable">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Subcategory</th>
+                <th>Code</th>
+                <th>Image</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="itemBody">
+            <!-- AJAX Loaded Items -->
+        </tbody>
+    </table>
+     <!-- ✅ Item table closed -->
+</div> <!-- ✅ Item container div closed -->
+
+
+
 
     <!-- Scripts -->
     <!-- jQuery -->
@@ -193,47 +273,53 @@
     <!-- Datatable -->
     <script>
         // DataTables List
-        $(document).ready(function () {
-            var table = $(".example").DataTable({
-                paging: true,
-                searching: true,
-                ordering: true,
-                bDestroy: true,
-                info: false,
-                responsive: true,
-                pageLength: 10,
-                dom: '<"top"f>rt<"bottom"lp><"clear">',
-            });
-        });
+       $(document).ready(function () {
+    // Category table
+    var categoryTable = $(".example").DataTable({
+        paging: true,
+        searching: true,
+        ordering: true,
+        info: false,
+        responsive: true,
+        pageLength: 10,
+        dom: '<"top"f>rt<"bottom"lp><"clear">',
+    });
 
-        // List Filter
-        $(document).ready(function () {
-            var table = $(".example").DataTable();
-            $(".example thead th").each(function (index) {
-                var headerText = $(this).text();
-                if (
-                    headerText != "" &&
-                    headerText.toLowerCase() != "action" &&
-                    headerText.toLowerCase() != "image"
-                ) {
-                    $(".headerDropdown").append(
-                        '<option value="' + index + '">' + headerText + "</option>"
-                    );
-                }
-            });
-            $(".filterInput").on("keyup", function () {
-                var selectedColumn = $(".headerDropdown").val();
-                if (selectedColumn !== "All") {
-                    table.column(selectedColumn).search($(this).val()).draw();
-                } else {
-                    table.search($(this).val()).draw();
-                }
-            });
-            $(".headerDropdown").on("change", function () {
-                $(".filterInput").val("");
-                table.search("").columns().search("").draw();
-            });
-        });
+    // Subcategory table
+    var subcategoryTable = $("#subcategoryTable").DataTable({
+        paging: true,
+        searching: true,
+        ordering: true,
+        info: false,
+        responsive: true,
+        pageLength: 10,
+        dom: '<"top"f>rt<"bottom"lp><"clear">',
+    });
+
+    // Item table
+    var itemTable = $("#itemContainer table").DataTable({
+        paging: true,
+        searching: true,
+        ordering: true,
+        info: false,
+        responsive: true,
+        pageLength: 10,
+        dom: '<"top"f>rt<"bottom"lp><"clear">',
+    });
+
+    // Search input (works depending on visible table)
+    $(".filterInput").on("keyup", function () {
+        var val = $(this).val();
+        if ($("#subcategoryContainer").is(":visible")) {
+            subcategoryTable.search(val).draw();
+        } else if ($("#itemContainer").is(":visible")) {
+            itemTable.search(val).draw();
+        } else {
+            categoryTable.search(val).draw();
+        }
+    });
+});
+
     </script>
     <script>
         $(document).ready(function() {
@@ -355,6 +441,193 @@ $(document).ready(function () {
            });
         });
     </script>
+    
+    <script>
+
+        $(document).ready(function() {
+        // Click on category subcategories
+        $(document).on('click', '.view_subcategories', function(e) {
+            e.preventDefault();
+            var categoryId = $(this).data('category');
+
+            // Hide main table
+            $('.table-wrapper').hide();
+
+            // Fetch subcategories via AJAX
+            $.ajax({
+                url: '/category/' + categoryId + '/subcategories', // Create this route
+                type: 'GET',
+                success: function(response) {
+                    $('#subcategoryBody').html(response); // response is table rows
+                    $('#subcategoryContainer').show();
+                },
+                error: function(xhr) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+
+        // Back button
+        $('#backToCategories').click(function() {
+            $('#subcategoryContainer').hide();
+            $('.table-wrapper').show();
+        });
+    });
+
+    </script>
+
+    <script>
+    $(document).on('click', '.delete-subcategory-btn', function () {
+    let id = $(this).data('id');
+    let row = $(this).closest('tr');
+
+    if(!confirm("Are you sure you want to delete this subcategory?")) return;
+
+    $.ajax({
+        url: "/delete_subcategory_details/" + id,
+        type: "POST",
+        data: {
+            _token: "{{ csrf_token() }}"
+        },
+        success: function () {
+            row.remove();  // remove only the row
+        },
+        error: function (xhr) {
+            console.error(xhr.responseText);
+        }
+    });
+});
+
+</script>
+<script>
+    $(document).ready(function () {
+        $(document).on("click", ".edit_sub_button", function () {
+            let id = $(this).data("id");
+
+            $.ajax({
+                url: "{{ route('edit.subcategory-profile') }}",
+                type: "POST",
+                data: {
+                    id: id,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function (response) {
+                    console.log(response.id);
+
+                    $('#subcategory_name').val(response.subcategory_name);
+                    $('#subcategory_id').val(response.id);
+                    $('#subcat_logo').attr('src', '{{ asset("image/subcatimage") }}/' + response.sc_logo);
+                    $('#catprice_a').val(response.cat_a);
+                    $('#catprice_b').val(response.cat_b);
+                    $('#catprice_c').val(response.cat_c);
+                    $('#catprice_d').val(response.cat_d);
+                    $('#catprice_e').val(response.cat_e);
+                
+
+                    const select = $('#sub_product_drop');
+                    const text = response.product_name;
+                    const value = response.product_id;
+
+                    select.find(`option[value="${value}"]`).remove();
+
+                    // Add the new option at the beginning
+                    select.prepend(`<option value="${value}" selected>${text}</option>`);
+
+                    const catselect = $('#sub_cat_drop');
+                    const cattext = response.category_name;
+                    const catvalue = response.category_id;
+
+                    catselect.find(`option[value="${catvalue}"]`).remove();
+                    catselect.prepend(`<option value="${catvalue}" selected>${cattext}</option>`);catprice_a
+
+
+                    // Remove existing option with the same value if present
+                    
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX Error:", xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
+
+
+
+<script>
+$(document).ready(function () {
+    $('#sub_product_drop').on('change', function () {
+        let productId = $(this).val();
+        //alert(productId);
+        
+        $.ajax({
+            url: "{{ route('create.getCategories') }}",
+
+            type: "POST",
+            data: {
+                product_id: productId,
+                _token: "{{ csrf_token() }}"
+            },
+            success: function (response) {
+                // response should be an array of categories
+                const categorySelect = $('#sub_cat_drop');
+                categorySelect.empty(); // clear current options
+                categorySelect.append('<option selected disabled>Select Category</option>');
+
+                $.each(response, function (index, category) {
+                    categorySelect.append(
+                        `<option value="${category.id}">${category.c_name}</option>`
+                    );
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error("AJAX Error:", xhr.responseText);
+            }
+        });
+    });
+});
+</script>
+
+<script>
+$(document).ready(function () {
+
+    // Click on subcategory to see items
+    $(document).on('click', '.view_subitems', function (e) {
+        e.preventDefault();
+
+        var subcategoryId = $(this).data('subcategory');
+
+        // Hide Subcategory Table
+        $('#subcategoryContainer').hide();
+
+        // Load items
+        $.ajax({
+            url: '/subcategory/' + subcategoryId + '/items',
+            type: 'GET',
+            success: function (response) {
+
+                // Insert rows into the item table body
+                $('#itemBody').html(response);
+
+                // Show items container
+                $('#itemContainer').show();
+            },
+            error: function (xhr) {
+                console.error(xhr.responseText);
+            }
+        });
+    });
+
+    // Back from item list to subcategory list
+    $('#backToSubcategories').click(function () {
+        $('#itemContainer').hide();
+        $('#subcategoryContainer').show();
+    });
+
+});
+</script>
+
+
 
 
 

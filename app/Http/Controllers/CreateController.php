@@ -727,6 +727,7 @@ public function reduce_items(Request $request)
                             </tr>
                         </thead>
                         <tbody>';
+                        $counter = 1;
             foreach ($matchedItems as $key => $item) {
                 $imagePath = $item->i_logo 
                 ? asset('image/itemimage/' . $item->i_logo) 
@@ -734,7 +735,7 @@ public function reduce_items(Request $request)
             
 
                 $html .= '<tr data-id="' . $item->id . '">
-                            <td>' . ($key + 1) . '</td>
+                            <td>' . $counter++ . '</td>
                             <td>' . $item->code . '</td>
                             <td><img src="' . $imagePath . '" height="40" alt="Item Image"></td>
                             

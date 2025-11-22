@@ -290,7 +290,7 @@ class ApiCustomerController extends Controller
             'subcategory_id'  => 'required|exists:subcategory,id',
             'customer_id'  => 'required|exists:customers,id',
         ], [
-            'subcategory_id.required'  => 'Category ID is required.',
+            'subcategory_id.required'  => 'SubCategory ID is required.',
             'customer_id.required'  => 'Customer ID is required.',
         ]);
 

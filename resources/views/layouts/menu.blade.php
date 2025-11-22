@@ -47,14 +47,27 @@
 </li>
 
 <li class="mb-1">
-    <a href="{{route('subcategory_wise_list')}}">
+    <a href="{{route('customer.customer_list')}}">
         <button class="btn0 mx-auto btn-toggle collapsed"
-            data-bs-toggle="collapse {{ Request::routeIs('subcategory_wise_list.*') ? 'active' : '' }}" data-bs-target="#collapse3" aria-expanded="false">
+            data-bs-toggle="collapse" data-bs-target="#collapse8" aria-expanded="false">
             <div class="righticon d-flex mx-auto">
                 <i class="fa-solid fa-angle-right"></i>
             </div>
             <div class="btnname">
-                <i class="fa-solid fa-user"></i> &nbsp;B/U Subcategory
+                <i class="fa-solid fa-user"></i> &nbsp;Customer
+            </div>
+        </button>
+    </a>
+</li>
+<li class="mb-1">
+    <a href="{{route('admin.admin-list')}}">
+        <button class="btn0 mx-auto btn-toggle collapsed"
+            data-bs-toggle="collapse {{ Request::routeIs('admin.admin-list.*') ? 'active' : '' }}" data-bs-target="#collapse7" aria-expanded="false">
+            <div class="righticon d-flex mx-auto">
+                <i class="fa-solid fa-angle-right"></i>
+            </div>
+            <div class="btnname">
+                <i class="fa-solid fa-user"></i> &nbsp;User
             </div>
         </button>
     </a>
@@ -85,6 +98,22 @@
         </button>
     </a>
 </li>
+
+<li class="mb-1">
+    <a href="{{route('subcategory_wise_list')}}">
+        <button class="btn0 mx-auto btn-toggle collapsed"
+            data-bs-toggle="collapse {{ Request::routeIs('subcategory_wise_list.*') ? 'active' : '' }}" data-bs-target="#collapse3" aria-expanded="false">
+            <div class="righticon d-flex mx-auto">
+                <i class="fa-solid fa-angle-right"></i>
+            </div>
+            <div class="btnname">
+                <i class="fa-solid fa-user"></i> &nbsp;B/U Subcategory
+            </div>
+        </button>
+    </a>
+</li>
+
+
 <li class="mb-1">
     <a href="{{ route('customer_wise_list') }}">
         <button class="btn0 mx-auto btn-toggle collapsed"
@@ -93,38 +122,13 @@
                 <i class="fa-solid fa-angle-right"></i>
             </div>
             <div class="btnname">
-                <i class="fa-solid fa-clipboard-check"></i> &nbsp;B/Upload Sales
-            </div>
-        </button>
-    </a>
-</li>
-<li class="mb-1">
-    <a href="{{route('admin.admin-list')}}">
-        <button class="btn0 mx-auto btn-toggle collapsed"
-            data-bs-toggle="collapse {{ Request::routeIs('admin.admin-list.*') ? 'active' : '' }}" data-bs-target="#collapse7" aria-expanded="false">
-            <div class="righticon d-flex mx-auto">
-                <i class="fa-solid fa-angle-right"></i>
-            </div>
-            <div class="btnname">
-                <i class="fa-solid fa-user"></i> &nbsp;User
+                <i class="fa-solid fa-clipboard-check"></i> &nbsp;B/U Sales
             </div>
         </button>
     </a>
 </li>
 
-<li class="mb-1">
-    <a href="{{route('customer.customer_list')}}">
-        <button class="btn0 mx-auto btn-toggle collapsed"
-            data-bs-toggle="collapse" data-bs-target="#collapse8" aria-expanded="false">
-            <div class="righticon d-flex mx-auto">
-                <i class="fa-solid fa-angle-right"></i>
-            </div>
-            <div class="btnname">
-                <i class="fa-solid fa-user"></i> &nbsp;Customer
-            </div>
-        </button>
-    </a>
-</li>
+
 
 <li class="mb-1">
     <a href="{{route('create.reduce_list')}}">
@@ -134,7 +138,7 @@
                 <i class="fa-solid fa-angle-right"></i>
             </div>
             <div class="btnname">
-                <i class="fa-solid fa-user"></i> &nbsp;Reduce 
+                <i class="fa-solid fa-clipboard-check"></i> &nbsp;B/U Reduce 
             </div>
         </button>
     </a>
